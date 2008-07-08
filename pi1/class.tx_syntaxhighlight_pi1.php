@@ -45,7 +45,8 @@ if(!defined('PATH_tslib')) {
 }
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
-require_once(t3lib_extMgm::siteRelPath('geshilib').'res/geshi.php');
+require_once(t3lib_extMgm::siteRelPath('geshilib') . 'res/geshi.php');
+require_once(t3lib_extMgm::siteRelPath('syntaxhighlight') . 'class.flexfunctions.php');
 
 class tx_syntaxhighlight_pi1 extends tslib_pibase {
 	var $prefixId = 'tx_syntaxhighlight_pi1';		// Same as class name
@@ -59,7 +60,8 @@ class tx_syntaxhighlight_pi1 extends tslib_pibase {
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
 		$this->pi_USER_INT_obj=1;	// Configuring so caching is not expected. This value means that no cHash params are ever set. We do this, because it's a USER_INT object!
-	
+		$this->languages = tx_flexfunctions::getLanguages();
+		
 	}
 	
 	function getFlexformConf() {
@@ -73,7 +75,7 @@ class tx_syntaxhighlight_pi1 extends tslib_pibase {
 		$config['width'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'cWidth', 'sVIEW');
 		$config['height'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'cHeight', 'sVIEW');
 		
-		return $config;
+		return array_merge($this->conf, $config);
 	}
 	/**
 	 * [Put your description here]
@@ -112,87 +114,28 @@ class tx_syntaxhighlight_pi1 extends tslib_pibase {
 	
 	
 	function doHighlight($config) {
-		switch($config['lang']) {
-			case "actionscript":
-			case "ada":
-			case "apache":
-			case "applescript":
-			case "asm":
-			case "asp":
-			case "bash":
-			case "blitzbasic":
-			case "c":
-			case "c_mac":
-			case "caddcl":
-			case "cadlisp":
-			case "cpp":
-			case "csharp":
-			case "css":
-			case "d":
-			case "delphi":
-			case "diff":
-			case "div":
-			case "dos":
-			case "eiffel":
-			case "freebasic":
-			case "gml":
-			case "html4strict":
-			case "ini":
-			case "java":
-			case "javascript":
-			case "lisp":
-			case "lua":
-			case "matlab":
-			case "mpasm":
-			case "mysql":
-			case "nsis":
-			case "objc":
-			case "ocaml":
-			case "ocaml-brief":
-			case "oobas":
-			case "oracle8":
-			case "pascal":
-			case "perl":
-			case "php":
-			case "php-brief":
-			case "python":
-			case "qbasic":
-			case "ruby":
-			case "scheme":
-			case "sqlbasic":
-			case "smarty":
-			case "sql":
-			case "vb":
-			case "vbnet":
-			case "vhdl":
-			case "visualfoxpro":
-			case "xml":
-			case 'typoscript':
+		t3lib_div::debug($config,'debug'); 
+		if(in_array($config['lang'], $this->languages)) {
+			$geshi = new GeSHi($config['code'], $config['lang'], '');
+
+			if($config['numbers']) {
+				$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS,$config['alternateLines']);	
+				$geshi->set_line_style('background: #fcfcfc;', 'background: #fdfdfd;');
+			}
+
+			$start_line = $config['startline'];
+			if ($start_line == '' || !is_int(@intval($start_line))) $start_line = 1;
+			$geshi->start_line_numbers_at($start_line);
+
+			$geshi->set_link_target('_blank'); 
+			$geshi->enable_classes(true);
+			$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet(); 
+#t3lib_div::debug($geshi,'debug'); 
+			error_reporting(0);
+			$completeCode = $geshi->parse_code(); 
 				
-				$geshi = new GeSHi($config['code'], $language, '');
-				
-				if($config['numbers']) {
-					$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS,$config['alternateLines']);	
-					$geshi->set_line_style('background: #fcfcfc;', 'background: #fdfdfd;');
-				}
-								
-				$start_line = $config['startline'];
-				if ($start_line == '' || !is_int(@intval($start_line))) $start_line = 1;
-				$geshi->start_line_numbers_at($start_line);
-				
-				$geshi->set_link_target('_blank'); 
-				$geshi->enable_classes(true);
-				$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet(); 
-		
-				#t3lib_div::debug($geshi->get_stylesheet(),'debug'); 
-				
-				error_reporting(0);
-				$completeCode = $geshi->parse_code(); 
-				
-				break;	
-			
- 			default:
- 				$completeCode="Language not found: '$lang'";
+		} else {
+ 			$completeCode='Language "' . $config['lang'] . '" not found';
 		}
 		
 		$content = '<div class="CodeBox" id="'.uniqid('cb_').'">';	
