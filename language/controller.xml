@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <description></description>
+        <type></type>
+        <csh_table></csh_table>
+        <labelContext type="array">
+        </labelContext>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+            <label index="extlabel">Syntax Highlight - Options</label>
+            <label index="label">Label:</label>
+            <label index="language">Language:</label>
+            <label index="code">Code:</label>
+            <label index="linenumbers">Line Numbers:</label>
+            <label index="width">Width:</label>
+            <label index="height">Height:</label>
+        </languageKey>
+        <languageKey index="de" type="array">
+            <label index="extlabel">Syntax Highlight - Optionen</label>
+            <label index="label">Beschriftung:</label>
+            <label index="language">Sprache:</label>
+            <label index="code">Code:</label>
+            <label index="linenumbers">Zeilennummern:</label>
+            <label index="width">Breite:</label>
+            <label index="height">Höhe:</label>
+        </languageKey>
+    </data>
+</T3locallang>

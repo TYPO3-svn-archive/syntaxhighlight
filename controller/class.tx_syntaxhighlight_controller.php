@@ -53,27 +53,23 @@ class tx_syntaxhighlight_controller extends tslib_pibase {
 	var $scriptRelPath = 'controller/class.tx_syntaxhighlight_controller.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'syntaxhighlight';	// The extension key.
 	
-	
-	
 	function init($conf) {
-		$this->conf=$conf;
+		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
-		$this->pi_loadLL();
-		$this->pi_USER_INT_obj=1;	// Configuring so caching is not expected. This value means that no cHash params are ever set. We do this, because it's a USER_INT object!
+		#$this->pi_loadLL();
 		$this->languages = tx_syntaxhighlightAPI::getLanguages();
-		
 	}
 	
 	function getFlexformConf() {
 		// parse XML data into php array
 		$this->pi_initPIflexForm(); 
 		
-		$config['label'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'cLabel', 'sVIEW');
-		$config['lang'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'cLang', 'sVIEW');
-		$config['code'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'cCode', 'sVIEW');
-		$config['numbers'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'cNumbers', 'sVIEW');
-		$config['width'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'cWidth', 'sVIEW');
-		$config['height'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'cHeight', 'sVIEW');
+		$config['label']       = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'label', 'sDEF');
+		$config['code']        = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'code', 'sDEF');
+		$config['height']      = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'height', 'sDEF');
+		$config['language']    = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'language', 'sDEF');
+		$config['linenumbers'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'linenumbers', 'sDEF');
+		$config['width']       = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'width', 'sDEF');
 		
 		return array_merge($this->conf, $config);
 	}
@@ -85,12 +81,10 @@ class tx_syntaxhighlight_controller extends tslib_pibase {
 		$this->init($conf);
 		$config = $this->getFlexformConf();
 		
-		
-		
 		//override Setup ?
 		$width= ($config['width'])!='' ? $config['width'] : $conf['width'];
 		$height= ($config['height'])!='' ? $config['height'] : $conf['height'];
-		if($config['label']=='') $config['label']=$this->pi_getLL($config['lang']);
+		//if($config['label']=='') $config['label']=$this->pi_getLL($config['language']);
 		
 		//create css-inline
 		$iewidth=$width-5; //fix for IE
@@ -98,7 +92,7 @@ class tx_syntaxhighlight_controller extends tslib_pibase {
 		$config['inlineCode']='width:'.$width.'px;height:'.$height.'px;';
 		
 		//create preview
-		$config['preview']='Language: '.$config['lang']."\n".htmlentities(substr($config['code'],0,120));
+		$config['preview']='Language: '.$config['language']."\n".htmlentities(substr($config['code'],0,120));
 		$config['bodytext']=$this->cObj->data['bodytext'];
 		if($config['bodytext']!=$config['preview']) {
 			#copy the code to bodytext for preview in BE
@@ -108,18 +102,17 @@ class tx_syntaxhighlight_controller extends tslib_pibase {
 		
 		$content = $this->doHighlight($config);
 		
-		
 		return $this->pi_wrapInBaseClass($content);
 	}
 	
 	
 	function doHighlight($config) {
 		#t3lib_div::debug($config,'debug'); 
-		if(in_array($config['lang'], $this->languages)) {
-			$geshi = new GeSHi($config['code'], $config['lang'], '');
+		if(in_array($config['language'], $this->languages)) {
+			$geshi = new GeSHi($config['code'], $config['language'], '');
 
-			if($config['numbers']) {
-				$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS,$config['alternateLines']);	
+			if($config['linenumbers']) {
+				$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, $config['alternateLines']);	
 				$geshi->set_line_style('background: #fcfcfc;', 'background: #fdfdfd;');
 			}
 
@@ -130,12 +123,12 @@ class tx_syntaxhighlight_controller extends tslib_pibase {
 			$geshi->set_link_target('_blank'); 
 			$geshi->enable_classes(true);
 			$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet(); 
-#t3lib_div::debug($geshi,'debug'); 
+			#t3lib_div::debug($geshi,'debug'); 
 			error_reporting(0);
 			$completeCode = $geshi->parse_code(); 
 				
 		} else {
- 			$completeCode='Language "' . $config['lang'] . '" not found';
+ 			$completeCode='Language "' . $config['language'] . '" not found';
 		}
 		
 		$content = '<div class="CodeBox" id="'.uniqid('cb_').'">';	
@@ -146,14 +139,14 @@ class tx_syntaxhighlight_controller extends tslib_pibase {
 	
 		// ajax call from rte
 	function highlightRTE() {
-        $config['code'] = strtr(t3lib_div::_GP('content'),array(
-        	'&quot;' => '"'
-        ));
-        
-        $config['lang'] = t3lib_div::_GP('language');
-		$config['numbers'] = t3lib_div::_GP('linenumbers');
-        $config['label'] = t3lib_div::_GP('title') ? t3lib_div::_GP('title') : $config['lang'];
-        $config['startline'] = t3lib_div::_GP('start');
+		$config['code'] = strtr(t3lib_div::_GP('content'),array(
+			'&quot;' => '"'
+		));
+		
+		$config['language'] = t3lib_div::_GP('language');
+		$config['linenumbers'] = t3lib_div::_GP('linenumbers');
+		$config['label'] = t3lib_div::_GP('title') ? t3lib_div::_GP('title') : $config['language'];
+		$config['startline'] = t3lib_div::_GP('start');
 		
 		$content = $this->doHighlight($config);
 		echo $content;
@@ -162,10 +155,7 @@ class tx_syntaxhighlight_controller extends tslib_pibase {
 	
 }
 
-
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php']);
 }
-
 ?>

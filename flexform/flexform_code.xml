@@ -4,16 +4,16 @@
 		<langDisable>1</langDisable>
 	</meta>
 	<sheets>
-		<sVIEW>
+		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:syntaxhighlight/controller/locallang.xml:extlabel</sheetTitle>
+					<sheetTitle>LLL:EXT:syntaxhighlight/language/controller.xml:extlabel</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<cLabel>
+					<label>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:label</label>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:label</label>
 							<config>
 								<type>input</type>
 								<size>36</size>
@@ -21,10 +21,10 @@
 								<eval>trim</eval>
 							</config>
 						</TCEforms>
-					</cLabel>
-					<cLang>
+					</label>
+					<language>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:lang</label>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:language</label>
 							<config>
 								<type>select</type>
 								<items>
@@ -36,28 +36,28 @@
 								<itemsProcFunc>tx_syntaxhighlightAPI-&gt;getFlexformLanguages</itemsProcFunc>
 							</config>
 						</TCEforms>
-					</cLang>
-					<cCode>
+					</language>
+					<code>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:code</label>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:code</label>
 							<config>
 								<type>text</type>
 								<cols>120</cols>
 								<rows>12</rows>
 							</config>
 						</TCEforms>
-					</cCode>
-					<cNumbers>
+					</code>
+					<linenumbers>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:numbers</label>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:linenumbers</label>
 							<config>
 								<type>check</type>
 							</config>
 						</TCEforms>
-					</cNumbers>
-					<cWidth>
+					</linenumbers>
+					<width>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:width</label>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:width</label>
 							<config>
 								<type>input</type>
 								<size>4</size>
@@ -65,10 +65,10 @@
 								<eval>trim</eval>
 							</config>
 						</TCEforms>
-					</cWidth>
-					<cHeight>
+					</width>
+					<height>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:height</label>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:height</label>
 							<config>
 								<type>input</type>
 								<size>4</size>
@@ -76,9 +76,9 @@
 								<eval>trim</eval>
 							</config>
 						</TCEforms>
-					</cHeight>
+					</height>
 				</el>
 			</ROOT>
-		</sVIEW>
+		</sDEF>
 	</sheets>
 </T3DataStructure>
