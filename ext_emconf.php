@@ -1,7 +1,7 @@
 <?php
 
 ########################################################################
-# Extension Manager/Repository config file for ext: "sk_codebox"
+# Extension Manager/Repository config file for ext: "syntaxhighlight"
 #
 # Auto generated 25-03-2008 22:56
 #
@@ -11,8 +11,8 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'CodeBox',
-	'description' => 'highlights Code and present it in a Box',
+	'title' => 'Syntax Highlight',
+	'description' => 'Syntax highlight text and present it in a box',
 	'category' => 'plugin',
 	'shy' => 0,
 	'version' => '0.0.0',

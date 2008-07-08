@@ -33,7 +33,7 @@
 										<numIndex index="1"/>
 									</numIndex>
 								</items>
-								<itemsProcFunc>tx_syntaxhighlightAPI-&gt;listLanguages</itemsProcFunc>
+								<itemsProcFunc>tx_syntaxhighlightAPI-&gt;getFlexformLanguages</itemsProcFunc>
 							</config>
 						</TCEforms>
 					</cLang>

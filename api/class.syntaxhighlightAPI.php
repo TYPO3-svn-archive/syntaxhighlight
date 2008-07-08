@@ -22,8 +22,10 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once (t3lib_extMgm::extPath('geshilib').'res/geshi.php');
+
 /**
- * Flexform Class for the 'publish_content' extension.
+ * API Class for the 'syntaxhighlight' extension.
  *
  * @author	Steffen Kamper <info@sk-typo3.de>
  * @package	TYPO3
@@ -32,25 +34,23 @@
 class tx_syntaxhighlightAPI {
 	
 	/**
-	 * itemsProcFunc for syntaxhighlight in extconf
+	 * itemsProcFunc for syntaxhighlight in flexform
 	 *
 	 * @param	array		$params: flexform params
 	 * @param	array		$conf: flexform conf
 	 * @return	
 	 */
-  function listLanguages($params, $conf) {
-     $languages = $this->getLanguages();
-     $i = 0;
-     foreach($languages as $lang) {
-	    $params['items'][$i][0] = $lang;
-	    $params['items'][$i++][1] = $lang;
-     }
+	public function getFlexFormLanguages($params, $conf) {
+		$languages = $this->getLanguages();
+		$geshi = new GeSHi('bash', '');
+		foreach($languages as $language) {
+			$geshi->set_language($language);
+	    $params['items'][$language][0] = $geshi->get_language_name();
+	    $params['items'][$language][1] = $language;
+		}
+		return $languages;
+	}
 
-
-  }
-
-	
-	
 	public function getLanguages() {
 		// read syntax files
 		$array = t3lib_div::getFilesInDir(t3lib_extMgm::extPath('geshilib').'res/geshi/','php');
