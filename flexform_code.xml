@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<T3DataStructure>
+  <meta>
+    <langDisable>1</langDisable>
+  </meta>
+  
+  <sheets>
+  <sVIEW>
+  <ROOT>
+    <TCEforms>
+	<sheetTitle>LLL:EXT:syntaxhighlight/pi1/locallang.xml:extlabel</sheetTitle>
+	</TCEforms>
+    <type>array</type>
+    <el>
+	<cLabel>
+		<TCEforms>
+			<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:label</label>
+			<config>
+				<type>input</type>
+				<size>36</size>
+				<max>60</max>
+				<eval>trim</eval>
+			</config>
+		</TCEforms>
+	</cLabel>
+	<cLang>
+		<TCEforms>
+			<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:lang</label>
+			<config>
+				<type>select</type>
+					<items>
+						<numIndex index="0">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:actionscript</numIndex>
+							<numIndex index="1">actionscript</numIndex>
+						</numIndex>
+						<numIndex index="1">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:ada</numIndex>
+							<numIndex index="1">ada</numIndex>
+						</numIndex>
+						<numIndex index="2">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:apache</numIndex>
+							<numIndex index="1">apache</numIndex>
+						</numIndex>
+						<numIndex index="3">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:applescript</numIndex>
+							<numIndex index="1">applescript</numIndex>
+						</numIndex>
+						<numIndex index="4">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:asm</numIndex>
+							<numIndex index="1">asm</numIndex>
+						</numIndex>
+						<numIndex index="5">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:asp</numIndex>
+							<numIndex index="1">asp</numIndex>
+						</numIndex>
+						<numIndex index="6">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:bash</numIndex>
+							<numIndex index="1">bash</numIndex>
+						</numIndex>
+						<numIndex index="7">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:blitzbasic</numIndex>
+							<numIndex index="1">blitzbasic</numIndex>
+						</numIndex>
+						<numIndex index="8">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:c</numIndex>
+							<numIndex index="1">c</numIndex>
+						</numIndex>
+						<numIndex index="9">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:c_mac</numIndex>
+							<numIndex index="1">c_mac</numIndex>
+						</numIndex>
+						<numIndex index="10">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:caddcl</numIndex>
+							<numIndex index="1">caddcl</numIndex>
+						</numIndex>
+						<numIndex index="11">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:cadlisp</numIndex>
+							<numIndex index="1">cadlisp</numIndex>
+						</numIndex>
+						<numIndex index="12">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:cpp</numIndex>
+							<numIndex index="1">cpp</numIndex>
+						</numIndex>
+						<numIndex index="13">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:csharp</numIndex>
+							<numIndex index="1">csharp</numIndex>
+						</numIndex>
+						<numIndex index="14">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:css</numIndex>
+							<numIndex index="1">css</numIndex>
+						</numIndex>
+						<numIndex index="15">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:d</numIndex>
+							<numIndex index="1">d</numIndex>
+						</numIndex>
+						<numIndex index="16">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:delphi</numIndex>
+							<numIndex index="1">delphi</numIndex>
+						</numIndex>
+						<numIndex index="17">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:diff</numIndex>
+							<numIndex index="1">diff</numIndex>
+						</numIndex>
+						<numIndex index="18">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:div</numIndex>
+							<numIndex index="1">div</numIndex>
+						</numIndex>
+						<numIndex index="19">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:dos</numIndex>
+							<numIndex index="1">dos</numIndex>
+						</numIndex>
+						<numIndex index="20">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:eiffel</numIndex>
+							<numIndex index="1">eiffel</numIndex>
+						</numIndex>
+						<numIndex index="21">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:freebasic</numIndex>
+							<numIndex index="1">freebasic</numIndex>
+						</numIndex>
+						<numIndex index="22">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:gml</numIndex>
+							<numIndex index="1">gml</numIndex>
+						</numIndex>
+						<numIndex index="23">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:html4strict</numIndex>
+							<numIndex index="1">html4strict</numIndex>
+						</numIndex>
+						<numIndex index="24">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:ini</numIndex>
+							<numIndex index="1">ini</numIndex>
+						</numIndex>
+						<numIndex index="25">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:java</numIndex>
+							<numIndex index="1">java</numIndex>
+						</numIndex>
+						<numIndex index="26">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:javascript</numIndex>
+							<numIndex index="1">javascript</numIndex>
+						</numIndex>
+						<numIndex index="27">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:lisp</numIndex>
+							<numIndex index="1">lisp</numIndex>
+						</numIndex>
+						<numIndex index="28">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:lua</numIndex>
+							<numIndex index="1">lua</numIndex>
+						</numIndex>
+						<numIndex index="29">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:matlab</numIndex>
+							<numIndex index="1">matlab</numIndex>
+						</numIndex>
+						<numIndex index="30">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:mpasm</numIndex>
+							<numIndex index="1">mpasm</numIndex>
+						</numIndex>
+						<numIndex index="31">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:mysql</numIndex>
+							<numIndex index="1">mysql</numIndex>
+						</numIndex>
+						<numIndex index="32">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:nsis</numIndex>
+							<numIndex index="1">nsis</numIndex>
+						</numIndex>
+						<numIndex index="33">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:objc</numIndex>
+							<numIndex index="1">objc</numIndex>
+						</numIndex>
+						<numIndex index="34">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:ocaml</numIndex>
+							<numIndex index="1">ocaml</numIndex>
+						</numIndex>
+						<numIndex index="35">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:ocaml-brief</numIndex>
+							<numIndex index="1">ocaml-brief</numIndex>
+						</numIndex>
+						<numIndex index="36">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:oobas</numIndex>
+							<numIndex index="1">oobas</numIndex>
+						</numIndex>
+						<numIndex index="37">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:oracle8</numIndex>
+							<numIndex index="1">oracle8</numIndex>
+						</numIndex>
+						<numIndex index="38">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:pascal</numIndex>
+							<numIndex index="1">pascal</numIndex>
+						</numIndex>
+						<numIndex index="39">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:perl</numIndex>
+							<numIndex index="1">perl</numIndex>
+						</numIndex>
+						<numIndex index="40">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:php</numIndex>
+							<numIndex index="1">php</numIndex>
+						</numIndex>
+						<numIndex index="41">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:php-brief</numIndex>
+							<numIndex index="1">php-brief</numIndex>
+						</numIndex>
+						<numIndex index="42">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:python</numIndex>
+							<numIndex index="1">python</numIndex>
+						</numIndex>
+						<numIndex index="43">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:qbasic</numIndex>
+							<numIndex index="1">qbasic</numIndex>
+						</numIndex>
+						<numIndex index="44">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:ruby</numIndex>
+							<numIndex index="1">ruby</numIndex>
+						</numIndex>
+						<numIndex index="45">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:scheme</numIndex>
+							<numIndex index="1">scheme</numIndex>
+						</numIndex>
+						<numIndex index="46">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:sqlbasic</numIndex>
+							<numIndex index="1">sqlbasic</numIndex>
+						</numIndex>
+						<numIndex index="47">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:smarty</numIndex>
+							<numIndex index="1">smarty</numIndex>
+						</numIndex>
+						<numIndex index="48">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:sql</numIndex>
+							<numIndex index="1">sql</numIndex>
+						</numIndex>
+						<numIndex index="49">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:typoscript</numIndex>
+							<numIndex index="1">typoscript</numIndex>
+						</numIndex>
+						<numIndex index="50">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:vb</numIndex>
+							<numIndex index="1">vb</numIndex>
+						</numIndex>
+						<numIndex index="51">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:vbnet</numIndex>
+							<numIndex index="1">vbnet</numIndex>
+						</numIndex>
+						<numIndex index="52">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:vhdl</numIndex>
+							<numIndex index="1">vhdl</numIndex>
+						</numIndex>
+						<numIndex index="53">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:visualfoxpro</numIndex>
+							<numIndex index="1">visualfoxpro</numIndex>
+						</numIndex>
+						<numIndex index="54">
+							<numIndex index="0">LLL:EXT:syntaxhighlight/pi1/locallang.xml:xml</numIndex>
+							<numIndex index="1">xml</numIndex>
+						</numIndex>
+						
+						
+					</items>
+			</config>
+		</TCEforms>
+	</cLang>
+	
+	<cCode>
+		<TCEforms>
+			<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:code</label>
+			<config>
+				<type>text</type>
+				<cols>120</cols>
+				<rows>12</rows>
+			</config>
+		</TCEforms>
+	</cCode>
+	
+	<cNumbers>
+		<TCEforms>
+			<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:numbers</label>
+			<config>
+				<type>check</type>
+			</config>
+		</TCEforms>
+	</cNumbers>
+	
+	<cWidth>
+		  	<TCEforms>
+				<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:width</label>
+				<config>
+					<type>input</type>
+					<size>4</size>
+					<max>4</max>
+					<eval>trim</eval>
+				</config>
+			</TCEforms>
+	</cWidth>
+		  
+   <cHeight>
+		  	<TCEforms>
+				<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:height</label>
+				<config>
+					<type>input</type>
+					<size>4</size>
+					<max>4</max>
+					<eval>trim</eval>
+				</config>
+			</TCEforms>
+	</cHeight>
+	
+	</el>
+	</ROOT>
+	</sVIEW>
+	
+	
+  
+  
+  </sheets>
+</T3DataStructure>
