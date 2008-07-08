@@ -34,7 +34,7 @@
                             <numIndex index="1"></numIndex>
                         </numIndex> 
                     </items>
-                     <itemsProcFunc>tx_flexfunctions->listLanguages</itemsProcFunc>
+                     <itemsProcFunc>tx_syntaxhighlightAPI->listLanguages</itemsProcFunc>
 			</config>
 		</TCEforms>
 	</cLang>

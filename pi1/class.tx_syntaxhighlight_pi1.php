@@ -46,7 +46,7 @@ if(!defined('PATH_tslib')) {
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
 require_once(t3lib_extMgm::siteRelPath('geshilib') . 'res/geshi.php');
-require_once(t3lib_extMgm::siteRelPath('syntaxhighlight') . 'class.flexfunctions.php');
+require_once(t3lib_extMgm::siteRelPath('syntaxhighlight') . 'class.syntaxhighlightAPI.php');
 
 class tx_syntaxhighlight_pi1 extends tslib_pibase {
 	var $prefixId = 'tx_syntaxhighlight_pi1';		// Same as class name
@@ -60,7 +60,7 @@ class tx_syntaxhighlight_pi1 extends tslib_pibase {
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
 		$this->pi_USER_INT_obj=1;	// Configuring so caching is not expected. This value means that no cHash params are ever set. We do this, because it's a USER_INT object!
-		$this->languages = tx_flexfunctions::getLanguages();
+		$this->languages = tx_syntaxhighlightAPI::getLanguages();
 		
 	}
 	

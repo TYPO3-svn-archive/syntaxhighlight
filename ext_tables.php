@@ -13,7 +13,7 @@ t3lib_extMgm::addPlugin(Array('LLL:EXT:syntaxhighlight/language/locallang_db.xml
 t3lib_extMgm::addStaticFile($_EXTKEY,"pi1/static/","CodeBox");
 
 if (TYPO3_MODE=="BE")    {
-    include_once(t3lib_extMgm::extPath($_EXTKEY).'class.flexfunctions.php');   
+    include_once(t3lib_extMgm::extPath($_EXTKEY).'class.syntaxhighlightAPI.php');   
 }  
 
 ?>

@@ -29,7 +29,7 @@
  * @package	TYPO3
  * @subpackage	syntaxhighlight
  */
-class tx_flexfunctions {
+class tx_syntaxhighlightAPI {
 	
 	/**
 	 * itemsProcFunc for syntaxhighlight in extconf
