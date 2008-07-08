@@ -22,7 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once (t3lib_extMgm::extPath('geshilib').'res/geshi.php');
+require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 
 /**
  * API Class for the 'syntaxhighlight' extension.

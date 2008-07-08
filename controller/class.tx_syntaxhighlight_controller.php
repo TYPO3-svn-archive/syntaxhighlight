@@ -45,8 +45,8 @@ if(!defined('PATH_tslib')) {
 }
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
-require_once(t3lib_extMgm::siteRelPath('geshilib') . 'res/geshi.php');
-require_once(t3lib_extMgm::siteRelPath('syntaxhighlight') . 'api/class.syntaxhighlightAPI.php');
+require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
+require_once(t3lib_extMgm::extPath('syntaxhighlight') . 'api/class.syntaxhighlightAPI.php');
 
 class tx_syntaxhighlight_controller extends tslib_pibase {
 	var $prefixId = 'tx_syntaxhighlight_controller';		// Same as class name
@@ -114,7 +114,7 @@ class tx_syntaxhighlight_controller extends tslib_pibase {
 	
 	
 	function doHighlight($config) {
-		t3lib_div::debug($config,'debug'); 
+		#t3lib_div::debug($config,'debug'); 
 		if(in_array($config['lang'], $this->languages)) {
 			$geshi = new GeSHi($config['code'], $config['lang'], '');
 
