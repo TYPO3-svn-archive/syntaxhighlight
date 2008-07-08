@@ -46,7 +46,7 @@ if(!defined('PATH_tslib')) {
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
 require_once(t3lib_extMgm::siteRelPath('geshilib') . 'res/geshi.php');
-require_once(t3lib_extMgm::siteRelPath('syntaxhighlight') . 'class.syntaxhighlightAPI.php');
+require_once(t3lib_extMgm::siteRelPath('syntaxhighlight') . 'api/class.syntaxhighlightAPI.php');
 
 class tx_syntaxhighlight_pi1 extends tslib_pibase {
 	var $prefixId = 'tx_syntaxhighlight_pi1';		// Same as class name
