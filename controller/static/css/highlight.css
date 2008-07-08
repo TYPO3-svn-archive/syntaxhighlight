@@ -1,3 +1,5 @@
+# Default set CSS styles (these go into the document header):
+plugin.tx_syntaxhighlight_controller._CSS_DEFAULT_STYLE (
 /* GESHI CLASSES */
 pre .br0 {color: #6c6;}
 pre .co1, pre .co2, pre .coMULTI {color: #808080;}
@@ -29,3 +31,4 @@ pre .st0 {color: #f00;}
 	padding: 8px 0 8px 8px;
 	white-space: nowrap;
 }
+)

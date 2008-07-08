@@ -1,0 +1,13 @@
+includeLibs.tx_syntaxhighlight_controller = EXT:syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php
+ 
+plugin.tx_syntaxhighlight_controller = USER
+plugin.tx_syntaxhighlight_controller {
+	userFunc = tx_syntaxhighlight_controller->main
+
+	###
+	# Dimensions, widths, heights, pixels
+
+  linenumbers = {$plugin.tx_syntaxhighlight_controller.linenumbers}
+}
+ 
+tt_content.list.20.syntaxhighlight_controller =< plugin.tx_syntaxhighlight_controller

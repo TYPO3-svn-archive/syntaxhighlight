@@ -1,0 +1,14 @@
+###
+# This are the default TS-constants for tx_syntaxhighlight_controller
+##
+
+plugin.tx_syntaxhighlight_controller = USER
+plugin.tx_syntaxhighlight_controller {
+
+	###
+	# Dimensions, widths, heights, pixels
+	##
+	
+	# cat=plugin.tx_syntaxhighlight_controller/dims/1; type=boolean; label= Numbering: Either 1 or 0.
+	linenumbers = 0
+}
