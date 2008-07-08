@@ -1,5 +1,5 @@
 page.headerData.9876 = TEXT
-page.headerData.9876.value = <link rel="stylesheet" type="text/css" href="typo3conf/ext/sk_codebox/res/highlight.css" />
+page.headerData.9876.value = <link rel="stylesheet" type="text/css" href="typo3conf/ext/syntaxhighlight/res/highlight.css" />
 
 plugin.syntaxhighlight {
 	titleBoxBgColor = #405753

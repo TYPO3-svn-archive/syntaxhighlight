@@ -25,6 +25,6 @@ $TYPO3_CONF_VARS['EXTCONF']['rtehtmlarea']['plugins']['Codebox']['disableInFE'] 
 t3lib_extMgm::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/res/pageTSConfig.txt">');
 
 	// register ajax call
-$TYPO3_CONF_VARS['BE']['AJAX']['tx_syntaxhighlight_controller::highlightRTE'] = 'typo3conf/ext/sk_codebox/controller/class.tx_syntaxhighlight_controller.php:tx_syntaxhighlight_controller->highlightRTE';
+$TYPO3_CONF_VARS['BE']['AJAX']['tx_syntaxhighlight_controller::highlightRTE'] = 'typo3conf/ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php:tx_syntaxhighlight_controller->highlightRTE';
 
 ?>
