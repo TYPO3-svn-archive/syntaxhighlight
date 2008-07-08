@@ -59,5 +59,26 @@ class tx_syntaxhighlightAPI {
 		}
 		return $languages;
 	}
+	
+	public function getExtensionSummary($params, &$pObj) {
+
+		if ($params['row']['list_type'] == 'syntaxhighlight_controller') {
+			$data = t3lib_div::xml2array($params['row']['pi_flexform']);
+			if (is_array($data)) {
+				$code = $data['data']['sDEF']['lDEF']['code']['vDEF'];
+				$language = $data['data']['sDEF']['lDEF']['language']['vDEF'];
+				require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
+				$geshi = new GeSHi($code, $language, '');
+				$result = '<p style="background-color:#eee;margin-bottom:4px;">Language: ' . $language . '</p>' . $geshi->parse_code(); 
+					// wrapping in fixed div
+				$result = '<div style="max-width:300px;height:120px;background-color:#fefefe;overflow:auto;">' . $result . '</div>';
+			}
+			if (!$result) {
+				$result = $GLOBALS['LANG']->sL('LLL:EXT:syntaxhighlight/language/controller.xml:no_content');
+			}
+		}
+		return $result;
+	}
+	
 }
 ?>

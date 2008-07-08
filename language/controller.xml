@@ -16,6 +16,7 @@
             <label index="linenumbers">Line Numbers:</label>
             <label index="width">Width:</label>
             <label index="height">Height:</label>
+            <label index="no_content">No code for syntax highlight</label>
         </languageKey>
         <languageKey index="de" type="array">
             <label index="extlabel">Syntax Highlight - Optionen</label>
@@ -25,6 +26,7 @@
             <label index="linenumbers">Zeilennummern:</label>
             <label index="width">Breite:</label>
             <label index="height">Höhe:</label>
+            <label index="no_content">Kein Code für Syntaxhervorhebung</label>
         </languageKey>
     </data>
 </T3locallang>
