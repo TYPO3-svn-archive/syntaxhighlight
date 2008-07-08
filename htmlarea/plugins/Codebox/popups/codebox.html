@@ -71,7 +71,7 @@
 					start: document.getElementById('start_with').value,
 					content : document.getElementById('code').value
 				};
-				dialog.plugin.postData(	'../../../ajax.php?ajaxID=tx_skcodebox_pi1::highlightRTE',
+				dialog.plugin.postData(	'../../../ajax.php?ajaxID=tx_skcodebox_controller::highlightRTE',
 					content,
 					function(response) {
 						editor.insertHTML(response);

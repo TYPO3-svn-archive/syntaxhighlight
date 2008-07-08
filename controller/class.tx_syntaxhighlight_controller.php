@@ -48,9 +48,9 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
 require_once(t3lib_extMgm::siteRelPath('geshilib') . 'res/geshi.php');
 require_once(t3lib_extMgm::siteRelPath('syntaxhighlight') . 'api/class.syntaxhighlightAPI.php');
 
-class tx_syntaxhighlight_pi1 extends tslib_pibase {
-	var $prefixId = 'tx_syntaxhighlight_pi1';		// Same as class name
-	var $scriptRelPath = 'pi1/class.tx_syntaxhighlight_pi1.php';	// Path to this script relative to the extension dir.
+class tx_syntaxhighlight_controller extends tslib_pibase {
+	var $prefixId = 'tx_syntaxhighlight_controller';		// Same as class name
+	var $scriptRelPath = 'controller/class.tx_syntaxhighlight_controller.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'syntaxhighlight';	// The extension key.
 	
 	
@@ -164,8 +164,8 @@ class tx_syntaxhighlight_pi1 extends tslib_pibase {
 
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/pi1/class.tx_syntaxhighlight_pi1.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/pi1/class.tx_syntaxhighlight_pi1.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php']);
 }
 
 ?>

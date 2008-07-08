@@ -7,13 +7,13 @@
 		<sVIEW>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:syntaxhighlight/pi1/locallang.xml:extlabel</sheetTitle>
+					<sheetTitle>LLL:EXT:syntaxhighlight/controller/locallang.xml:extlabel</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<cLabel>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:label</label>
+							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:label</label>
 							<config>
 								<type>input</type>
 								<size>36</size>
@@ -24,7 +24,7 @@
 					</cLabel>
 					<cLang>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:lang</label>
+							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:lang</label>
 							<config>
 								<type>select</type>
 								<items>
@@ -39,7 +39,7 @@
 					</cLang>
 					<cCode>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:code</label>
+							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:code</label>
 							<config>
 								<type>text</type>
 								<cols>120</cols>
@@ -49,7 +49,7 @@
 					</cCode>
 					<cNumbers>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:numbers</label>
+							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:numbers</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -57,7 +57,7 @@
 					</cNumbers>
 					<cWidth>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:width</label>
+							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:width</label>
 							<config>
 								<type>input</type>
 								<size>4</size>
@@ -68,7 +68,7 @@
 					</cWidth>
 					<cHeight>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/pi1/locallang.xml:height</label>
+							<label>LLL:EXT:syntaxhighlight/controller/locallang.xml:height</label>
 							<config>
 								<type>input</type>
 								<size>4</size>
