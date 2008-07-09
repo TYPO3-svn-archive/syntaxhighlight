@@ -155,11 +155,38 @@ class tx_syntaxhighlightAPI {
 		$geshi->start_line_numbers_at(intval($conf['startLine']) < 1 ? 1 : intval($conf['startLine']));
 
 		$geshi->set_link_target('_blank');
-		$geshi->enable_classes(true);
 
-		if (TYPO3_MODE=='FE') {
+		if (TYPO3_MODE == 'FE') {
+				// overall style
+			$geshi->enable_classes(true);
+			if ($conf['style.']['overall']) {
+				$geshi->set_overall_style($conf['style.']['overall'], (bool) $conf['style.']['overallMerge']);
+			}
+				// line number style
+			if ($conf['style.']['lineNumbers.']['normal'] && $conf['style.']['lineNumbers.']['fancy']) {
+				$geshi->set_line_style($conf['style.']['lineNumbers.']['normal'], $conf['style.']['lineNumbers.']['fancy']);
+			}
+				// keyword group style
+			if ($conf['style.']['keyword.']) {
+				for ($i = 1; $i < 5; $i++) {
+					if ($conf['style.']['keyword.']['set'.$i.'.']['value']) {
+						$geshi->set_keyword_group_style($i, $conf['style.']['keyword.']['set'.$i.'.']['value'], (bool) $conf['style.']['keyword.']['set'.$i.'.']['mode']);
+					}
+				}
+			}
+				// comment style
+			if ($conf['style.']['comment.']) {
+				for ($i = 1; $i < 4; $i++) {
+					if ($conf['style.']['comment.']['set'.$i.'.']['value']) {
+						$geshi->set_comments_style($i, $conf['style.']['comment.']['set'.$i.'.']['value'], (bool) $conf['style.']['comment.']['set'.$i.'.']['mode']);
+					}
+				}
+				if ($conf['style.']['comment.']['multiline.']['value']) {
+					$geshi->set_comments_style('MULTI', $conf['style.']['comment.']['multiline.']['value'], (bool) $conf['style.']['comment.']['multiline.']['mode']);
+				}
+			}
 				// add css to the page
-			if ($config['useGeshiCSS']) {
+			if ($conf['useGeshiCSS']) {
 				$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet();
 			}
 		}
@@ -179,10 +206,15 @@ class tx_syntaxhighlightAPI {
 		return $result;
 	}
 
+
+	/**
+	 * Fetch the default plugin configuration
+	 *
+	 * @return array  $result:  the configuration array
+	 */
 	public function getDefaultConfig() {
 		return $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_syntaxhighlight_controller.'];
 	}
-	
 	
 }
 

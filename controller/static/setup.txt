@@ -12,7 +12,61 @@ plugin.tx_syntaxhighlight_controller {
 
 		// Settings
 
-	useGeshiCSS    = 1
+	useGeshiCSS = 1
+
+	style {
+		overall = color: #333;
+		overallMerge = 1
+		lineNumbers {
+			normal = color: #000; background: #fcfcfc;
+			fancy = color: #333; background: #fdfdfd;
+		}
+			// setup keyword styles. Either merge them or replace the styles
+			// completely
+		keyword {
+				// set 1 contains keywords like if, while, do, for, switch etc.
+			set1 {
+				value = 
+				merge = 1
+			}
+				// set 2 contains null, false, 1 etc. 
+			set2 {
+				value =
+				merge = 1
+			}
+				// set 3 contains function inbuilt into the language (echo,
+				// htmlspecialchars etc. in PHP)
+			set3 {
+				value =
+				merge = 1
+			}
+				// set 4 contains data types and similar variable modifiers: int,
+				// double, real, static etc.
+			set4 {
+				value =
+				merge = 1
+			}
+		}
+			// comment styles
+		comment {
+			set1 {
+				value = 
+				merge = 1
+			}
+			set2 {
+				value =
+				merge = 1
+			}
+			set3 {
+				value =
+				merge = 1
+			}
+			multiline {
+				value = color: blue;
+				merge = 1
+			}
+		}
+	}
 }
 
 tt_content.list.20.syntaxhighlight_controller =< plugin.tx_syntaxhighlight_controller

@@ -82,7 +82,6 @@ class tx_syntaxhighlight_controller {
 			// override Setup ?
 		$width  = ($config['width']) != '' ? $config['width'] : $conf['width'];
 		$height = ($config['height']) != '' ? $config['height'] : $conf['height'];
-		//if ($config['label']=='') $config['label']=$this->pi_getLL($config['language']);
 
 			// create css-inline
 		$iewidth = $width - 5; //fix for IE
@@ -110,13 +109,10 @@ class tx_syntaxhighlight_controller {
 			($config['label'] ? $config['label'] : '###LANGUAGE###') . '</div>
 			<div class="CodeBoxCode"' . ($config['inlineCode'] ? ' style="'.$config['inlineCode'] : '') . '">###CODE###</div></div>';			
 			
-			
 			$content = tx_syntaxhighlightAPI::highlight($config['code'], $config['language'], $config);
-
 		} else {
  			$content = 'Language "' . $config['language'] . '" not found';
 		}
-
 		
 		return $content;
 	}
