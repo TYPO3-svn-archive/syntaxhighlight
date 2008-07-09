@@ -167,6 +167,9 @@ class tx_syntaxhighlightAPI {
 			if (intval($conf['alternateLines']) > 0) {
 				$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, $conf['alternateLines']);
 			}
+			else {
+				$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
+			}
 			$geshi->set_line_style('background: #fcfcfc;', 'background: #fdfdfd;');
 		}
 
