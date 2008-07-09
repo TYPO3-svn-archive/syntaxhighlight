@@ -84,8 +84,8 @@ class tx_rtehtmlarea_codebox extends tx_rtehtmlareaapi {
 	
 } // end of class
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/rtetest/Codebox/class.tx_rtehtmlarea_codebox.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/rtetest/Codebox/class.tx_rtehtmlarea_codebox.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/Codebox/class.tx_rtehtmlarea_codebox.php']) {
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/Codebox/class.tx_rtehtmlarea_codebox.php']);
 }
 
 ?>

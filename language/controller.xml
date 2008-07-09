@@ -13,7 +13,9 @@
             <label index="label">Label:</label>
             <label index="language">Language:</label>
             <label index="code">Code:</label>
-            <label index="linenumbers">Line Numbers:</label>
+            <label index="lineNumbers">Line Numbers:</label>
+            <label index="alternateLines">Alternate lines:</label>
+            <label index="startLine">Start at line:</label>
             <label index="width">Width:</label>
             <label index="height">Height:</label>
             <label index="no_content">No code for syntax highlight</label>
@@ -23,7 +25,7 @@
             <label index="label">Beschriftung:</label>
             <label index="language">Sprache:</label>
             <label index="code">Code:</label>
-            <label index="linenumbers">Zeilennummern:</label>
+            <label index="lineNumbers">Zeilennummern:</label>
             <label index="width">Breite:</label>
             <label index="height">Höhe:</label>
             <label index="no_content">Kein Code für Syntaxhervorhebung</label>

@@ -1,13 +1,45 @@
 includeLibs.tx_syntaxhighlight_controller = EXT:syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php
- 
+
 plugin.tx_syntaxhighlight_controller = USER
 plugin.tx_syntaxhighlight_controller {
 	userFunc = tx_syntaxhighlight_controller->main
 
-	###
-	# Dimensions, widths, heights, pixels
+		// Dimensions, widths, heights, pixels
 
-  linenumbers = {$plugin.tx_syntaxhighlight_controller.linenumbers}
+	alternateLines = {$plugin.tx_syntaxhighlight_controller.alternateLines}
+	lineNumbers    = {$plugin.tx_syntaxhighlight_controller.lineNumbers}
+	startLine      = {$plugin.tx_syntaxhighlight_controller.startLine}
 }
- 
+
 tt_content.list.20.syntaxhighlight_controller =< plugin.tx_syntaxhighlight_controller
+
+#page.headerData.9876 = TEXT
+#page.headerData.9876.value = <link rel="stylesheet" type="text/css" href="typo3conf/ext/syntaxhighlight/res/highlight.css" />
+
+lib.parseFunc.allowTags     := addToList(code)
+lib.parseFunc.denyTags      := removeFromList(code)
+lib.parseFunc_RTE.allowTags := addToList(code)	
+lib.parseFunc_RTE.denyTags  := removeFromList(code)
+lib.parseFunc_RTE.tags.code = TEXT
+lib.parseFunc_RTE.tags.code.current = 1
+
+lib.parseFunc_RTE.tags.code.postUserFunc {
+	codeStyle =
+	enableClasses = 1
+	headerType = div
+	lineStyle1 = background: #eeeeee;
+	lineStyle2 = background: #fffff;
+	lineStyleDefaults =
+	linesExtraStyle = background: #ffcccc;
+	overallClass =
+	overallId =
+	overallStyle = 
+	overallStyleDefaults = 
+	tabWidth = 2
+}
+
+	// avoid remapping div tag
+lib.parseFunc_RTE.nonTypoTagStdWrap.encapsLines.remapTag.DIV >
+
+	// set the user function 
+lib.parseFunc_RTE.tags.code.postUserFunc = user_highlightRTE->highlightRTE

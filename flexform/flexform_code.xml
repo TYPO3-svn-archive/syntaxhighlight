@@ -47,14 +47,36 @@
 							</config>
 						</TCEforms>
 					</code>
-					<linenumbers>
+					<lineNumbers>
 						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/language/controller.xml:linenumbers</label>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:lineNumbers</label>
 							<config>
 								<type>check</type>
 							</config>
 						</TCEforms>
-					</linenumbers>
+					</lineNumbers>
+					<alternateLines>
+						<TCEforms>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:alternateLines</label>
+							<config>
+								<type>input</type>
+								<size>4</size>
+								<max>10</max>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</alternateLines>
+					<startLine>
+						<TCEforms>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:startLine</label>
+							<config>
+								<type>input</type>
+								<size>4</size>
+								<max>10</max>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</startLine>
 					<width>
 						<TCEforms>
 							<label>LLL:EXT:syntaxhighlight/language/controller.xml:width</label>
