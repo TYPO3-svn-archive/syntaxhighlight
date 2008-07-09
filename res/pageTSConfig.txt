@@ -1,1 +1,2 @@
 RTE.default.proc.showButtons := addToList(codebox)
+RTE.default.contentCSS = typo3conf/ext/syntaxhighlight/res/rte.css

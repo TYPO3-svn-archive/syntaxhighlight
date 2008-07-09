@@ -15,6 +15,9 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php'][
 	// Hook for the TV page module used for preview of content
 $TYPO3_CONF_VARS['EXTCONF']['templavoila']['mod1']['renderPreviewContentClass'][] = 'EXT:syntaxhighlight/api/class.syntaxhighlightAPI.php:tx_syntaxhighlightAPI';
 
+	// hook for class inclusion check
+$TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['isOutputting'][] = 'EXT:syntaxhighlight/api/class.syntaxhighlightAPI.php:tx_syntaxhighlightAPI->checkInclusion';
+
 	// Additional RTE transformation configuration
 t3lib_extMgm::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/res/pageTSConfig.txt">');
 

@@ -88,12 +88,18 @@ class tx_syntaxhighlight_controller {
 	 * @return	string $content: highlighted code
 	 */
 	function highlightRTE() {
+		$config['template']	   = '<div class="tx-syntaxhighlight" id="' . uniqid('cb') . '"><div class="title">###TITLE###</div><div class="text">###TEXT###</div></div>';
 		$config['code']        = strtr(t3lib_div::_GP('content'), array('&quot;' => '"'));
 		$config['label']       = t3lib_div::_GP('title') ? t3lib_div::_GP('title') : $config['language'];
 		$config['language']    = t3lib_div::_GP('language');
 		$config['lineNumbers'] = t3lib_div::_GP('lineNumbers');
 		$config['startLine']   = t3lib_div::_GP('start');
-
+		
+		if ($config['language']) {
+			$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'][] = $config['language'];
+			$GLOBALS['BE_USER']->writeUC();
+		}
+		
 		$this->languages = tx_syntaxhighlightAPI::getLanguages();
 		$content = $this->doHighlight($config);
 		echo $content;
