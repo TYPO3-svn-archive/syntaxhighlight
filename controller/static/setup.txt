@@ -23,7 +23,7 @@ plugin.tx_syntaxhighlight_controller {
 	useGeshiCSS = 1
 
 	style {
-		overall = color: #333;
+		overall = 
 		overallMerge = 1
 		lineNumbers {
 			normal = color: #000; background: #fcfcfc;
@@ -70,7 +70,7 @@ plugin.tx_syntaxhighlight_controller {
 				merge = 1
 			}
 			multiline {
-				value = color: blue;
+				value = 
 				merge = 1
 			}
 		}
