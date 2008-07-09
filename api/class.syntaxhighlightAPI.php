@@ -139,10 +139,18 @@ class tx_syntaxhighlightAPI {
 
 	/**
 	 * Call this function from your extension: 
+	 * $result = tx_syntaxhighlightAPI::highlight($text, $language);
+	 * 
+	 * Would you like a own configuration do this
+	 * 
+	 * $conf = tx_syntaxhighlightAPI::getDefaultConfig();
+	 * $conf['OPTION'] = VALUE;
+	 * 
 	 * $result = tx_syntaxhighlightAPI::highlight($text, $language, $conf);
 	 *
 	 * @param  string  $text:     the text you want to highlight
 	 * @param  sring   $language: the language
+	 * @param  array   $conf: 	  configuration array
 	 * @return string  $result:   the highlighted text
 	 */
 	public function highlight($text, $language, $conf=NULL) {
