@@ -72,7 +72,7 @@ class tx_syntaxhighlight_controller {
 	function doHighlight($config) {
 
 		if (in_array($config['language'], $this->languages)) {
-			$config['template']  = str_replace('###ID###', uniqid('cb_') . $this->cObj->data['uid'], $config['template']);
+			$config['template']  = str_replace('###ID###', 'cb' . $this->cObj->data['uid'], $config['template']);
 			$content = tx_syntaxhighlightAPI::highlight($config['code'], $config['language'], $config);
 		} else {
  			$content = 'Language "' . $config['language'] . '" not found';
