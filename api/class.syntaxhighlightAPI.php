@@ -66,15 +66,12 @@ class tx_syntaxhighlightAPI {
 			if (is_array($data)) {
 				$code = $data['data']['sDEF']['lDEF']['code']['vDEF'];
 				$language = $data['data']['sDEF']['lDEF']['language']['vDEF'];
-				require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
-				$geshi = new GeSHi($code, $language, '');
-				$content = '<p style="background-color:#eee;margin-bottom:4px;">Language: ' . $language . '</p>' . $geshi->parse_code(); 
-					// wrapping in fixed div
-				$content = '<div style="max-width:300px;height:120px;background-color:#fefefe;overflow:auto;">' . $content . '</div>';
-				$alreadyRendered = true;
 			}
-			if (!$content) {
+			if (!$code) {
 				$content = $GLOBALS['LANG']->sL('LLL:EXT:syntaxhighlight/language/controller.xml:no_content');
+			} else {
+				$content = tx_syntaxhighlightAPI::highlight($code, $language);
+				$alreadyRendered = true;
 			}
 			return $reference->link_edit($content, $table, $row['uid']);
 		}
@@ -87,17 +84,38 @@ class tx_syntaxhighlightAPI {
 			if (is_array($data)) {
 				$code = $data['data']['sDEF']['lDEF']['code']['vDEF'];
 				$language = $data['data']['sDEF']['lDEF']['language']['vDEF'];
-				require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
-				$geshi = new GeSHi($code, $language, '');
-				$result = '<p style="background-color:#eee;margin-bottom:4px;">Language: ' . $language . '</p>' . $geshi->parse_code(); 
-					// wrapping in fixed div
-				$result = '<div style="max-width:300px;height:120px;background-color:#fefefe;overflow:auto;">' . $result . '</div>';
+				
 			}
-			if (!$result) {
+			if (!$code) {
 				$result = $GLOBALS['LANG']->sL('LLL:EXT:syntaxhighlight/language/controller.xml:no_content');
+			} else {
+				$result = tx_syntaxhighlightAPI::highlight($code, $language);
 			}
 		}
 		return $result;
+	}
+	
+	public function highlight($code, $language, $conf=NULL) {
+		
+		require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
+		
+		$geshi = new GeSHi($code, $language, '');
+		// TODO: use conf or if NULL fetch plugin conf
+		
+		$content = $geshi->parse_code();
+		
+		if (!$conf['template']) {
+				// use standard template for BE preview
+			$conf['template'] = '<div style="max-width:300px;height:120px;background-color:#fefefe;overflow:auto;">
+			<p style="background-color:#eee;margin-bottom:4px;">Language: ###LANGUAGE###</p>
+			###CODE### </div>';
+		}
+		$result = strtr($conf['template'], array(
+			'###LANGUAGE###' => $language,
+			'###CODE###'	 => $content
+		));
+		return $result;
+		
 	}
 	
 }
