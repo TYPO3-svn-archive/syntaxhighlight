@@ -19,4 +19,8 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'controller/static/css/', 'Syntax Highligh
 	// add pageTSconfig
 t3lib_extMgm::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:syntaxhighlight/res/pageTSconfig.txt">');
 
+if (TYPO3_MODE=='BE') {
+		// include API for flexform
+	include_once(t3lib_extMgm::extPath($_EXTKEY).'api/class.syntaxhighlightAPI.php');   
+}  
 ?>
