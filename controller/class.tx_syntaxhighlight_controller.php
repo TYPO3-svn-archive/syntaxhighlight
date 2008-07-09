@@ -83,12 +83,11 @@ class tx_syntaxhighlight_controller {
 			// override Setup ?
 		$width  = ($config['width']) != '' ? $config['width'] : $conf['width'];
 		$height = ($config['height']) != '' ? $config['height'] : $conf['height'];
-		//if ($config['label']=='') $config['label']=$this->pi_getLL($config['language']);
 
 			// create css-inline
-		$iewidth = $width - 5; //fix for IE
-		$config['inlineTitle'] = 'width:'.$iewidth.'px !important;width /**/:'.$width.'px;';
-		$config['inlineCode']  = 'width:'.$width.'px;height:'.$height.'px;';
+		$iewidth = $width - 5; // fix for IE
+		$config['inlineTitle'] = 'width:'.$iewidth.'px !important; width /**/:'.$width.'px;';
+		$config['inlineCode']  = 'width:'.$width.'px; height:'.$height.'px;';
 
 		$content .= $this->doHighlight($config);
 
@@ -126,6 +125,11 @@ class tx_syntaxhighlight_controller {
 
 		} else {
  			$completeCode = 'Language "' . $config['language'] . '" not found';
+		}
+
+		if ($config['label'] == '') {
+			$geshi->set_language($config['language']);
+			$config['label'] = $geshi->get_language_name();
 		}
 
 		$content  = '<div class="CodeBox" id="' . uniqid('cb_') . '">';
