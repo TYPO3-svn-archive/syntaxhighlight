@@ -75,21 +75,11 @@ class tx_syntaxhighlight_controller {
 	 * @return string  $content: The previous content plus the highlighted text
 	 */
 	function main($content, $conf)	{
-
+		
 		$this->init($conf);
 		$config = $this->getFlexformConf();
-
-			// override Setup ?
-		$width  = ($config['width']) != '' ? $config['width'] : $conf['width'];
-		$height = ($config['height']) != '' ? $config['height'] : $conf['height'];
-
-			// create css-inline
-		$iewidth = $width - 5; //fix for IE
-		$config['inlineTitle'] = 'width:'.$iewidth.'px !important;width /**/:'.$width.'px;';
-		$config['inlineCode']  = 'width:'.$width.'px;height:'.$height.'px;';
-
 		$content .= $this->doHighlight($config);
-
+		
 		return $content;
 	}
 
@@ -103,12 +93,7 @@ class tx_syntaxhighlight_controller {
 	function doHighlight($config) {
 
 		if (in_array($config['language'], $this->languages)) {
-			$config['template']  = '
-			<div class="CodeBox" id="' . uniqid('cb_') . $this->cObj->data['uid'] . '">
-			<div class="CodeBoxTitel"' . ($config['inlineTitle'] ? ' style="'.$config['inlineTitle'] : '') . '">' . 
-			($config['label'] ? $config['label'] : '###LANGUAGE###') . '</div>
-			<div class="CodeBoxCode"' . ($config['inlineCode'] ? ' style="'.$config['inlineCode'] : '') . '">###CODE###</div></div>';			
-			
+			$config['template']  = str_replace('###ID###', uniqid('cb_') . $this->cObj->data['uid'], $config['template']);
 			$content = tx_syntaxhighlightAPI::highlight($config['code'], $config['language'], $config);
 		} else {
  			$content = 'Language "' . $config['language'] . '" not found';
