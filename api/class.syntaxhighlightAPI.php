@@ -152,7 +152,7 @@ class tx_syntaxhighlightAPI {
 		$geshi = new GeSHi($text, $language, '');
 			// no conf given, use plugin conf
 		if (is_null($conf)) {
-			$conf = $this->getDefaultConfig();
+			$conf = tx_syntaxhighlightAPI::getDefaultConfig();
 		}
 			// proceed conf
 		if (intval($conf['lineNumbers']) > 0) {
