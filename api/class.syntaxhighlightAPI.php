@@ -68,10 +68,20 @@ class tx_syntaxhighlightAPI {
 	public function getLanguages() {
 		// read syntax files
 		$array = t3lib_div::getFilesInDir(t3lib_extMgm::extPath('geshilib') . 'res/geshi/', 'php');
-		foreach($array as $key => $val) {
-			$languages[] = substr($val, 0, -4);
+		if (TYPO3_MODE=='BE') {
+			$usedLanguages = (array) $GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'];
+		} else {
+			$usedLanguages = array();
 		}
-		return $languages;
+		
+		foreach($array as $key => $val) {
+			$lang = substr($val, 0, -4);
+			if (!in_array($lang, $usedLanguages)) {
+				$languages[] = $lang;
+			}
+		}
+		
+		return array_merge($usedLanguages, $languages);
 	}
 
 
