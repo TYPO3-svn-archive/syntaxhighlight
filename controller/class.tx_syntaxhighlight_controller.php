@@ -41,14 +41,14 @@ class tx_syntaxhighlight_controller {
 	
 	function getFlexformConf() {
 		// parse XML data into php array
-		$this->pi_initPIflexForm(); 
+		$data = t3lib_div::xml2array($params['row']['pi_flexform']);
 		
-		$config['label']       = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'label', 'sDEF');
-		$config['code']        = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'code', 'sDEF');
-		$config['height']      = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'height', 'sDEF');
-		$config['language']    = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'language', 'sDEF');
-		$config['linenumbers'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'linenumbers', 'sDEF');
-		$config['width']       = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'width', 'sDEF');
+		$config['label']       = $data['data']['sDEF']['lDEF']['label']['vDEF'];
+		$config['code']        = $data['data']['sDEF']['lDEF']['code']['vDEF'];
+		$config['height']      = $data['data']['sDEF']['lDEF']['height']['vDEF'];
+		$config['language']    = $data['data']['sDEF']['lDEF']['language']['vDEF'];
+		$config['linenumbers'] = $data['data']['sDEF']['lDEF']['linenumbers']['vDEF'];
+		$config['width']       = $data['data']['sDEF']['lDEF']['width']['vDEF'];
 		
 		return array_merge($this->conf, $config);
 	}
@@ -70,15 +70,6 @@ class tx_syntaxhighlight_controller {
 		$config['inlineTitle']='width:'.$iewidth.'px !important;width /**/:'.$width.'px;';
 		$config['inlineCode']='width:'.$width.'px;height:'.$height.'px;';
 		
-		//create preview
-		$config['preview']='Language: '.$config['language']."\n".htmlentities(substr($config['code'],0,120));
-		$config['bodytext']=$this->cObj->data['bodytext'];
-		if($config['bodytext']!=$config['preview']) {
-			#copy the code to bodytext for preview in BE
-			//$GLOBALS['TYPO3_DB']->debugOutput = true;
-			#$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tt_content','uid='.$this->cObj->data['uid'],array('bodytext'=>$config['preview'])); 
-		}
-		
 		$content = $this->doHighlight($config);
 		
 		return $this->pi_wrapInBaseClass($content);
@@ -86,7 +77,7 @@ class tx_syntaxhighlight_controller {
 	
 	
 	function doHighlight($config) {
-		#t3lib_div::debug($config,'debug'); 
+		
 		if(in_array($config['language'], $this->languages)) {
 			$geshi = new GeSHi($config['code'], $config['language'], '');
 

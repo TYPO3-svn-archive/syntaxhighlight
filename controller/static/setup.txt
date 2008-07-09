@@ -1,5 +1,4 @@
 includeLibs.tx_syntaxhighlight_controller = EXT:syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php
-includeLibs.tx_syntaxhighlight_API = EXT:syntaxhighlight/api/class.syntaxhighlightAPI.php
  
 plugin.tx_syntaxhighlight_controller = USER
 plugin.tx_syntaxhighlight_controller {
