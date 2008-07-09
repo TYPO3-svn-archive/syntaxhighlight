@@ -27,7 +27,6 @@
  * @author	Steffen Kamper <steffen@dislabs.de>
  */
 
-require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 require_once(t3lib_extMgm::extPath('syntaxhighlight') . 'api/class.syntaxhighlightAPI.php');
 
 class tx_syntaxhighlight_controller {
@@ -83,11 +82,12 @@ class tx_syntaxhighlight_controller {
 			// override Setup ?
 		$width  = ($config['width']) != '' ? $config['width'] : $conf['width'];
 		$height = ($config['height']) != '' ? $config['height'] : $conf['height'];
+		//if ($config['label']=='') $config['label']=$this->pi_getLL($config['language']);
 
 			// create css-inline
-		$iewidth = $width - 5; // fix for IE
-		$config['inlineTitle'] = 'width:'.$iewidth.'px !important; width /**/:'.$width.'px;';
-		$config['inlineCode']  = 'width:'.$width.'px; height:'.$height.'px;';
+		$iewidth = $width - 5; //fix for IE
+		$config['inlineTitle'] = 'width:'.$iewidth.'px !important;width /**/:'.$width.'px;';
+		$config['inlineCode']  = 'width:'.$width.'px;height:'.$height.'px;';
 
 		$content .= $this->doHighlight($config);
 
@@ -104,39 +104,20 @@ class tx_syntaxhighlight_controller {
 	function doHighlight($config) {
 
 		if (in_array($config['language'], $this->languages)) {
-			$geshi = new GeSHi($config['code'], $config['language'], '');
-
-			if ($config['lineNumbers']) {
-				if (intval($config['alternateLines']) > 0) {
-					$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, $config['alternateLines']);
-				}
-				$geshi->set_line_style('background: #fcfcfc;', 'background: #fdfdfd;');
-			}
-
-			$startLine = $config['startLine'];
-			if ($startLine == '' || !is_int(@intval($startLine))) $startLine = 1;
-			$geshi->start_line_numbers_at($startLine);
-
-			$geshi->set_link_target('_blank');
-			$geshi->enable_classes(true);
-			if ($config['useGeshiCSS']) {
-				$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet();
-			}
-
-			$completeCode = $geshi->parse_code();
+			$config['template']  = '
+			<div class="CodeBox" id="' . uniqid('cb_') . $this->cObj->data['uid'] . '">
+			<div class="CodeBoxTitel"' . ($config['inlineTitle'] ? ' style="'.$config['inlineTitle'] : '') . '">' . 
+			($config['label'] ? $config['label'] : '###LANGUAGE###') . '</div>
+			<div class="CodeBoxCode"' . ($config['inlineCode'] ? ' style="'.$config['inlineCode'] : '') . '">###CODE###</div></div>';			
+			
+			
+			$content = tx_syntaxhighlightAPI::highlight($config['code'], $config['language'], $config);
 
 		} else {
- 			$completeCode = 'Language "' . $config['language'] . '" not found';
+ 			$content = 'Language "' . $config['language'] . '" not found';
 		}
 
-		if ($config['label'] == '') {
-			$geshi->set_language($config['language']);
-			$config['label'] = $geshi->get_language_name();
-		}
-
-		$content  = '<div class="CodeBox" id="' . uniqid('cb_') . '">';
-		$content .= '<div class="CodeBoxTitel"' . ($config['inlineTitle'] ? ' style="'.$config['inlineTitle'] : '') . '">' . $config['label'] . '</div>';
-		$content .= '<div class="CodeBoxCode"' . ($config['inlineCode'] ? ' style="'.$config['inlineCode'] : '') . '">' . $completeCode . '</div></div>';
+		
 		return $content;
 	}
 

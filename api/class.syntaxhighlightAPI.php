@@ -140,8 +140,30 @@ class tx_syntaxhighlightAPI {
 		require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 
 		$geshi = new GeSHi($text, $language, '');
-		// TODO: use conf or if NULL fetch plugin conf
+			// no conf given, use plugin conf
+		if (is_null($conf)) {
+			$conf = $this->getDefaultConfig();
+		}
+			// proceed conf
+		if (intval($conf['lineNumbers']) > 0) {
+			if (intval($conf['alternateLines']) > 0) {
+				$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, $conf['alternateLines']);
+			}
+			$geshi->set_line_style('background: #fcfcfc;', 'background: #fdfdfd;');
+		}
 
+		$geshi->start_line_numbers_at(intval($conf['startLine']) < 1 ? 1 : intval($conf['startLine']));
+
+		$geshi->set_link_target('_blank');
+		$geshi->enable_classes(true);
+
+		if (TYPO3_MODE=='FE') {
+				// add css to the page
+			if ($config['useGeshiCSS']) {
+				$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet();
+			}
+		}
+		
 		$content = $geshi->parse_code();
 
 		if (!$conf['template']) {
@@ -157,6 +179,11 @@ class tx_syntaxhighlightAPI {
 		return $result;
 	}
 
+	public function getDefaultConfig() {
+		return $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_syntaxhighlight_controller.'];
+	}
+	
+	
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/api/class.syntaxhighlightAPI.php'])	{
