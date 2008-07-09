@@ -16,7 +16,8 @@ t3lib_extMgm::addPiFlexFormValue($_EXTKEY.'_controller', 'FILE:EXT:'.$_EXTKEY.'/
 t3lib_extMgm::addStaticFile($_EXTKEY, 'controller/static/', 'Syntax Highlighter');
 t3lib_extMgm::addStaticFile($_EXTKEY, 'controller/static/css/', 'Syntax Highlighter css');
 	
-	// include API for flexform
-include_once(t3lib_extMgm::extPath($_EXTKEY).'api/class.syntaxhighlightAPI.php');   
-  
+if (TYPO3_MODE=='BE') {
+		// include API for flexform
+	include_once(t3lib_extMgm::extPath($_EXTKEY).'api/class.syntaxhighlightAPI.php');   
+}  
 ?>

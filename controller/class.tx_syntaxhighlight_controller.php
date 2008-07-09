@@ -28,6 +28,7 @@
  */
 
 require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
+require_once(t3lib_extMgm::extPath('syntaxhighlight').'api/class.syntaxhighlightAPI.php');  
 
 class tx_syntaxhighlight_controller {
 	var $prefixId = 'tx_syntaxhighlight_controller';		// Same as class name
@@ -41,7 +42,7 @@ class tx_syntaxhighlight_controller {
 	
 	function getFlexformConf() {
 		// parse XML data into php array
-		$data = t3lib_div::xml2array($params['row']['pi_flexform']);
+		$data = t3lib_div::xml2array($this->cObj->data['pi_flexform']);
 		
 		$config['label']       = $data['data']['sDEF']['lDEF']['label']['vDEF'];
 		$config['code']        = $data['data']['sDEF']['lDEF']['code']['vDEF'];
