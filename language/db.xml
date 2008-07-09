@@ -10,6 +10,8 @@
     <data type="array">
         <languageKey index="default" type="array">
             <label index="tt_content.list_type_controller">Syntax Highlight</label>
+            <label index="title">Syntax Highlight</label>
+            <label index="description">Syntax Highlighter. Paste text in a textarea and choose any of the 100+ available languages. In the frontend you will see a beautifully highlighted text snippet.</label>
         </languageKey>
     </data>
 </T3locallang>
