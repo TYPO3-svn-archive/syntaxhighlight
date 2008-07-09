@@ -27,24 +27,6 @@
  * @author	Steffen Kamper <steffen@dislabs.de>
  */
 
-if(!defined('PATH_tslib')) {
-	//ajax call
-	if (!defined('PATH_thisScript')) define('PATH_thisScript',str_replace('//','/', str_replace('\\','/', (php_sapi_name()=='cgi'||php_sapi_name()=='xcgi'||php_sapi_name()=='isapi' ||php_sapi_name()=='cgi-fcgi')&&((!empty($_SERVER['ORIG_PATH_TRANSLATED'])&&isset($_SERVER['ORIG_PATH_TRANSLATED']))?$_SERVER['ORIG_PATH_TRANSLATED']:$_SERVER['PATH_TRANSLATED'])? ((!empty($_SERVER['ORIG_PATH_TRANSLATED'])&&isset($_SERVER['ORIG_PATH_TRANSLATED']))?$_SERVER['ORIG_PATH_TRANSLATED']:$_SERVER['PATH_TRANSLATED']):((!empty($_SERVER['ORIG_SCRIPT_FILENAME'])&&isset($_SERVER['ORIG_SCRIPT_FILENAME']))?$_SERVER['ORIG_SCRIPT_FILENAME']:$_SERVER['SCRIPT_FILENAME']))));
-	if (!defined('PATH_site')) define('PATH_site', dirname(dirname(dirname(dirname(dirname(dirname(dirname(PATH_thisScript))))))).'/');
-	if (!defined('PATH_t3lib')) define('PATH_t3lib', PATH_site.'t3lib/');
-	define('PATH_typo3conf', PATH_site.'typo3conf/');
-	define('TYPO3_mainDir', 'typo3/');
-	if (!defined('PATH_typo3')) define('PATH_typo3', PATH_site.TYPO3_mainDir);
-	if (!defined('PATH_tslib')) {
-		if (@is_dir(PATH_site.'typo3/sysext/cms/tslib/')) {
-			define('PATH_tslib', PATH_site.'typo3/sysext/cms/tslib/');
-		} elseif (@is_dir(PATH_site.'tslib/')) {
-			define('PATH_tslib', PATH_site.'tslib/');
-		}
-	}
-}
-
-#require_once(PATH_tslib.'class.tslib_pibase.php');
 require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 
 class tx_syntaxhighlight_controller {
@@ -54,8 +36,6 @@ class tx_syntaxhighlight_controller {
 	
 	function init($conf) {
 		$this->conf = $conf;
-		$this->pi_setPiVarDefaults();
-		#$this->pi_loadLL();
 		$this->languages = tx_syntaxhighlightAPI::getLanguages();
 	}
 	
@@ -147,6 +127,7 @@ class tx_syntaxhighlight_controller {
 		$config['label'] = t3lib_div::_GP('title') ? t3lib_div::_GP('title') : $config['language'];
 		$config['startline'] = t3lib_div::_GP('start');
 		
+		$this->languages = tx_syntaxhighlightAPI::getLanguages();
 		$content = $this->doHighlight($config);
 		echo $content;
 		exit;
