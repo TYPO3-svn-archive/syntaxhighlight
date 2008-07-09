@@ -119,7 +119,9 @@ class tx_syntaxhighlight_controller {
 
 			$geshi->set_link_target('_blank');
 			$geshi->enable_classes(true);
-			$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet();
+			if ($config['useGeshiCSS']) {
+				$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet();
+			}
 
 			$completeCode = $geshi->parse_code();
 

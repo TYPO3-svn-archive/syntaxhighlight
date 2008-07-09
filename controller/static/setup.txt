@@ -9,6 +9,10 @@ plugin.tx_syntaxhighlight_controller {
 	alternateLines = {$plugin.tx_syntaxhighlight_controller.alternateLines}
 	lineNumbers    = {$plugin.tx_syntaxhighlight_controller.lineNumbers}
 	startLine      = {$plugin.tx_syntaxhighlight_controller.startLine}
+
+		// Settings
+
+	useGeshiCSS    = 1
 }
 
 tt_content.list.20.syntaxhighlight_controller =< plugin.tx_syntaxhighlight_controller
