@@ -44,10 +44,10 @@ if(!defined('PATH_tslib')) {
 	}
 }
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
+#require_once(PATH_tslib.'class.tslib_pibase.php');
 require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 
-class tx_syntaxhighlight_controller extends tslib_pibase {
+class tx_syntaxhighlight_controller {
 	var $prefixId = 'tx_syntaxhighlight_controller';		// Same as class name
 	var $scriptRelPath = 'controller/class.tx_syntaxhighlight_controller.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'syntaxhighlight';	// The extension key.
