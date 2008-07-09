@@ -180,7 +180,7 @@ class tx_syntaxhighlightAPI {
 			if ($conf['style.']['keyword.']) {
 				for ($i = 1; $i < 5; $i++) {
 					if ($conf['style.']['keyword.']['set'.$i.'.']['value']) {
-						$geshi->set_keyword_group_style($i, $conf['style.']['keyword.']['set'.$i.'.']['value'], (bool) $conf['style.']['keyword.']['set'.$i.'.']['mode']);
+						$geshi->set_keyword_group_style($i, $conf['style.']['keyword.']['set'.$i.'.']['value'], (bool) $conf['style.']['keyword.']['set'.$i.'.']['merge']);
 					}
 				}
 			}
@@ -188,11 +188,38 @@ class tx_syntaxhighlightAPI {
 			if ($conf['style.']['comment.']) {
 				for ($i = 1; $i < 4; $i++) {
 					if ($conf['style.']['comment.']['set'.$i.'.']['value']) {
-						$geshi->set_comments_style($i, $conf['style.']['comment.']['set'.$i.'.']['value'], (bool) $conf['style.']['comment.']['set'.$i.'.']['mode']);
+						$geshi->set_comments_style($i, $conf['style.']['comment.']['set'.$i.'.']['value'], (bool) $conf['style.']['comment.']['set'.$i.'.']['merge']);
 					}
 				}
 				if ($conf['style.']['comment.']['multiline.']['value']) {
-					$geshi->set_comments_style('MULTI', $conf['style.']['comment.']['multiline.']['value'], (bool) $conf['style.']['comment.']['multiline.']['mode']);
+					$geshi->set_comments_style('MULTI', $conf['style.']['comment.']['multiline.']['value'], (bool) $conf['style.']['comment.']['multiline.']['merge']);
+				}
+			}
+				// other styles
+			if ($conf['style.']['escape.']) {
+				$geshi->set_escape_characters_style($conf['style.']['escape.']['value'], (bool) $conf['style.']['escape.']['merge']);
+			}
+			if ($conf['style.']['symbol.']) {
+				$geshi->set_symbols_style($conf['style.']['symbol.']['value'], (bool) $conf['style.']['symbol.']['merge']);
+			}
+			if ($conf['style.']['string.']) {
+				$geshi->set_strings_style($conf['style.']['string.']['value'], (bool) $conf['style.']['string.']['merge']);
+			}
+			if ($conf['style.']['number.']) {
+				$geshi->set_numbers_style($conf['style.']['number.']['value'], (bool) $conf['style.']['number.']['merge']);
+			}
+			if ($conf['style.']['method.']) {
+				for ($i = 1; $i < 11; $i++) {
+					if ($conf['style.']['method.']['set'.$i.'.']['value']) {
+						$geshi->set_methods_style($i, $conf['style.']['method.']['set'.$i.'.']['value'], (bool) $conf['style.']['method.']['set'.$i.'.']['merge']);
+					}
+				}
+			}
+			if ($conf['style.']['regexp.']) {
+				for ($i = 1; $i < 11; $i++) {
+					if ($conf['style.']['regexp.']['set'.$i.'.']['value']) {
+						$geshi->set_regexps_style($i, $conf['style.']['regexp.']['set'.$i.'.']['value'], (bool) $conf['style.']['regexp.']['set'.$i.'.']['merge']);
+					}
 				}
 			}
 				// add css to the page
