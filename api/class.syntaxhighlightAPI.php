@@ -60,9 +60,29 @@ class tx_syntaxhighlightAPI {
 		return $languages;
 	}
 	
+	public function renderPreviewContent_preProcess ($row, $table, &$alreadyRendered, &$reference) {
+		if ($row['CType'] == 'list' && $row['list_type'] == 'syntaxhighlight_controller') {
+			$data = t3lib_div::xml2array($row['pi_flexform']);
+			if (is_array($data)) {
+				$code = $data['data']['sDEF']['lDEF']['code']['vDEF'];
+				$language = $data['data']['sDEF']['lDEF']['language']['vDEF'];
+				require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
+				$geshi = new GeSHi($code, $language, '');
+				$content = '<p style="background-color:#eee;margin-bottom:4px;">Language: ' . $language . '</p>' . $geshi->parse_code(); 
+					// wrapping in fixed div
+				$content = '<div style="max-width:300px;height:120px;background-color:#fefefe;overflow:auto;">' . $content . '</div>';
+				$alreadyRendered = true;
+			}
+			if (!$content) {
+				$content = $GLOBALS['LANG']->sL('LLL:EXT:syntaxhighlight/language/controller.xml:no_content');
+			}
+			return $reference->link_edit($content, $table, $row['uid']);
+		}
+	}
+
 	public function getExtensionSummary($params, &$pObj) {
 
-		if ($params['row']['list_type'] == 'syntaxhighlight_controller') {
+		if ($params['row']['CType'] == 'list' && $params['row']['list_type'] == 'syntaxhighlight_controller') {
 			$data = t3lib_div::xml2array($params['row']['pi_flexform']);
 			if (is_array($data)) {
 				$code = $data['data']['sDEF']['lDEF']['code']['vDEF'];

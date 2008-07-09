@@ -12,6 +12,9 @@ $TYPO3_CONF_VARS['EXTCONF']['rtehtmlarea']['plugins']['Codebox']['disableInFE'] 
 	// Hook for the page module used for preview of content
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['syntaxhighlight_controller'][] = 'EXT:syntaxhighlight/api/class.syntaxhighlightAPI.php:tx_syntaxhighlightAPI->getExtensionSummary';
 
+	// Hook for the TV page module used for preview of content
+$TYPO3_CONF_VARS['EXTCONF']['templavoila']['mod1']['renderPreviewContentClass'][] = 'EXT:syntaxhighlight/api/class.syntaxhighlightAPI.php:tx_syntaxhighlightAPI';
+
 	// Additional RTE transformation configuration
 t3lib_extMgm::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/res/pageTSConfig.txt">');
 
