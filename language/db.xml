@@ -9,7 +9,7 @@
     </meta>
     <data type="array">
         <languageKey index="default" type="array">
-            <label index="tt_content.list_type_controller">CodeBox</label>
+            <label index="tt_content.list_type_controller">Syntax Highlight</label>
         </languageKey>
     </data>
 </T3locallang>
