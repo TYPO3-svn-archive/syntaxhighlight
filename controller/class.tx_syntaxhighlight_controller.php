@@ -38,6 +38,7 @@ class tx_syntaxhighlight_controller {
 	function init($conf) {
 		$this->conf = $conf;
 		$this->languages = tx_syntaxhighlightAPI::getLanguages();
+		
 	}
 	
 	function getFlexformConf() {
@@ -50,7 +51,6 @@ class tx_syntaxhighlight_controller {
 		$config['language']    = $data['data']['sDEF']['lDEF']['language']['vDEF'];
 		$config['linenumbers'] = $data['data']['sDEF']['lDEF']['linenumbers']['vDEF'];
 		$config['width']       = $data['data']['sDEF']['lDEF']['width']['vDEF'];
-		
 		return array_merge($this->conf, $config);
 	}
 	/**
@@ -73,7 +73,7 @@ class tx_syntaxhighlight_controller {
 		
 		$content = $this->doHighlight($config);
 		
-		return $this->pi_wrapInBaseClass($content);
+		return $content;
 	}
 	
 	
@@ -94,8 +94,7 @@ class tx_syntaxhighlight_controller {
 			$geshi->set_link_target('_blank'); 
 			$geshi->enable_classes(true);
 			$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet(); 
-			#t3lib_div::debug($geshi,'debug'); 
-			error_reporting(0);
+			
 			$completeCode = $geshi->parse_code(); 
 				
 		} else {
