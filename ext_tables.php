@@ -2,7 +2,7 @@
 if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 	// add plugin
-t3lib_extMgm::addPlugin(Array('LLL:EXT:syntaxhighlight/language/db.xml:tt_content.list_type_controller', $_EXTKEY.'_controller', t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif'), 'list_type');
+t3lib_extMgm::addPlugin(Array('LLL:EXT:syntaxhighlight/language/db.xml:tt_content.list_type_controller', $_EXTKEY.'_controller', t3lib_extMgm::extRelPath($_EXTKEY).'icon/ext_icon.gif'), 'list_type');
 
 	// remove fields
 t3lib_div::loadTCA('tt_content');
