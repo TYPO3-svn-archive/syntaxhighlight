@@ -45,6 +45,7 @@ class tx_syntaxhighlightAPI {
 		$geshi = new GeSHi('bash', '');
 		foreach($languages as $language) {
 			$geshi->set_language($language);
+				// Workaround for Geshi bug
 			if (preg_match('/.*-brief/', $language)) {
 				$params['items'][$language][0] = $geshi->get_language_name() . ' brief';
 			}
