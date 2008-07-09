@@ -47,27 +47,6 @@ class tx_syntaxhighlight_controller {
 
 
 	/**
-	 * Get configuration from the pi_flexform of the tt_content record
-	 *
-	 * @return	array		Configuration array
-	 */
-	function getFlexformConf() {
-			// parse XML data into php array
-		$data = t3lib_div::xml2array($this->cObj->data['pi_flexform']);
-
-		$config['alternateLines'] = $data['data']['sDEF']['lDEF']['alternateLines']['vDEF'];
-		$config['code']           = $data['data']['sDEF']['lDEF']['code']['vDEF'];
-		$config['height']         = $data['data']['sDEF']['lDEF']['height']['vDEF'];
-		$config['label']          = $data['data']['sDEF']['lDEF']['label']['vDEF'];
-		$config['language']       = $data['data']['sDEF']['lDEF']['language']['vDEF'];
-		$config['lineNumbers']    = $data['data']['sDEF']['lDEF']['lineNumbers']['vDEF'];
-		$config['startLine']      = $data['data']['sDEF']['lDEF']['startLine']['vDEF'];
-		$config['width']          = $data['data']['sDEF']['lDEF']['width']['vDEF'];
-		return array_merge($this->conf, $config);
-	}
-
-
-	/**
 	 * Main entry point, called by TS
 	 *
 	 * @param  string  $content: any previous content
@@ -119,6 +98,26 @@ class tx_syntaxhighlight_controller {
 		$content = $this->doHighlight($config);
 		echo $content;
 		exit;
+	}
+	
+	/**
+	 * Get configuration from the pi_flexform of the tt_content record
+	 *
+	 * @return	array		Configuration array
+	 */
+	function getFlexformConf() {
+			// parse XML data into php array
+		$data = t3lib_div::xml2array($this->cObj->data['pi_flexform']);
+
+		$config['alternateLines'] = $data['data']['sDEF']['lDEF']['alternateLines']['vDEF'];
+		$config['code']           = $data['data']['sDEF']['lDEF']['code']['vDEF'];
+		$config['height']         = $data['data']['sDEF']['lDEF']['height']['vDEF'];
+		$config['label']          = $data['data']['sDEF']['lDEF']['label']['vDEF'];
+		$config['language']       = $data['data']['sDEF']['lDEF']['language']['vDEF'];
+		$config['lineNumbers']    = $data['data']['sDEF']['lDEF']['lineNumbers']['vDEF'];
+		$config['startLine']      = $data['data']['sDEF']['lDEF']['startLine']['vDEF'];
+		$config['width']          = $data['data']['sDEF']['lDEF']['width']['vDEF'];
+		return array_merge($this->conf, $config);
 	}
 
 }
