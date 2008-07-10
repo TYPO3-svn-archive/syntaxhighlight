@@ -95,7 +95,7 @@ $language_data = array (
 			'tags',
 			'textStyle',
 			'typolink'
-		),
+			),
 	
 			// Toplevel objects: http://support.typo3.org/documentation/tsref/tlo-objects/
 		3 => array(
@@ -109,7 +109,7 @@ $language_data = array (
 			'META',
 			'PAGE',
 			'plugin'
-		),
+			),
 
 	  	// Content Objects (cObject) : http://support.typo3.org/documentation/tsref/cobjects/
 	  4 => array(
@@ -143,10 +143,15 @@ $language_data = array (
 			'TEXT',
 			'USER',
 			'USER_INT'
-	  ),
+			),
 		
 			// GIFBUILDER: http://support.typo3.org/documentation/tsref/gifbuilder/
 		5 => array(
+			'GIFBUILDER',
+			),
+		
+			// GIFBUILDER: http://support.typo3.org/documentation/tsref/gifbuilder/
+		6 => array(
 			'ADJUST',
 			'BOX',
 			'CROP',
@@ -159,10 +164,10 @@ $language_data = array (
 			'SHADOW',
 			//'TEXT',
 			'WORKAREA'
-		),
+			),
 		
 			// MENU Objects: http://support.typo3.org/documentation/tsref/menu/
-		6 => array(
+		7 => array(
 			'GMENU',
 			'GMENU_FOLDOUT',
 			'GMENU_LAYERS',
@@ -173,7 +178,47 @@ $language_data = array (
 			'TMENU',
 			'TMENUITEM',
 			'TMENU_LAYERS'
-		),
+			),
+
+			// MENU common properties: http://support.typo3.org/documentation/tsref/menu/common-properties/
+		8 => array(
+			'JSWindow',
+			'addParams',
+			'alternativeSortingField',
+			'begin',
+			'debugItemConf',
+			'imgNameNotRandom',
+			'imgNamePrefix',
+			'itemArrayProcFunc',
+			'maxItems',
+			'minItems',
+			'overrideId',
+			'sectionIndex',
+			'showAccessRestrictedPages',
+			'submenuObjSuffixes'
+			),
+
+			// MENU item states: http://support.typo3.org/documentation/tsref/menu/item-states/
+		9 => array(
+			'ACT',
+			'ACTIFSUB',
+			'ACTIFSUBRO',
+			'ACTRO',
+			'CUR',
+			'CURIFSUB',
+			'CURIFSUBRO',
+			'CURRO',
+			'IFSUB',
+			'IFSUBRO',
+			'NO',
+			'SPC',
+			'USERDEF1',
+			'USERDEF1RO',
+			'USERDEF2',
+			'USERDEF2RO',
+			'USR',
+			'USRRO'
+			),
 	),
 	
   /* Symbols apparently not used in GESHI 1.x: */		
@@ -237,8 +282,11 @@ $language_data = array (
 		2 => 'http://support.typo3.org/documentation/tsref/functions/{FNAME}/',
 		3 => 'http://support.typo3.org/documentation/tsref/tlo-objects/{FNAME}/',
 		4 => 'http://support.typo3.org/documentation/tsref/cobjects/{FNAME}/',
-		5 => 'http://support.typo3.org/documentation/tsref/gifbuilder/{FNAME}/',
-		6 => 'http://support.typo3.org/documentation/tsref/menu/{FNAME}/',
+		5 => 'http://support.typo3.org/documentation/tsref/gifbuilder/',
+		6 => 'http://support.typo3.org/documentation/tsref/gifbuilder/{FNAME}/',
+		7 => 'http://support.typo3.org/documentation/tsref/menu/{FNAME}/',
+		8 => 'http://support.typo3.org/documentation/tsref/menu/common-properties/',
+		9 => 'http://support.typo3.org/documentation/tsref/menu/item-states/'
 	),
 	'OOLANG' => true,
 	'OBJECT_SPLITTERS' => array(
