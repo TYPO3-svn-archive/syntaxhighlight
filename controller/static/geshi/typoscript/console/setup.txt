@@ -1,0 +1,154 @@
+plugin.tx_syntaxhighlight_controller {
+	style {
+		typoscript {
+			overall = color: #555;
+			overallMerge = 1
+			lineNumbers {
+				normal = color: #777; background-color: none;
+				fancy = color: #fff; background-color: #101010;
+			}
+				// setup keyword styles. Either merge them or replace the styles
+				// completely
+			keyword {
+					// Conditions: http://support.typo3.org/documentation/tsref/conditions/
+				set1 {
+					value = color: #00e000;
+					merge = 0
+				}
+					// Functions: http://support.typo3.org/documentation/tsref/functions/
+				set2 {
+					value = color: #ffffff;
+					merge = 0
+				}
+					// Toplevel objects: http://support.typo3.org/documentation/tsref/tlo-objects/
+				set3 {
+					value = color: #ffbb00;
+					merge = 0
+				}
+					// Content Objects (cObject) : http://support.typo3.org/documentation/tsref/cobjects/
+				set4 {
+					value = color: #ffbb00;
+					merge = 0
+				}
+					// GIFBUILDER toplevel link: http://support.typo3.org/documentation/tsref/gifbuilder/
+				set5 {
+					value = color: #ffbb00;
+					merge = 0
+				}
+					// GIFBUILDER: http://support.typo3.org/documentation/tsref/gifbuilder/
+				set6 {
+					value = color: #ffbb00;
+					merge = 0
+				}
+					// MENU Objects: http://support.typo3.org/documentation/tsref/menu/
+				set7 {
+					value = color: #ffbb00;
+					merge = 0
+				}
+					// MENU common properties: http://support.typo3.org/documentation/tsref/menu/common-properties/
+				set8 {
+					value = color: #ffffff;
+					merge = 0
+				}
+					// MENU item states: http://support.typo3.org/documentation/tsref/menu/item-states/
+				set9 {
+					value = color: #ffbb00;
+					merge = 0
+				}
+			}
+				// comment styles
+			comment {
+				set1 {
+					value = color: #ccc;
+					merge = 0
+				}
+				set2 {
+					value = color: #ccc;
+					merge = 0
+				}
+				set3 {
+					value = color: #ccc;
+					merge = 0
+				}
+				multiline {
+					value = color: #ccc;
+					merge = 0
+				}
+			}
+				// symbol style
+			symbol {
+				value = color: #e0e000;
+				merge = 0
+			}
+				// string style
+			string {
+				value = color: #ac14aa;
+				merge = 0
+			}
+				// number style
+			number {
+				value = color: #ac14aa;
+				merge = 0
+			}
+				// method style
+			method {
+				set1 {
+					value = color: #0000e0;
+					merge = 0
+				}
+				set2 {
+					value = color: #0000e0;
+					merge = 0
+				}
+			}
+				// regexp style
+			regexp {
+					// Constant
+				set0 {
+					value = color: #00e0e0;
+					merge = 0
+				}
+					// Constant dollar sign
+				set1 {
+					value = color: #e0e000;
+					merge = 0
+				}
+					// xhtml tag
+				set2 {
+					value = color: #a2a2ff;
+					merge = 0
+				}
+					// HTML entity
+				set3 {
+					value = color: #00e0e0;
+					merge = 0
+				}
+					// extension key: tx_{something}_{something}
+				set4 {
+					value = color: #0000e0;
+					merge = 0
+				}
+					// markers
+				set5 {
+					value = color: #0000e0;
+					merge = 0
+				}
+					// conditions and controls
+				set6 {
+					value = color: #00e000;
+					merge = 0
+				}
+					// HEX color codes
+				set7 {
+					value = color: #e00000;
+					merge = 0
+				}
+					// lowlevel setup and constant objects
+				set8 {
+					value = color: #0000e0;
+					merge = 0
+				}
+			}
+		}
+	}
+}
