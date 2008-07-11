@@ -386,7 +386,7 @@ $language_data = array (
 		
 			// lowlevel setup and constant objects
 		8 => array(
-			GESHI_SEARCH => '([^\.]\b)(config|content|file|frameset|includeLibs|lib|page|plugin|resources|sitemap|sitetitle|styles|tt_content|tt_news|types|xmlnews)',
+			GESHI_SEARCH => '([^\.]\b)(config|content|file|frameset|includeLibs|lib|page|plugin|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)',
 			GESHI_REPLACE => '\\2',
 			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '\\1',
