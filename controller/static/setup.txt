@@ -23,97 +23,154 @@ plugin.tx_syntaxhighlight_controller {
 	useGeshiCSS = 1
 
 	style {
-		overall = 
-		overallMerge = 1
-		lineNumbers {
-			normal = color: #000; background: #fcfcfc;
-			fancy = color: #333; background: #fdfdfd;
-		}
-			// setup keyword styles. Either merge them or replace the styles
-			// completely
-		keyword {
-				// set 1 contains keywords like if, while, do, for, switch etc.
-			set1 {
+		typoscript {
+			overall = 
+			overallMerge = 1
+			lineNumbers {
+				normal = color: #000; background: #fcfcfc;
+				fancy = color: #333; background: #fdfdfd;
+			}
+				// setup keyword styles. Either merge them or replace the styles
+				// completely
+			keyword {
+					// Conditions: http://support.typo3.org/documentation/tsref/conditions/
+				set1 {
+					value = 
+					merge = 1
+				}
+					// Functions: http://support.typo3.org/documentation/tsref/functions/
+				set2 {
+					value =
+					merge = 1
+				}
+					// Toplevel objects: http://support.typo3.org/documentation/tsref/tlo-objects/
+				set3 {
+					value =
+					merge = 1
+				}
+					// Content Objects (cObject) : http://support.typo3.org/documentation/tsref/cobjects/
+				set4 {
+					value =
+					merge = 1
+				}
+					// GIFBUILDER toplevel link: http://support.typo3.org/documentation/tsref/gifbuilder/
+				set5 {
+					value =
+					merge = 1
+				}
+					// GIFBUILDER: http://support.typo3.org/documentation/tsref/gifbuilder/
+				set6 {
+					value =
+					merge = 1
+				}
+					// MENU Objects: http://support.typo3.org/documentation/tsref/menu/
+				set7 {
+					value =
+					merge = 1
+				}
+					// MENU common properties: http://support.typo3.org/documentation/tsref/menu/common-properties/
+				set8 {
+					value =
+					merge = 1
+				}
+					// MENU item states: http://support.typo3.org/documentation/tsref/menu/item-states/
+				set9 {
+					value =
+					merge = 1
+				}
+			}
+				// comment styles
+			comment {
+				set1 {
+					value = 
+					merge = 1
+				}
+				set2 {
+					value =
+					merge = 1
+				}
+				set3 {
+					value =
+					merge = 1
+				}
+				multiline {
+					value = 
+					merge = 1
+				}
+			}
+				// symbol style
+			symbol {
 				value = 
 				merge = 1
 			}
-				// set 2 contains null, false, 1 etc. 
-			set2 {
-				value =
-				merge = 1
-			}
-				// set 3 contains function inbuilt into the language (echo,
-				// htmlspecialchars etc. in PHP)
-			set3 {
-				value =
-				merge = 1
-			}
-				// set 4 contains data types and similar variable modifiers: int,
-				// double, real, static etc.
-			set4 {
-				value =
-				merge = 1
-			}
-		}
-			// comment styles
-		comment {
-			set1 {
+				// string style
+			string {
 				value = 
 				merge = 1
 			}
-			set2 {
-				value =
-				merge = 1
-			}
-			set3 {
-				value =
-				merge = 1
-			}
-			multiline {
+				// number style
+			number {
 				value = 
 				merge = 1
 			}
-		}
-			// escape character style
-		escape {
-			value = 
-			merge = 1
-		}
-			// symbol style
-		symbol {
-			value = 
-			merge = 1
-		}
-			// string style
-		string {
-			value = 
-			merge = 1
-		}
-			// number style
-		number {
-			value = 
-			merge = 1
-		}
-			// method style
-		method {
-			set1 {
-				value =
-				merge = 1
+				// method style
+			method {
+				set1 {
+					value =
+					merge = 1
+				}
+				set2 {
+					value =
+					merge = 1
+				}
 			}
-			set2 {
-				value =
-				merge = 1
-			}
-		}
-			// regexp style
-		regexp {
-			set1 {
-				value =
-				merge = 1
-			}
-			set2 {
-				value =
-				merge = 1
+				// regexp style
+			regexp {
+					// Constant
+				set0 {
+					value =
+					merge = 1
+				}
+					// Constant dollar sign
+				set1 {
+					value =
+					merge = 1
+				}
+					// xhtml tag
+				set2 {
+					value =
+					merge = 1
+				}
+					// HTML entity
+				set3 {
+					value =
+					merge = 1
+				}
+					// extension key: tx_{something}_{something}
+				set4 {
+					value =
+					merge = 1
+				}
+					// markers
+				set5 {
+					value =
+					merge = 1
+				}
+					// conditions and controls
+				set6 {
+					value =
+					merge = 1
+				}
+					// HEX color codes
+				set7 {
+					value =
+					merge = 1
+				}
+					// lowlevel setup and constant objects
+				set8 {
+					value =
+					merge = 1
+				}
 			}
 		}
 	}

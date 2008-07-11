@@ -75,10 +75,23 @@ plugin.tx_syntaxhighlight_controller {
 					merge = 0
 				}
 			}
+				// bracket style
+			bracket {
+				value = color: #e00000;
+				merge = 0
+			}
 				// symbol style
 			symbol {
-				value = color: #e0e000;
-				merge = 0
+					// symbols
+				set1 {
+					value = color: #e0e000;
+					merge = 0
+				}
+					// brackets
+				set2 {
+					value = color: #e00000;
+					merge = 0
+				}
 			}
 				// string style
 			string {
