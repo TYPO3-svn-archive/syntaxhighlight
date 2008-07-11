@@ -66,8 +66,17 @@ class tx_syntaxhighlightAPI {
 	 * @return  array  $languages:  An array of languages
 	 */
 	public function getLanguages() {
+		
+		
 		// read syntax files
-		$array = t3lib_div::getFilesInDir(t3lib_extMgm::extPath('geshilib') . 'res/geshi/', 'php');
+		$tempFile = PATH_site.'typo3temp/geshi_language_file.tmp';
+		if (file_exists($tempFile)) {
+			$array = unserialize(file_get_contents($tempFile));
+		} else {
+			$array = t3lib_div::getFilesInDir(t3lib_extMgm::extPath('geshilib') . 'res/geshi/', 'php');
+			file_put_contents($tempFile, serialize($array));
+		}
+		
 		if (TYPO3_MODE=='BE') {
 			$usedLanguages = (array) $GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'];
 		} else {
