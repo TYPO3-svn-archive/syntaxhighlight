@@ -96,7 +96,8 @@ class tx_syntaxhighlight_controller {
 		$config['startLine']   = t3lib_div::_GP('start');
 		
 		if ($config['language']) {
-			$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'][] = $config['language'];
+			$beUserSession = array_unique(array_merge(array($config['language']), $GLOBALS['BE_USER']->uc['syntaxhighlighter_languages']));
+			$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'] = $beUserSession;
 			$GLOBALS['BE_USER']->writeUC();
 		}
 		

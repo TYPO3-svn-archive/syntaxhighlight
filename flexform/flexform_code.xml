@@ -27,12 +27,7 @@
 							<label>LLL:EXT:syntaxhighlight/language/controller.xml:language</label>
 							<config>
 								<type>select</type>
-								<items>
-									<numIndex index="0">
-										<numIndex index="0">--</numIndex>
-										<numIndex index="1"/>
-									</numIndex>
-								</items>
+								
 								<itemsProcFunc>tx_syntaxhighlightAPI-&gt;getFlexformLanguages</itemsProcFunc>
 							</config>
 						</TCEforms>

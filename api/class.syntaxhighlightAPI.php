@@ -42,19 +42,26 @@ class tx_syntaxhighlightAPI {
 	 */
 	public function getFlexFormLanguages($params, $conf) {
 		$languages = $this->getLanguages();
+		
 		$geshi = new GeSHi('bash', '');
 		foreach($languages as $language) {
-			$geshi->set_language($language);
+			if (substr($language, 0, 7) == '--div--') {
+				$p = explode(';',$language);
+				$params['items'][$language][0] = $p[1];
+				$params['items'][$language][1] = $p[0];
+			} else {
+						// use geshi for the language name			
+					$geshi->set_language($language);
 
-				// Workaround for Geshi bug
-				// http://sourceforge.net/tracker/index.php?func=detail&aid=2014123&group_id=114997&atid=670231
-			if (preg_match('/.*-brief/', $language)) {
-				$params['items'][$language][0] = $geshi->get_language_name() . ' brief';
+						// Workaround for Geshi bug
+						// http://sourceforge.net/tracker/index.php?func=detail&aid=2014123&group_id=114997&atid=670231
+					if (preg_match('/.*-brief/', $language)) {
+						$params['items'][$language][0] = $geshi->get_language_name() . ' brief';
+					} else {
+						$params['items'][$language][0] = $geshi->get_language_name();
+					}
+					$params['items'][$language][1] = $language;
 			}
-			else {
-				$params['items'][$language][0] = $geshi->get_language_name();
-			}
-			$params['items'][$language][1] = $language;
 		}
 		return $languages;
 	}
@@ -82,7 +89,9 @@ class tx_syntaxhighlightAPI {
 		} else {
 			$usedLanguages = array();
 		}
-		
+		if(count($usedLanguages) > 0) {
+			$usedLanguages = array_merge(array('--div--;lastused'), $usedLanguages, array('--div--;general'));
+		}
 		foreach($array as $key => $val) {
 			$lang = substr($val, 0, -4);
 			if (!in_array($lang, $usedLanguages)) {
@@ -92,59 +101,6 @@ class tx_syntaxhighlightAPI {
 		
 		return array_merge($usedLanguages, $languages);
 	}
-
-
-	/**
-	 * Function called from TV, used to generate preview of this plugin
-	 *
-	 * @param  array   $row:        tt_content table row 
-	 * @param  string  $table:      usually tt_content
-	 * @param  bool    $alreadyRendered:  To let TV know we have successfully 
-	 *                                    rendered a preview
-	 * @return object  $reference:  Uh . . . TODO
-	 */
-	public function renderPreviewContent_preProcess ($row, $table, &$alreadyRendered, &$reference) {
-		if ($row['CType'] == 'list' && $row['list_type'] == 'syntaxhighlight_controller') {
-			$data = t3lib_div::xml2array($row['pi_flexform']);
-			if (is_array($data)) {
-				$text     = $data['data']['sDEF']['lDEF']['code']['vDEF'];
-				$language = $data['data']['sDEF']['lDEF']['language']['vDEF'];
-			}
-			if (!$text) {
-				$content = $GLOBALS['LANG']->sL('LLL:EXT:syntaxhighlight/language/controller.xml:no_content');
-			} else {
-				$content = tx_syntaxhighlightAPI::highlight($text, $language);
-				$alreadyRendered = true;
-			}
-			return $reference->link_edit($content, $table, $row['uid']);
-		}
-	}
-
-
-	/**
-	 * Function called from page view, used to generate preview of this plugin
-	 *
-	 * @param  array   $params:  flexform params
-	 * @param  array   $pObj:    parent object
-	 * @return string  $result:  the hghlighted text
-	 */
-	public function getExtensionSummary($params, &$pObj) {
-
-		if ($params['row']['CType'] == 'list' && $params['row']['list_type'] == 'syntaxhighlight_controller') {
-			$data = t3lib_div::xml2array($params['row']['pi_flexform']);
-			if (is_array($data)) {
-				$text     = $data['data']['sDEF']['lDEF']['code']['vDEF'];
-				$language = $data['data']['sDEF']['lDEF']['language']['vDEF'];
-			}
-			if (!$text) {
-				$result = $GLOBALS['LANG']->sL('LLL:EXT:syntaxhighlight/language/controller.xml:no_content');
-			} else {
-				$result = tx_syntaxhighlightAPI::highlight($text, $language);
-			}
-		}
-		return $result;
-	}
-
 
 	/**
 	 * Call this function from your extension: 

@@ -10,13 +10,16 @@ $TYPO3_CONF_VARS['EXTCONF']['rtehtmlarea']['plugins']['Codebox']['addIconsToSkin
 $TYPO3_CONF_VARS['EXTCONF']['rtehtmlarea']['plugins']['Codebox']['disableInFE'] =  $extConf['disableInFE'] ? $extConf['disableInFE'] : 0;
 
 	// Hook for the page module used for preview of content
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['syntaxhighlight_controller'][] = 'EXT:syntaxhighlight/api/class.syntaxhighlightAPI.php:tx_syntaxhighlightAPI->getExtensionSummary';
+$TYPO3_CONF_VARS['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['syntaxhighlight_controller'][] = 'EXT:syntaxhighlight/hooks/class.syntaxhighlightHooks.php:tx_syntaxhighlightHooks->getExtensionSummary';
 
 	// Hook for the TV page module used for preview of content
-$TYPO3_CONF_VARS['EXTCONF']['templavoila']['mod1']['renderPreviewContentClass'][] = 'EXT:syntaxhighlight/api/class.syntaxhighlightAPI.php:tx_syntaxhighlightAPI';
+$TYPO3_CONF_VARS['EXTCONF']['templavoila']['mod1']['renderPreviewContentClass'][] = 'EXT:syntaxhighlight/hooks/class.syntaxhighlightHooks.php:tx_syntaxhighlightHooks';
 
-	// hook for class inclusion check
-$TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['isOutputting'][] = 'EXT:syntaxhighlight/api/class.syntaxhighlightAPI.php:tx_syntaxhighlightAPI->checkInclusion';
+	// Hook for class inclusion check
+$TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['isOutputting'][] = 'EXT:syntaxhighlight/hooks/class.syntaxhighlightHooks.php:tx_syntaxhighlightHooks->checkInclusion';
+
+	// Hook in tcemain before saving data
+$TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:syntaxhighlight/hooks/class.syntaxhighlightHooks.php:tx_syntaxhighlightHooks';
 
 	// Additional RTE transformation configuration
 t3lib_extMgm::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/res/pageTSConfig.txt">');
