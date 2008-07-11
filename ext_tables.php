@@ -15,6 +15,7 @@ t3lib_extMgm::addPiFlexFormValue($_EXTKEY.'_controller', 'FILE:EXT:'.$_EXTKEY.'/
 	// add static files
 t3lib_extMgm::addStaticFile($_EXTKEY, 'controller/static/', 'Syntax Highlighter');
 t3lib_extMgm::addStaticFile($_EXTKEY, 'controller/static/css/', 'Syntax Highlighter CSS');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'controller/static/geshi/typoscript/console/', 'Syntax Highlighter TS console style');
 
 if (TYPO3_MODE=='BE') {
 		// include API for flexform

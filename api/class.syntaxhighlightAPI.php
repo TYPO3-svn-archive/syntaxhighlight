@@ -145,56 +145,60 @@ class tx_syntaxhighlightAPI {
 		if (TYPO3_MODE == 'FE') {
 				// overall style
 			$geshi->enable_classes(true);
-			if ($conf['style.']['overall']) {
-				$geshi->set_overall_style($conf['style.']['overall'], (bool) $conf['style.']['overallMerge']);
+			if ($conf['style.'][$language.'.']['overall']) {
+				$geshi->set_overall_style($conf['style.'][$language.'.']['overall'], (bool) $conf['style.'][$language.'.']['overallMerge']);
 			}
 				// line number style
-			if ($conf['style.']['lineNumbers.']['normal'] && $conf['style.']['lineNumbers.']['fancy']) {
-				$geshi->set_line_style($conf['style.']['lineNumbers.']['normal'], $conf['style.']['lineNumbers.']['fancy']);
+			if ($conf['style.'][$language.'.']['lineNumbers.']['normal'] && $conf['style.'][$language.'.']['lineNumbers.']['fancy']) {
+				$geshi->set_line_style($conf['style.'][$language.'.']['lineNumbers.']['normal'], $conf['style.'][$language.'.']['lineNumbers.']['fancy']);
 			}
 				// keyword group style
-			if ($conf['style.']['keyword.']) {
-				for ($i = 1; $i < 5; $i++) {
-					if ($conf['style.']['keyword.']['set'.$i.'.']['value']) {
-						$geshi->set_keyword_group_style($i, $conf['style.']['keyword.']['set'.$i.'.']['value'], (bool) $conf['style.']['keyword.']['set'.$i.'.']['merge']);
+			if ($conf['style.'][$language.'.']['keyword.']) {
+				for ($i = 0; $i < 10; $i++) {
+					if ($conf['style.'][$language.'.']['keyword.']['set'.$i.'.']['value']) {
+						$geshi->set_keyword_group_style($i, $conf['style.'][$language.'.']['keyword.']['set'.$i.'.']['value'], (bool) $conf['style.'][$language.'.']['keyword.']['set'.$i.'.']['merge']);
 					}
 				}
 			}
 				// comment style
-			if ($conf['style.']['comment.']) {
-				for ($i = 1; $i < 4; $i++) {
-					if ($conf['style.']['comment.']['set'.$i.'.']['value']) {
-						$geshi->set_comments_style($i, $conf['style.']['comment.']['set'.$i.'.']['value'], (bool) $conf['style.']['comment.']['set'.$i.'.']['merge']);
+			if ($conf['style.'][$language.'.']['comment.']) {
+				for ($i = 0; $i < 4; $i++) {
+					if ($conf['style.'][$language.'.']['comment.']['set'.$i.'.']['value']) {
+						$geshi->set_comments_style($i, $conf['style.'][$language.'.']['comment.']['set'.$i.'.']['value'], (bool) $conf['style.'][$language.'.']['comment.']['set'.$i.'.']['merge']);
 					}
 				}
-				if ($conf['style.']['comment.']['multiline.']['value']) {
-					$geshi->set_comments_style('MULTI', $conf['style.']['comment.']['multiline.']['value'], (bool) $conf['style.']['comment.']['multiline.']['merge']);
+				if ($conf['style.'][$language.'.']['comment.']['multiline.']['value']) {
+					$geshi->set_comments_style('MULTI', $conf['style.'][$language.'.']['comment.']['multiline.']['value'], (bool) $conf['style.'][$language.'.']['comment.']['multiline.']['merge']);
 				}
 			}
 				// other styles
-			if ($conf['style.']['escape.']) {
-				$geshi->set_escape_characters_style($conf['style.']['escape.']['value'], (bool) $conf['style.']['escape.']['merge']);
+			if ($conf['style.'][$language.'.']['escape.']) {
+				$geshi->set_escape_characters_style($conf['style.'][$language.'.']['escape.']['value'], (bool) $conf['style.'][$language.'.']['escape.']['merge']);
 			}
-			if ($conf['style.']['symbol.']) {
-				$geshi->set_symbols_style($conf['style.']['symbol.']['value'], (bool) $conf['style.']['symbol.']['merge']);
-			}
-			if ($conf['style.']['string.']) {
-				$geshi->set_strings_style($conf['style.']['string.']['value'], (bool) $conf['style.']['string.']['merge']);
-			}
-			if ($conf['style.']['number.']) {
-				$geshi->set_numbers_style($conf['style.']['number.']['value'], (bool) $conf['style.']['number.']['merge']);
-			}
-			if ($conf['style.']['method.']) {
-				for ($i = 1; $i < 11; $i++) {
-					if ($conf['style.']['method.']['set'.$i.'.']['value']) {
-						$geshi->set_methods_style($i, $conf['style.']['method.']['set'.$i.'.']['value'], (bool) $conf['style.']['method.']['set'.$i.'.']['merge']);
+			if ($conf['style.'][$language.'.']['symbol.']) {
+				for ($i = 0; $i < 5; $i++) {
+					if ($conf['style.'][$language.'.']['symbol.']['set'.$i.'.']['value']) {
+						$geshi->set_symbols_style($conf['style.'][$language.'.']['symbol.']['set'.$i.'.']['value'], (bool) $conf['style.'][$language.'.']['symbol.']['set'.$i.'.']['merge'], $i);
 					}
 				}
 			}
-			if ($conf['style.']['regexp.']) {
-				for ($i = 1; $i < 11; $i++) {
-					if ($conf['style.']['regexp.']['set'.$i.'.']['value']) {
-						$geshi->set_regexps_style($i, $conf['style.']['regexp.']['set'.$i.'.']['value'], (bool) $conf['style.']['regexp.']['set'.$i.'.']['merge']);
+			if ($conf['style.'][$language.'.']['string.']) {
+				$geshi->set_strings_style($conf['style.'][$language.'.']['string.']['value'], (bool) $conf['style.'][$language.'.']['string.']['merge']);
+			}
+			if ($conf['style.'][$language.'.']['number.']) {
+				$geshi->set_numbers_style($conf['style.'][$language.'.']['number.']['value'], (bool) $conf['style.'][$language.'.']['number.']['merge']);
+			}
+			if ($conf['style.'][$language.'.']['method.']) {
+				for ($i = 0; $i < 2; $i++) {
+					if ($conf['style.'][$language.'.']['method.']['set'.$i.'.']['value']) {
+						$geshi->set_methods_style($i, $conf['style.'][$language.'.']['method.']['set'.$i.'.']['value'], (bool) $conf['style.'][$language.'.']['method.']['set'.$i.'.']['merge']);
+					}
+				}
+			}
+			if ($conf['style.'][$language.'.']['regexp.']) {
+				for ($i = 0; $i < 10; $i++) {
+					if ($conf['style.'][$language.'.']['regexp.']['set'.$i.'.']['value']) {
+						$geshi->set_regexps_style($i, $conf['style.'][$language.'.']['regexp.']['set'.$i.'.']['value'], (bool) $conf['style.'][$language.'.']['regexp.']['set'.$i.'.']['merge']);
 					}
 				}
 			}
@@ -214,7 +218,7 @@ class tx_syntaxhighlightAPI {
 		}
 		$result = strtr($conf['template'], array(
 			'###TITLE###' => $language,
-			'###TEXT###'     => $content
+			'###TEXT###'  => $content
 		));
 		return $result;
 	}

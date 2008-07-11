@@ -67,6 +67,7 @@ $language_data = array (
 			'ip',
 			'language',
 			'loginuser',
+			'loginUser',
 			'minute',
 			'month',
 			'PIDinRootline',
@@ -227,14 +228,20 @@ $language_data = array (
 			),
 		),
 	
+		// Does not include '-' because of stuff like htmlTag_langKey = en-GB and 
+		// lib.nav-sub
 	'SYMBOLS' => array(
-		'|',
-		'(', ')', '[', ']', '{', '}',
-		'+', '*', '/', '%',
-		'!', '&', '^',
-		'<', '>', '=',
-		'?', ':', ';',
-		'.'
+		0 => array (
+			'|',
+			'+', '*', '/', '%',
+			'!', '&', '^',
+			'<', '>', '=',
+			'?', ':',
+			'.'
+			),
+		1 => array (
+			'(', ')', '[', ']', '{', '}',
+			)
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
@@ -243,6 +250,10 @@ $language_data = array (
 		3 => true,
 		4 => true,
 		5 => true,
+		6 => true,
+		7 => true,
+		8 => true,
+		9 => true,
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
@@ -277,6 +288,7 @@ $language_data = array (
 			),
 		'SYMBOLS' => array(
 			0 => 'color: #e0e000;',
+			1 => 'color: #e00000;'
 			),
 		'REGEXPS' => array(
 			0 => 'color: #00e0e0;',
@@ -284,15 +296,14 @@ $language_data = array (
 			2 => 'color: #a2a2ff;',
 			3 => 'color: #00e0e0;',
 			4 => 'color: #0000e0;',
+			5 => 'color: #0000e0;',
 			6 => 'color: #00e000;',
 			7 => 'color: #e00000;',
 			8 => 'color: #0000e0;'
 			),
+		'ESCAPE_CHAR' => array(
+			),
 		'SCRIPT' => array(
-			0 => '',
-			1 => '',
-			2 => '',
-			3 => '',
 			)
 		),
 	'URLS' => array(
@@ -350,10 +361,10 @@ $language_data = array (
 		
 			// extension key: tx_{something}_{something}
 		4 => array(
-			GESHI_SEARCH => '(tx_[0-9A-Za-z]+?_[^\s=<>]+)',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH => '([^\.])(tx_[0-9A-Za-z]+?_[^\s=<>]+)',
+			GESHI_REPLACE => '\\2',
 			GESHI_MODIFIERS => 's',
-			GESHI_BEFORE => '',
+			GESHI_BEFORE => '\\1',
 			GESHI_AFTER => ''
 			),
 		
@@ -368,7 +379,7 @@ $language_data = array (
 
 			// conditions and controls
 		6 => array(
-			GESHI_SEARCH => '(\[)(globalVar|global|end)',
+			GESHI_SEARCH => '(\[)(globalVar|global|END|end)',
 			GESHI_REPLACE => '\\2',
 			GESHI_MODIFIERS => 's',
 			GESHI_BEFORE => '\\1',
@@ -386,7 +397,7 @@ $language_data = array (
 		
 			// lowlevel setup and constant objects
 		8 => array(
-			GESHI_SEARCH => '([^\.]\b)(config|content|file|frameset|includeLibs|lib|page|plugin|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)',
+			GESHI_SEARCH => '([^\.\$-\{]\b)(cObj|field|config|content|file|frameset|includeLibs|lib|page|plugin|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)\b',
 			GESHI_REPLACE => '\\2',
 			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '\\1',

@@ -24,11 +24,11 @@ plugin.tx_syntaxhighlight_controller {
 
 	style {
 		typoscript {
-			overall = 
+			overall = color: #222; 
 			overallMerge = 1
 			lineNumbers {
-				normal = color: #000; background: #fcfcfc;
-				fancy = color: #333; background: #fdfdfd;
+				normal = color: #222;
+				fancy = color: #222; background: #fdfdfd;
 			}
 				// setup keyword styles. Either merge them or replace the styles
 				// completely

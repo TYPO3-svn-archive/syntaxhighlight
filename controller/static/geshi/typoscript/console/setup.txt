@@ -59,19 +59,19 @@ plugin.tx_syntaxhighlight_controller {
 				// comment styles
 			comment {
 				set1 {
-					value = color: #ccc;
+					value = color: #ccc; font-style: italic;
 					merge = 0
 				}
 				set2 {
-					value = color: #ccc;
+					value = color: #ccc; font-style: italic;
 					merge = 0
 				}
 				set3 {
-					value = color: #ccc;
+					value = color: #ccc; font-style: italic;
 					merge = 0
 				}
 				multiline {
-					value = color: #ccc;
+					value = color: #ccc; font-style: italic;
 					merge = 0
 				}
 			}
@@ -83,15 +83,15 @@ plugin.tx_syntaxhighlight_controller {
 				// symbol style
 			symbol {
 					// symbols
-				set1 {
+				set0 {
 					value = color: #e0e000;
 					merge = 0
 				}
 					// brackets
-				set2 {
-					value = color: #e00000;
-					merge = 0
-				}
+				//set1 {
+				//	value = color: #990000;
+				//	merge = 0
+				//}
 			}
 				// string style
 			string {
