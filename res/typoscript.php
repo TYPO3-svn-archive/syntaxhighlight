@@ -257,24 +257,24 @@ $language_data = array (
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #00e000;',
-			2 => 'color: #ffffff;',
-			3 => 'color: #ffbb00;',
-			4 => 'color: #ffbb00;',
-			5 => 'color: #ffbb00;',
-			6 => 'color: #ffbb00;',
-			7 => 'color: #ffbb00;',
-			8 => 'color: #ffffff;',
-			9 => 'color: #ffbb00;',
+			1 => 'color: #ed7d14;',
+			2 => 'color: #000000; font-weight: bold;',
+			3 => 'color: #990000;',
+			4 => 'color: #990000;',
+			5 => 'color: #990000;',
+			6 => 'color: #990000;',
+			7 => 'color: #990000;',
+			8 => 'color: #000000; font-weight: bold;',
+			9 => 'color: #990000;',
 			),
 		'COMMENTS' => array(
-			1 => 'color: #ccc;',
-			2 => 'color: #ccc;',
-			3 => 'color: #ccc;',
-			'MULTI' => 'color: #ccc;'
+			1 => 'color: #aaa; font-style: italic;',
+			2 => 'color: #aaa; font-style: italic;',
+			3 => 'color: #aaa; font-style: italic;',
+			'MULTI' => 'color: #aaa; font-style: italic;'
 			),
 		'BRACKETS' => array(
-			0 => 'color: #e00000;'
+			0 => 'color: #990000;'
 			),
 		'STRINGS' => array(
 			0 => 'color: #ac14aa;'
@@ -283,23 +283,23 @@ $language_data = array (
 			0 => 'color: #ac14aa;'
 			),
 		'METHODS' => array(
-			1 => 'color: #0000e0;',
-			2 => 'color: #0000e0;'
+			1 => 'color: #0000e0; font-weight: bold;',
+			2 => 'color: #0000e0; font-weight: bold;'
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #e0e000;',
-			1 => 'color: #e00000;'
+			0 => 'color: #339933; font-weight: bold;',
+			1 => 'color: #990000;'
 			),
 		'REGEXPS' => array(
-			0 => 'color: #00e0e0;',
-			1 => 'color: #e0e000;',
-			2 => 'color: #a2a2ff;',
-			3 => 'color: #00e0e0;',
-			4 => 'color: #0000e0;',
-			5 => 'color: #0000e0;',
-			6 => 'color: #00e000;',
-			7 => 'color: #e00000;',
-			8 => 'color: #0000e0;'
+			0 => 'color: #0000e0;',
+			1 => 'color: #ed9e00;',
+			2 => 'color: #40a6ed;',
+			3 => 'color: #00b3e0;',
+			4 => 'color: #0000e0; font-weight: bold;',
+			5 => 'color: #0000e0; font-weight: bold;',
+			6 => 'color: #ed7d14;',
+			7 => 'color: #990000;',
+			8 => 'color: #0000e0; font-weight: bold;'
 			),
 		'ESCAPE_CHAR' => array(
 			),
@@ -397,7 +397,7 @@ $language_data = array (
 		
 			// lowlevel setup and constant objects
 		8 => array(
-			GESHI_SEARCH => '([^\.\$-\{]\b)(cObj|field|config|content|file|frameset|includeLibs|lib|page|plugin|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)\b',
+			GESHI_SEARCH => '([^\.\$-\{]\b)(cObj|field|config|content|file|frameset|includeLibs|lib|page|plugin|register|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)\b',
 			GESHI_REPLACE => '\\2',
 			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '\\1',
