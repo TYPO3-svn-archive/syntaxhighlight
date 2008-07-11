@@ -1,2 +1,4 @@
-RTE.default.proc.showButtons := addToList(codebox)
+	## Add buttons to toolbar
+RTE.default.showButtons := addToList(codebox)
+RTE.default.FE.showButtons := addToList(codebox)
 RTE.default.contentCSS = typo3conf/ext/syntaxhighlight/res/rte.css
