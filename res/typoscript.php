@@ -14,7 +14,10 @@
  * CHANGES
  * -------
  * 2005/07/29 (1.0.0)
- *  -  First Release
+ * - First Release
+ *
+ * 2008/07/11 (2.0.0)
+ * - Michiel Roos <geshi@typofree.org> Complete rewrite
  *
  * TODO (updated 2004/07/14)
  * -------------------------
@@ -43,12 +46,13 @@
 
 $language_data = array (
 	'LANG_NAME' => 'TypoScript',
-	'COMMENT_SINGLE' => array(1  => '//', 2 => '####', 3 => '# *'),
+	'COMMENT_SINGLE' => array(1  => '//', 2 => '#', 3 => '####', 4 => '# *'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("", ""),
+	'QUOTEMARKS' => array(''),
 	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
+
 			// Conditions: http://support.typo3.org/documentation/tsref/conditions/
 		1 => array(
 			'browser',
@@ -145,12 +149,14 @@ $language_data = array (
 			'USER_INT'
 			),
 		
-			// GIFBUILDER: http://support.typo3.org/documentation/tsref/gifbuilder/
+			// GIFBUILDER toplevel link: http://support.typo3.org/documentation/tsref/gifbuilder/
 		5 => array(
 			'GIFBUILDER',
 			),
 		
 			// GIFBUILDER: http://support.typo3.org/documentation/tsref/gifbuilder/
+			// NOTE! the IMAGE and TEXT field already are linked in group 4, they 
+			// cannot be linked twice . . . . unfortunately
 		6 => array(
 			'ADJUST',
 			'BOX',
@@ -219,16 +225,19 @@ $language_data = array (
 			'USR',
 			'USRRO'
 			),
-	),
-	
-  /* Symbols apparently not used in GESHI 1.x: */		
-	/*
-	'SYMBOLS' => array(
-		'(', ')', '[', ']', '{', '}', '!', '@', '%', '&', '\|\*\|','\|\|','\|','\*', '/',' < ',' > ' 
 		),
-		*/
+	
+	'SYMBOLS' => array(
+		'|',
+		'(', ')', '[', ']', '{', '}',
+		'+', '*', '/', '%',
+		'!', '&', '^',
+		'<', '>', '=',
+		'?', ':', ';',
+		'.'
+		),
 	'CASE_SENSITIVE' => array(
-		GESHI_COMMENTS => false,
+		GESHI_COMMENTS => true,
 		1 => true,
 		2 => true,
 		3 => true,
@@ -237,38 +246,47 @@ $language_data = array (
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #b1b100;',
-			2 => 'color: #000000; font-weight: bold;',
-			3 => 'color: #000066;',
-			
-			10 => 'color: #900; font-weight:bold;',
+			1 => 'color: #00e000;',
+			2 => 'color: #ffffff;',
+			3 => 'color: #ffbb00;',
+			4 => 'color: #ffbb00;',
+			5 => 'color: #ffbb00;',
+			6 => 'color: #ffbb00;',
+			7 => 'color: #ffbb00;',
+			8 => 'color: #ffffff;',
+			9 => 'color: #ffbb00;',
 			),
 		'COMMENTS' => array(
-			1 => 'color: #808080;',
-			2 => 'color: #808080;',
-			'MULTI' => 'color: #808080;'
-			),
-		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;'
+			1 => 'color: #ccc;',
+			2 => 'color: #ccc;',
+			3 => 'color: #ccc;',
+			'MULTI' => 'color: #ccc;'
 			),
 		'BRACKETS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #e00000;'
 			),
 		'STRINGS' => array(
-			0 => 'color: #ff0000;'
+			0 => 'color: #ac14aa;'
 			),
 		'NUMBERS' => array(
-			0 => 'color: #cc66cc;'
+			0 => 'color: #ac14aa;'
 			),
 		'METHODS' => array(
-			1 => 'color: #006600;',
-			2 => 'color: #006600;'
+			1 => 'color: #0000e0;',
+			2 => 'color: #0000e0;'
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #e0e000;',
 			),
 		'REGEXPS' => array(
-			0 => 'color: #0000ff; font-weight: bold;'
+			0 => 'color: #00e0e0;',
+			1 => 'color: #e0e000;',
+			2 => 'color: #a2a2ff;',
+			3 => 'color: #00e0e0;',
+			4 => 'color: #0000e0;',
+			6 => 'color: #00e000;',
+			7 => 'color: #e00000;',
+			8 => 'color: #0000e0;'
 			),
 		'SCRIPT' => array(
 			0 => '',
@@ -288,60 +306,95 @@ $language_data = array (
 		8 => 'http://support.typo3.org/documentation/tsref/menu/common-properties/',
 		9 => 'http://support.typo3.org/documentation/tsref/menu/item-states/'
 	),
-	'OOLANG' => true,
+	'OOLANG' => false,
 	'OBJECT_SPLITTERS' => array(
-		1 => ':',
 	),
 	'REGEXPS' => array(
-		1 => array( // Works: matches any x/html tag
-			GESHI_SEARCH => '(&lt;/?.+?&gt;)',
+			// Constant
+		0 => array(
+			GESHI_SEARCH => '(\{)(\$[a-zA-Z_\.]+[a-zA-Z0-9_\.]*)(\})',
+			GESHI_REPLACE => '\\2',
+			GESHI_MODIFIERS => '',
+			GESHI_BEFORE => '\\1',
+			GESHI_AFTER => '\\3'
+			),
+
+			// Constant dollar sign
+		1 => array(
+			// GESHI_SEARCH => '(\{)(\$)([a-zA-Z_\.]+[a-zA-Z0-9_\.]*)(\})',
+			// Should be extended to also match stuff like: {$lib.shadowIntensity}
+			GESHI_SEARCH => '(\$)([a-zA-Z_\.]+[a-zA-Z0-9_\.]*)',
 			GESHI_REPLACE => '\\1',
-			GESHI_MODIFIERS => 'i',
+			GESHI_MODIFIERS => '',
+			GESHI_BEFORE => '',
+			GESHI_AFTER => '\\2'
+			),
+
+			// xhtml tag
+		2 => array(
+			GESHI_SEARCH => '(&lt;.+?&gt;)',
+			GESHI_REPLACE => '\\1',
+			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
 			),
 
-		2 => array( // Works: matches any html entity:
+			// HTML entity
+		3 => array(
 			GESHI_SEARCH => '(&amp;\#*[0-9a-zA-Z]+?;)',
 			GESHI_REPLACE => '\\1',
 			GESHI_MODIFIERS => 's',
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
-		),
+			),
 		
-		3 => array( // Works: matches extension keys of the form tx_{something}_{something}. Should be styled same colour as kw1:
+			// extension key: tx_{something}_{something}
+		4 => array(
 			GESHI_SEARCH => '(tx_[0-9A-Za-z]+?_[^\s=<>]+)',
 			GESHI_REPLACE => '\\1',
 			GESHI_MODIFIERS => 's',
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
-		),
+			),
 		
-		4 => array( // Matches markers:
+			// markers
+		5 => array(
 			GESHI_SEARCH => '(\#\#\#.+?\#\#\#)',
 			GESHI_REPLACE => '\\1',
 			GESHI_MODIFIERS => 's',
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
-		),
-		
-			/*
-		2 => array( // Works; matches (<|>), but needs modification not to match parts of html elements:
-			GESHI_SEARCH => '(&lt;|&gt;)',
+			),
+
+			// conditions and controls
+		6 => array(
+			GESHI_SEARCH => '(\[)(globalVar|global|end)',
+			GESHI_REPLACE => '\\2',
+			GESHI_MODIFIERS => 's',
+			GESHI_BEFORE => '\\1',
+			GESHI_AFTER => ''
+			),
+
+			// HEX color codes
+		7 => array(
+			GESHI_SEARCH => '(\#([0-9abcdefABCDEF]{6}|[0-9abcdefABCDEF]{3}))',
 			GESHI_REPLACE => '\\1',
-			GESHI_MODIFIERS => 'i',
+			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
 			),
-			*/
+		
+			// lowlevel setup and constant objects
+		8 => array(
+			GESHI_SEARCH => '([^\.]\b)(config|content|file|frameset|includeLibs|lib|page|plugin|resources|sitemap|sitetitle|styles|tt_content|tt_news|types|xmlnews)',
+			GESHI_REPLACE => '\\2',
+			GESHI_MODIFIERS => '',
+			GESHI_BEFORE => '\\1',
+			GESHI_AFTER => ''
+			),
+
 		),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-		0 => true,
-		1 => true,
-		2 => true,
-		3 => true
-		)
+	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 );
 
 ?>
