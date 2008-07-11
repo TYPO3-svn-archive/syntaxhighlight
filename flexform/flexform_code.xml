@@ -22,6 +22,28 @@
 							</config>
 						</TCEforms>
 					</label>
+					<labelmode>
+						<TCEforms>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:labelmode</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0">
+										<numIndex index="0">LLL:EXT:syntaxhighlight/language/controller.xml:labelmode.0</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:syntaxhighlight/language/controller.xml:labelmode.1</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:syntaxhighlight/language/controller.xml:labelmode.2</numIndex>
+										<numIndex index="1">2</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</labelmode>
 					<language>
 						<TCEforms>
 							<label>LLL:EXT:syntaxhighlight/language/controller.xml:language</label>

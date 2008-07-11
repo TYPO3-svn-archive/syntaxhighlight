@@ -56,7 +56,7 @@ class tx_syntaxhighlight_controller {
 	function main($content, $conf)	{
 		
 		$this->init($conf);
-		$config = $this->getFlexformConf();
+		$config = $this->getFlexformConf();debug($config);
 		$content .= $this->doHighlight($config);
 		
 		return $content;
@@ -120,6 +120,7 @@ class tx_syntaxhighlight_controller {
 		$config['code']           = $data['data']['sDEF']['lDEF']['code']['vDEF'];
 		$config['height']         = $data['data']['sDEF']['lDEF']['height']['vDEF'];
 		$config['label']          = $data['data']['sDEF']['lDEF']['label']['vDEF'];
+		$config['labelmode']      = intval($data['data']['sDEF']['lDEF']['labelmode']['vDEF']);
 		$config['language']       = $data['data']['sDEF']['lDEF']['language']['vDEF'];
 		$config['lineNumbers']    = $data['data']['sDEF']['lDEF']['lineNumbers']['vDEF'];
 		$config['startLine']      = $data['data']['sDEF']['lDEF']['startLine']['vDEF'];

@@ -216,8 +216,23 @@ class tx_syntaxhighlightAPI {
 				<p style="background-color:#eee;margin-bottom:4px;">Language: ###TITLE###</p>
 				###TEXT### </div>';
 		}
+		
+		$style = '';
+		switch ($conf['labelmode']) {
+			case 0:
+				$title = $language;
+				break;
+			case 1:
+				$title = $conf['label'];
+				break;
+			case 2:
+				$title = '';
+				$style = ' style="display:none;"';
+		}
+		
 		$result = strtr($conf['template'], array(
-			'###TITLE###' => $language,
+			'###TITLESTYLE###' => $style,
+			'###TITLE###' => $title,
 			'###TEXT###'  => $content
 		));
 		return $result;
