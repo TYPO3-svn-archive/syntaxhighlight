@@ -225,15 +225,6 @@ class tx_syntaxhighlightAPI {
 	 *
 	 * @return array  $result:  the configuration array
 	 */
-	public function checkInclusion($params, &$pObj) {
-		include_once(t3lib_extMgm::extPath('syntaxhighlight').'controller/class.tx_syntaxhighlight_controller.php');
-	}
-	
-	/**
-	 * Fetch the default plugin configuration
-	 *
-	 * @return array  $result:  the configuration array
-	 */
 	public function getDefaultConfig() {
 		return $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_syntaxhighlight_controller.'];
 	}
