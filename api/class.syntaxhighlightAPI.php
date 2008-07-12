@@ -140,11 +140,12 @@ class tx_syntaxhighlightAPI {
 
 		$geshi->start_line_numbers_at(intval($conf['startLine']) < 1 ? 1 : intval($conf['startLine']));
 
-		$geshi->set_link_target('_blank');
+		//$geshi->set_link_target('_blank');
 
 		if (TYPO3_MODE == 'FE') {
 				// overall style
 			$geshi->enable_classes(true);
+
 			if ($conf['style.'][$language.'.']['overall']) {
 				$geshi->set_overall_style($conf['style.'][$language.'.']['overall'], (bool) $conf['style.'][$language.'.']['overallMerge']);
 			}
@@ -175,6 +176,7 @@ class tx_syntaxhighlightAPI {
 			if ($conf['style.'][$language.'.']['escape.']) {
 				$geshi->set_escape_characters_style($conf['style.'][$language.'.']['escape.']['value'], (bool) $conf['style.'][$language.'.']['escape.']['merge']);
 			}
+			$geshi->set_brackets_highlighting(false);
 			if ($conf['style.'][$language.'.']['symbol.']) {
 				for ($i = 0; $i < 5; $i++) {
 					if ($conf['style.'][$language.'.']['symbol.']['set'.$i.'.']['value']) {

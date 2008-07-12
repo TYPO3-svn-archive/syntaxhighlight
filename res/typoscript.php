@@ -231,20 +231,20 @@ $language_data = array (
 		// Does not include '-' because of stuff like htmlTag_langKey = en-GB and 
 		// lib.nav-sub
 	'SYMBOLS' => array(
-		0 => array (
+		0 => array(
 			'|',
 			'+', '*', '/', '%',
-			'!', '&', '^',
+			'!', '&&', '^',
 			'<', '>', '=',
 			'?', ':',
-			'.'
+			'.',
+		),
+		1 => array(
+			'(', ')', '{', '}', '[', ']'
 			),
-		1 => array (
-			'(', ')', '[', ']', '{', '}',
-			)
 		),
 	'CASE_SENSITIVE' => array(
-		GESHI_COMMENTS => true,
+		GESHI_COMMENTS => false,
 		1 => true,
 		2 => true,
 		3 => true,
@@ -273,9 +273,6 @@ $language_data = array (
 			3 => 'color: #aaa; font-style: italic;',
 			'MULTI' => 'color: #aaa; font-style: italic;'
 			),
-		'BRACKETS' => array(
-			0 => 'color: #990000;'
-			),
 		'STRINGS' => array(
 			0 => 'color: #ac14aa;'
 			),
@@ -286,9 +283,13 @@ $language_data = array (
 			1 => 'color: #0000e0; font-weight: bold;',
 			2 => 'color: #0000e0; font-weight: bold;'
 			),
+		'BRACKETS' => array(
+			0 => 'color: #990000; font-weight: bold;'
+			),
 		'SYMBOLS' => array(
 			0 => 'color: #339933; font-weight: bold;',
-			1 => 'color: #990000;'
+				// Set this to the same value as brackets above
+			1 => 'color: #990000; font-weight: bold;'
 			),
 		'REGEXPS' => array(
 			0 => 'color: #0000e0;',
@@ -299,7 +300,7 @@ $language_data = array (
 			5 => 'color: #0000e0; font-weight: bold;',
 			6 => 'color: #ed7d14;',
 			7 => 'color: #990000;',
-			8 => 'color: #0000e0; font-weight: bold;'
+			8 => 'color: #0000e0; font-weight: bold;',
 			),
 		'ESCAPE_CHAR' => array(
 			),
@@ -332,8 +333,6 @@ $language_data = array (
 
 			// Constant dollar sign
 		1 => array(
-			// GESHI_SEARCH => '(\{)(\$)([a-zA-Z_\.]+[a-zA-Z0-9_\.]*)(\})',
-			// Should be extended to also match stuff like: {$lib.shadowIntensity}
 			GESHI_SEARCH => '(\$)([a-zA-Z_\.]+[a-zA-Z0-9_\.]*)',
 			GESHI_REPLACE => '\\1',
 			GESHI_MODIFIERS => '',
@@ -345,48 +344,57 @@ $language_data = array (
 		2 => array(
 			GESHI_SEARCH => '(&lt;.+?&gt;)',
 			GESHI_REPLACE => '\\1',
-			GESHI_MODIFIERS => '',
+			GESHI_MODIFIERS => 's',
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
 			),
 
 			// HTML entity
+			// TODO these are currently not highlighted properly by GeSHi
+		/*
 		3 => array(
-			GESHI_SEARCH => '(&amp;\#*[0-9a-zA-Z]+?;)',
-			GESHI_REPLACE => '\\1',
-			GESHI_MODIFIERS => 's',
+			//GESHI_SEARCH => '(&amp;[a-zA-Z0-9]+;)',
+			GESHI_SEARCH => '(&amp;(?!([a-zA-Z0-9#]{1,6};)))',
+			GESHI_REPLACE => '\\1\\2',
+			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
 			),
+		 */
 		
-			// extension key: tx_{something}_{something}
+			// extension keys / tables: (static|user|ttx|tx|tt|fe)_something[_something]
 		4 => array(
-			GESHI_SEARCH => '([^\.])(tx_[0-9A-Za-z]+?_[^\s=<>]+)',
+			GESHI_SEARCH => '(plugin\.|[^\.]\b)((static|user|ttx|tx|tt|fe)(_[0-9A-Za-z_]+?)\b)',
 			GESHI_REPLACE => '\\2',
-			GESHI_MODIFIERS => 's',
+			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '\\1',
 			GESHI_AFTER => ''
 			),
 		
 			// markers
+			// TODO these are currently seen as comments by GeSHi
+		/*
 		5 => array(
 			GESHI_SEARCH => '(\#\#\#.+?\#\#\#)',
 			GESHI_REPLACE => '\\1',
-			GESHI_MODIFIERS => 's',
+			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
 			),
+		 */
 
 			// conditions and controls
 		6 => array(
-			GESHI_SEARCH => '(\[)(globalVar|global|END|end)',
+			GESHI_SEARCH => '(\[)(globalVar|global|end)\b',
 			GESHI_REPLACE => '\\2',
-			GESHI_MODIFIERS => 's',
+			GESHI_MODIFIERS => 'i',
 			GESHI_BEFORE => '\\1',
 			GESHI_AFTER => ''
 			),
 
 			// HEX color codes
+			// TODO these are currently seen as comments by GeSHi
+		/*
 		7 => array(
 			GESHI_SEARCH => '(\#([0-9abcdefABCDEF]{6}|[0-9abcdefABCDEF]{3}))',
 			GESHI_REPLACE => '\\1',
@@ -394,6 +402,7 @@ $language_data = array (
 			GESHI_BEFORE => '',
 			GESHI_AFTER => ''
 			),
+		 */
 		
 			// lowlevel setup and constant objects
 		8 => array(
@@ -403,8 +412,8 @@ $language_data = array (
 			GESHI_BEFORE => '\\1',
 			GESHI_AFTER => ''
 			),
-
 		),
+
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 );
 

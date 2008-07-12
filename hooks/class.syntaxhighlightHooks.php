@@ -87,8 +87,8 @@ class tx_syntaxhighlightHooks {
 	 * Function called from tcemain when saving CE
 	 *
 	 * @param  array   $incomingFieldArray:  field data
-     * @param  array   $table:  table
-     * @param  array   $id:  uid of record
+	 * @param  array   $table:  table
+	 * @param  array   $id:  uid of record
 	 * @param  array   $pObj:    parent object
 	 * @return 
 	 */

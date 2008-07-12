@@ -98,10 +98,21 @@ plugin.tx_syntaxhighlight_controller {
 					merge = 1
 				}
 			}
-				// symbol style
-			symbol {
+				// bracket style
+			bracket {
 				value = 
 				merge = 1
+			}
+				// symbol style
+			symbol {
+				set0 {
+					value = 
+					merge = 1
+				}
+				set1 {
+					value = 
+					merge = 1
+				}
 			}
 				// string style
 			string {
@@ -146,7 +157,7 @@ plugin.tx_syntaxhighlight_controller {
 					value =
 					merge = 1
 				}
-					// extension key: tx_{something}_{something}
+					// extension keys / tables: (static|user|ttx|tx|tt|fe)_something[_something]
 				set4 {
 					value =
 					merge = 1
