@@ -1,0 +1,22 @@
+# Default set CSS styles (these go into the document header):
+plugin.tx_syntaxhighlight_controller._CSS_DEFAULT_STYLE (
+.tx-syntaxhighlight {
+	margin: 20px;
+}
+.tx-syntaxhighlight div.title {
+	background-color: #405753;
+	border-bottom: 1px solid white;
+	color: #fff;
+	font: verdana, sans-serif bold;
+	margin: 12px 16px 0 16px;	
+	padding: 1px 0 1px 15px;
+}
+.tx-syntaxhighlight div.text {
+	background-color: black;
+	border: 1px solid #eee;
+	margin: 0 16px 12px 16px;
+	overflow: auto;
+	padding: 8px 0 8px 8px;
+	white-space: nowrap;
+}
+)
