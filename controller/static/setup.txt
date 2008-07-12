@@ -4,6 +4,7 @@ plugin.tx_syntaxhighlight_controller = USER
 plugin.tx_syntaxhighlight_controller {
 	userFunc = tx_syntaxhighlight_controller->main
 
+
 		// Dimensions, widths, heights, pixels
 
 	alternateLines = {$plugin.tx_syntaxhighlight_controller.alternateLines}
@@ -18,14 +19,33 @@ plugin.tx_syntaxhighlight_controller {
 			</div>
 	)
 	
-		// Settings
 
-	linkTarget = _blank
+		// keyword link settings
+
+	link {
+		enable = 1
+		target = _blank
+		style {
+			link    = text-decoration: underline;
+			hover   = text-decoration: none;
+			active  = 
+			visited =
+		}	
+	}
+
+
+		// general settings
 
 	useGeshiCSS = 1
 
-	style {
-		typoscript {
+
+		// language specific settings
+
+	typoscript {
+
+		link < plugin.tx_syntaxhighlight_controller.link
+
+		style {
 			overall = color: #222; 
 			overallMerge = 1
 			lineNumbers {
