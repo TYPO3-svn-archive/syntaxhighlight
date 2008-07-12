@@ -140,7 +140,10 @@ class tx_syntaxhighlightAPI {
 
 		$geshi->start_line_numbers_at(intval($conf['startLine']) < 1 ? 1 : intval($conf['startLine']));
 
-		//$geshi->set_link_target('_blank');
+			// only set link target if present
+		if ($conf['linkTarget'] != '') {
+			$geshi->set_link_target($conf['linkTarget']);
+		}
 
 		if (TYPO3_MODE == 'FE') {
 				// overall style
