@@ -11,10 +11,10 @@
         <languageKey index="default" type="array">
             <label index="extlabel">Syntax Highlight - Options</label>
             <label index="label">Label:</label>
-            <label index="labelmode">Label mode:</label>
-            <label index="labelmode.0">Show language as label</label>
-            <label index="labelmode.1">Show label text as label</label>
-            <label index="labelmode.2">Hide label</label>
+            <label index="labelMode">Label mode:</label>
+            <label index="labelMode.0">Show language as label</label>
+            <label index="labelMode.1">Show label text as label</label>
+            <label index="labelMode.2">Hide label</label>
             <label index="language">Language:</label>
             <label index="code">Code:</label>
             <label index="lineNumbers">Line Numbers:</label>

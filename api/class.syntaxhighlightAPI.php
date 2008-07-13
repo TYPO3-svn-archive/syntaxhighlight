@@ -34,13 +34,33 @@ require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 class tx_syntaxhighlightAPI {
 
 	/**
-	 * itemsProcFunc for syntaxhighlight in flexform
+	 * get preferred labelMode from user preferences
 	 *
 	 * @param  array  $params: flexform params
 	 * @param  array  $conf: flexform conf
-	 * @return
+	 * @return void
 	 */
-	public function getFlexFormLanguages($params, $conf) {
+	public function getFlexFormLabelMode(&$params, &$conf) {
+		$labelMode = $GLOBALS['BE_USER']->uc['syntaxhighlighter_labelMode'];
+		foreach ($params['items'] as $key => $param) {
+			if ($param[1] == $labelMode[0]) {
+				$first = $params['items'][$key];
+				unset($params['items'][$key]);
+				array_unshift($params['items'], $first);
+				break;
+			}
+		}
+	}
+
+
+	/**
+	 * get list of available languages for flexform
+	 *
+	 * @param  array  $params: flexform params
+	 * @param  array  $conf: flexform conf
+	 * @return void
+	 */
+	public function getFlexFormLanguages(&$params, &$conf) {
 		$languages = $this->getLanguages();
 		
 		$geshi = new GeSHi('bash', '');
@@ -63,7 +83,6 @@ class tx_syntaxhighlightAPI {
 					$params['items'][$language][1] = $language;
 			}
 		}
-		return $languages;
 	}
 
 
@@ -74,8 +93,7 @@ class tx_syntaxhighlightAPI {
 	 */
 	public function getLanguages() {
 		
-		
-		// read syntax files
+			// read syntax files
 		$tempFile = PATH_site.'typo3temp/geshi_language_file.tmp';
 		if (file_exists($tempFile)) {
 			$array = unserialize(file_get_contents($tempFile));
@@ -135,7 +153,6 @@ class tx_syntaxhighlightAPI {
 			else {
 				$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
 			}
-			$geshi->set_line_style('background: #fcfcfc;', 'background: #fdfdfd;');
 		}
 
 		$geshi->start_line_numbers_at(intval($conf['startLine']) < 1 ? 1 : intval($conf['startLine']));
@@ -176,6 +193,7 @@ class tx_syntaxhighlightAPI {
 					}
 				}
 			}
+
 				// comment style
 			if ($conf[$language.'.']['style.']['comment.']) {
 				for ($i = 0; $i < 4; $i++) {
@@ -187,6 +205,7 @@ class tx_syntaxhighlightAPI {
 					$geshi->set_comments_style('MULTI', $conf[$language.'.']['style.']['comment.']['multiline.']['value'], (bool) $conf[$language.'.']['style.']['comment.']['multiline.']['merge']);
 				}
 			}
+
 				// other styles
 			if ($conf[$language.'.']['style.']['escape.']) {
 				$geshi->set_escape_characters_style($conf[$language.'.']['style.']['escape.']['value'], (bool) $conf[$language.'.']['style.']['escape.']['merge']);
@@ -219,6 +238,7 @@ class tx_syntaxhighlightAPI {
 					}
 				}
 			}
+
 				// add css to the page
 			if ($conf['useGeshiCSS']) {
 				$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet();
@@ -235,14 +255,14 @@ class tx_syntaxhighlightAPI {
 		}
 		
 		$style = '';
-		switch ($conf['labelmode']) {
-			case 0:
+		switch ($conf['labelMode']) {
+			case 'language':
 				$title = $language;
 				break;
-			case 1:
+			case 'label':
 				$title = $conf['label'];
 				break;
-			case 2:
+			case 'none':
 				$title = '';
 				$style = ' style="display:none;"';
 		}

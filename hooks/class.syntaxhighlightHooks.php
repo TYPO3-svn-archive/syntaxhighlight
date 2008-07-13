@@ -94,11 +94,19 @@ class tx_syntaxhighlightHooks {
 	 */
 	function processDatamap_preProcessFieldArray(&$incomingFieldArray, $table, $id, $pObj)  {
 		if($table == 'tt_content' && $incomingFieldArray['list_type'] == 'syntaxhighlight_controller') {
+
 				// get language to save it to BE_USER-Session
 			$language = $incomingFieldArray['pi_flexform']['data']['sDEF']['lDEF']['language']['vDEF'];
 				// save language to usersession
 			$beUserSession = array_unique(array_merge(array($language), (array) $GLOBALS['BE_USER']->uc['syntaxhighlighter_languages']));
 			$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'] = $beUserSession;
+
+				// get labelMode to save it to BE_USER-Session
+			$labelMode = $incomingFieldArray['pi_flexform']['data']['sDEF']['lDEF']['labelMode']['vDEF'];
+				// save labelMode to usersession
+			$beUserSession = array($labelMode);
+			$GLOBALS['BE_USER']->uc['syntaxhighlighter_labelMode'] = $beUserSession;
+
 			$GLOBALS['BE_USER']->writeUC();
 		}
 	}
