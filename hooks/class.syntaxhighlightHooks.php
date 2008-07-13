@@ -108,6 +108,9 @@ class tx_syntaxhighlightHooks {
 					// clear BE_USER-session
 				$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'] = array();
 				$incomingFieldArray['pi_flexform']['data']['sDEF']['lDEF']['clearflag']['vDEF'] = '0';
+					// deleting tempfile
+				$tempFile = PATH_site.'typo3temp/geshi_language_file_0000000000.tmp';
+				@unlink($tempfile);
 			} else {
 				$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'] = $beUserSession;
 			}
