@@ -76,7 +76,7 @@ class tx_syntaxhighlightAPI {
 	public function getLanguages() {
 		
 			// read syntax files
-		$tempFile = PATH_site.'typo3temp/geshi_language_file.tmp';
+		$tempFile = PATH_site.'typo3temp/geshi_language_file_0000000000.tmp';
 		if (file_exists($tempFile)) {
 			$array = unserialize(file_get_contents($tempFile));
 		} else {
