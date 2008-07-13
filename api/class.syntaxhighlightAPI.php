@@ -65,11 +65,12 @@ class tx_syntaxhighlightAPI {
 		
 		$geshi = new GeSHi('bash', '');
 		foreach($languages as $language) {
-			if (substr($language, 0, 7) == '--div--') {
-				$p = explode(';',$language);
-				$params['items'][$language][0] = $p[1];
-				$params['items'][$language][1] = $p[0];
-			} else {
+			if ($language != null) {
+				if (substr($language, 0, 7) == '--div--') {
+					$p = explode(';',$language);
+					$params['items'][$language][0] = $p[1];
+					$params['items'][$language][1] = $p[0];
+				} else {
 						// use geshi for the language name			
 					$geshi->set_language($language);
 
@@ -81,6 +82,7 @@ class tx_syntaxhighlightAPI {
 						$params['items'][$language][0] = $geshi->get_language_name();
 					}
 					$params['items'][$language][1] = $language;
+				}
 			}
 		}
 	}
