@@ -193,12 +193,9 @@ $language_data = array (
             0 => 'color: #0000e0;',
             1 => 'color: #ed9e00;',
             2 => 'color: #40a6ed;',
-//            3 => 'color: #00b3e0;',
-            4 => 'color: #0000e0; font-weight: bold;',
-//            5 => 'color: #0000e0; font-weight: bold;',
-            6 => 'color: #ed7d14;',
-//            7 => 'color: #990000;',
-            8 => 'color: #0000e0; font-weight: bold;',
+            3 => 'color: #0000e0; font-weight: bold;',
+            4 => 'color: #ed7d14;',
+            5 => 'color: #0000e0; font-weight: bold;'
             ),
         'ESCAPE_CHAR' => array(
             ),
@@ -240,28 +237,15 @@ $language_data = array (
 
             // xhtml tag
         2 => array(
-            GESHI_SEARCH => '(&lt;.+?&gt;)',
+            GESHI_SEARCH => '(&lt;[a-zA-Z\!/].*?&gt;)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 's',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
 
-            // HTML entity
-            // TODO these are currently not highlighted properly by GeSHi
-        /*
-        3 => array(
-            //GESHI_SEARCH => '(&amp;[a-zA-Z0-9]+;)',
-            GESHI_SEARCH => '(&amp;(?!([a-zA-Z0-9#]{1,6};)))',
-            GESHI_REPLACE => '\\1\\2',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-         */
-
             // extension keys / tables: (static|user|ttx|tx|tt|fe)_something[_something]
-        4 => array(
+        3 => array(
             GESHI_SEARCH => '(plugin\.|[^\.]\b)((static|user|ttx|tx|tt|fe)(_[0-9A-Za-z_]+?)\b)',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => '',
@@ -269,20 +253,8 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
 
-            // markers
-            // TODO these are currently seen as comments by GeSHi
-        /*
-        5 => array(
-            GESHI_SEARCH => '(\#\#\#.+?\#\#\#)',
-            GESHI_REPLACE => '\\1',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-         */
-
             // conditions and controls
-        6 => array(
+        4 => array(
             GESHI_SEARCH => '(\[)(globalVar|global|end)\b',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'i',
@@ -290,20 +262,8 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
 
-            // HEX color codes
-            // TODO these are currently seen as comments by GeSHi
-            /*
-        7 => array(
-            GESHI_SEARCH => '(\#([0-9abcdefABCDEF]{6}|[0-9abcdefABCDEF]{3}))',
-            GESHI_REPLACE => '\\1',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-            */
-
             // lowlevel setup and constant objects
-        8 => array(
+        5 => array(
             GESHI_SEARCH => '([^\.\$-\{]\b)(cObj|field|config|content|file|frameset|includeLibs|lib|page|plugin|register|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)\b',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => '',

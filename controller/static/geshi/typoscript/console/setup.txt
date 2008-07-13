@@ -130,33 +130,18 @@ plugin.tx_syntaxhighlight_controller {
 					value = color: #a2a2ff;
 					merge = 0
 				}
-					// HTML entity
-				set3 {
-					value = color: #00e0e0;
-					merge = 0
-				}
 					// extension key: tx_{something}_{something}
-				set4 {
-					value = color: #0000e0;
-					merge = 0
-				}
-					// markers
-				set5 {
+				set3 {
 					value = color: #0000e0;
 					merge = 0
 				}
 					// conditions and controls
-				set6 {
+				set4 {
 					value = color: #00e000;
 					merge = 0
 				}
-					// HEX color codes
-				set7 {
-					value = color: #e00000;
-					merge = 0
-				}
 					// lowlevel setup and constant objects
-				set8 {
+				set5 {
 					value = color: #0000e0;
 					merge = 0
 				}

@@ -170,33 +170,18 @@ plugin.tx_syntaxhighlight_controller {
 					value =
 					merge = 1
 				}
-					// HTML entity
+					// extension keys / tables: (static|user|ttx|tx|tt|fe)_something[_something]
 				set3 {
 					value =
 					merge = 1
 				}
-					// extension keys / tables: (static|user|ttx|tx|tt|fe)_something[_something]
+					// conditions and controls
 				set4 {
 					value =
 					merge = 1
 				}
-					// markers
-				set5 {
-					value =
-					merge = 1
-				}
-					// conditions and controls
-				set6 {
-					value =
-					merge = 1
-				}
-					// HEX color codes
-				set7 {
-					value =
-					merge = 1
-				}
 					// lowlevel setup and constant objects
-				set8 {
+				set5 {
 					value =
 					merge = 1
 				}
