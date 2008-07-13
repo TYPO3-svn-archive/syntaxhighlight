@@ -125,6 +125,11 @@ class tx_syntaxhighlight_controller {
 		$config['lineNumbers']    = $data['data']['sDEF']['lDEF']['lineNumbers']['vDEF'];
 		$config['startLine']      = $data['data']['sDEF']['lDEF']['startLine']['vDEF'];
 		$config['width']          = $data['data']['sDEF']['lDEF']['width']['vDEF'];
+
+			// We need nicer config merging . . . 
+		if ($config['labelMode'] == 0) {
+			unset($config['labelMode']);
+		}
 		return array_merge($this->conf, $config);
 	}
 

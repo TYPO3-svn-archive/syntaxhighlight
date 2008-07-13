@@ -11,6 +11,15 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+					<language>
+						<TCEforms>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:language</label>
+							<config>
+								<type>select</type>
+								<itemsProcFunc>tx_syntaxhighlightAPI-&gt;getFlexformLanguages</itemsProcFunc>
+							</config>
+						</TCEforms>
+					</language>
 					<label>
 						<TCEforms>
 							<label>LLL:EXT:syntaxhighlight/language/controller.xml:label</label>
@@ -26,35 +35,10 @@
 						<TCEforms>
 							<label>LLL:EXT:syntaxhighlight/language/controller.xml:labelMode</label>
 							<config>
-								<type>select</type>
-								<itemsProcFunc>tx_syntaxhighlightAPI-&gt;getFlexformLabelMode</itemsProcFunc>
-								<items>
-									<numIndex index="0">
-										<numIndex index="0">LLL:EXT:syntaxhighlight/language/controller.xml:labelMode.0</numIndex>
-										<numIndex index="1">language</numIndex>
-									</numIndex>
-									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:syntaxhighlight/language/controller.xml:labelMode.1</numIndex>
-										<numIndex index="1">label</numIndex>
-									</numIndex>
-									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:syntaxhighlight/language/controller.xml:labelMode.2</numIndex>
-										<numIndex index="1">none</numIndex>
-									</numIndex>
-								</items>
+								<type>check</type>
 							</config>
 						</TCEforms>
 					</labelMode>
-					<language>
-						<TCEforms>
-							<label>LLL:EXT:syntaxhighlight/language/controller.xml:language</label>
-							<config>
-								<type>select</type>
-								
-								<itemsProcFunc>tx_syntaxhighlightAPI-&gt;getFlexformLanguages</itemsProcFunc>
-							</config>
-						</TCEforms>
-					</language>
 					<code>
 						<TCEforms>
 							<label>LLL:EXT:syntaxhighlight/language/controller.xml:code</label>

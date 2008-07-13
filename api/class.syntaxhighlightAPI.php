@@ -34,26 +34,6 @@ require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 class tx_syntaxhighlightAPI {
 
 	/**
-	 * get preferred labelMode from user preferences
-	 *
-	 * @param  array  $params: flexform params
-	 * @param  array  $conf: flexform conf
-	 * @return void
-	 */
-	public function getFlexFormLabelMode(&$params, &$conf) {
-		$labelMode = $GLOBALS['BE_USER']->uc['syntaxhighlighter_labelMode'];
-		foreach ($params['items'] as $key => $param) {
-			if ($param[1] == $labelMode[0]) {
-				$first = $params['items'][$key];
-				unset($params['items'][$key]);
-				array_unshift($params['items'], $first);
-				break;
-			}
-		}
-	}
-
-
-	/**
 	 * get list of available languages for flexform
 	 *
 	 * @param  array  $params: flexform params
@@ -257,22 +237,23 @@ class tx_syntaxhighlightAPI {
 		}
 		
 		$style = '';
-		switch ($conf['labelMode']) {
-			case 'language':
-				$title = $language;
-				break;
-			case 'label':
+		if ($conf['labelMode'] == 'language' || $conf['labelMode'] == 1) {
+			$title = $language;
+		}
+		else {
+			if ($conf['label']) {
 				$title = $conf['label'];
-				break;
-			case 'none':
+			}
+			else {
 				$title = '';
 				$style = ' style="display:none;"';
+			}
 		}
 		
 		$result = strtr($conf['template'], array(
 			'###TITLESTYLE###' => $style,
-			'###TITLE###' => $title,
-			'###TEXT###'  => $content
+			'###TITLE###'      => $title,
+			'###TEXT###'       => $content
 		));
 		return $result;
 	}
