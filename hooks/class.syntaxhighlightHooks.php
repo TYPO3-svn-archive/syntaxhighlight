@@ -98,8 +98,19 @@ class tx_syntaxhighlightHooks {
 				// get language to save it to BE_USER-Session
 			$language = $incomingFieldArray['pi_flexform']['data']['sDEF']['lDEF']['language']['vDEF'];
 				// save language to usersession
-			$beUserSession = array_unique(array_merge(array($language), (array) $GLOBALS['BE_USER']->uc['syntaxhighlighter_languages']));
-			$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'] = $beUserSession;
+			if ($GLOBALS['BE_USER']->uc['syntaxhighlighter_languages']) {
+				$beUserSession = array_unique(array_merge(array($language), $GLOBALS['BE_USER']->uc['syntaxhighlighter_languages']));
+			} else {
+				$beUserSession = array($language);
+			}
+			
+			if ($incomingFieldArray['pi_flexform']['data']['sDEF']['lDEF']['clearflag']['vDEF'] == '1') {
+					// clear BE_USER-session
+				$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'] = array();
+				$incomingFieldArray['pi_flexform']['data']['sDEF']['lDEF']['clearflag']['vDEF'] = '0';
+			} else {
+				$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'] = $beUserSession;
+			}
 
 			$GLOBALS['BE_USER']->writeUC();
 		}

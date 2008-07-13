@@ -39,6 +39,15 @@
 							</config>
 						</TCEforms>
 					</labelMode>
+					<clearflag>
+						<TCEforms>
+							<label>LLL:EXT:syntaxhighlight/language/controller.xml:clearflag</label>
+							<config>
+								<type>check</type>
+								
+							</config>
+						</TCEforms>
+					</clearflag>
 					<code>
 						<TCEforms>
 							<label>LLL:EXT:syntaxhighlight/language/controller.xml:code</label>

@@ -13,6 +13,7 @@
             <label index="label">Label:</label>
             <label index="labelMode">Show language as label:</label>
             <label index="language">Language:</label>
+            <label index="clearflag">Clear session data</label>
             <label index="code">Code:</label>
             <label index="lineNumbers">Line Numbers:</label>
             <label index="alternateLines">Alternate lines:</label>
