@@ -99,13 +99,15 @@ class tx_syntaxhighlight_controller {
 					document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
 				}
 			}
-			if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
-				HTMLElement.prototype.__defineGetter__("innerText", function() {
-					var r = this.ownerDocument.createRange();
-					r.selectNodeContents(this);
-					return r.toString();
-					}
-				);
+			if(!document.all) {
+				if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
+					HTMLElement.prototype.__defineGetter__("innerText", function() {
+						var r = this.ownerDocument.createRange();
+						r.selectNodeContents(this);
+						return r.toString();
+						}
+					);
+				}
 			}
 			');
 		} else {
