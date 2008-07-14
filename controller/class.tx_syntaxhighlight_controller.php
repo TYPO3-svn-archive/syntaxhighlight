@@ -34,7 +34,8 @@ class tx_syntaxhighlight_controller {
 	var $scriptRelPath = 'controller/class.tx_syntaxhighlight_controller.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'syntaxhighlight';	// The extension key.
 	var $lang;	// array with lang labels
-
+	var $langKey;	// holds the language key or 'default'
+	
 	/**
 	 * Initialize
 	 *
@@ -44,8 +45,8 @@ class tx_syntaxhighlight_controller {
 		$this->conf = $conf;
 		$this->languages = tx_syntaxhighlightAPI::getLanguages();
 			// read LL-file
-		$this->lang['default'] = t3lib_div::readLLfile(t3lib_extMgm::extPath($this->extKey) . 'language/controller.xml', 'default', $GLOBALS['TSFE']->renderCharset);
-		$this->lang[$GLOBALS['TSFE']->config['config']['language']] = t3lib_div::readLLfile(t3lib_extMgm::extPath($this->extKey) . 'language/controller.xml', $GLOBALS['TSFE']->config['config']['language'], $GLOBALS['TSFE']->renderCharset);
+		$this->langKey = $GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'default';
+		$this->lang = t3lib_div::readLLfile(t3lib_extMgm::extPath($this->extKey) . 'language/controller.xml', $this->langKey, $GLOBALS['TSFE']->renderCharset);
 	}
 
 
@@ -173,7 +174,7 @@ class tx_syntaxhighlight_controller {
 	 * @return	string		label
 	 */
 	function getLL($label) {
-		return $this->lang[$GLOBALS['TSFE']->config['config']['language']][$label] ? $this->lang[$GLOBALS['TSFE']->config['config']['language']][$label] : $this->lang['default'][$label];
+		return $this->lang[$this->langKey][$label] ?  $this->lang[$this->langKey][$label] :  $this->lang['default'][$label];
 	}
 }
 
