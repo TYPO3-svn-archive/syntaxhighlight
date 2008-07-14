@@ -142,6 +142,13 @@ class tx_syntaxhighlightAPI {
 
 		if (TYPO3_MODE == 'FE') {
 
+			if ($conf['headerType'] == 'div' || !$conf['headerType']) {
+				$geshi->set_header_type(GESHI_HEADER_DIV);
+			}
+			if ($conf['headerType'] == 'pre') {
+				$geshi->set_header_type(GESHI_HEADER_PRE);
+			}
+
 				// keyword linking
 			$geshi->enable_keyword_links((bool)$conf['link.']['enable']);
 			if((bool)$conf['link.']['enable']) {
