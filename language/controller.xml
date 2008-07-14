@@ -20,6 +20,7 @@
             <label index="startLine">Start at line:</label>
             <label index="width">Width:</label>
             <label index="height">Height:</label>
+            <label index="copyCode">copy this code</label>
             <label index="no_content">No code for syntax highlight</label>
             <label index="language_not_found">Language "%s" not found.</label>
         </languageKey>

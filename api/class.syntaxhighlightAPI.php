@@ -142,6 +142,9 @@ class tx_syntaxhighlightAPI {
 
 		if (TYPO3_MODE == 'FE') {
 
+			$langKey = $GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'default';
+			$lang = t3lib_div::readLLfile(t3lib_extMgm::extPath('syntaxhighlight') . 'language/controller.xml', $langKey, $GLOBALS['TSFE']->renderCharset);
+
 			if ($conf['headerType'] == 'div' || !$conf['headerType']) {
 				$geshi->set_header_type(GESHI_HEADER_DIV);
 			}
@@ -257,7 +260,10 @@ class tx_syntaxhighlightAPI {
 			}
 		}
 		
+		$copyCode = $lang[$langKey]['copyCode'] ?  $lang[$langKey]['copyCode'] :  $lang['default']['copyCode'];
+
 		$result = strtr($conf['template'], array(
+			'###COPY_CODE###'  => $copyCode,
 			'###TITLESTYLE###' => $style,
 			'###TITLE###'      => $title,
 			'###TEXT###'       => $content
