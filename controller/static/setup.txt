@@ -15,7 +15,11 @@ plugin.tx_syntaxhighlight_controller {
 	template (
 			<div class="tx-syntaxhighlight" id="###ID###">
 				<div class="title"###TITLESTYLE###>###TITLE###</div>
-				<div class="text">###TEXT###</div>
+				<div class="text" id="text_###ID###">###TEXT###</div>
+				<p> <a href="/nc/test/code-highlighter/#" onclick="tx_syntaxhighlightSelectText('###ID###'); return false;">here is the code in plain for copy&paste</a> </p>
+				<div id="clippyText_###ID###" style="display: none;">
+				<textarea id="clippyTextArea_###ID###" name="clippyTextArea" rows="5" cols="40"></textarea>
+				</div>
 			</div>
 	)
 	
