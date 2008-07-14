@@ -33,7 +33,7 @@ class tx_syntaxhighlight_controller {
 	var $prefixId = 'tx_syntaxhighlight_controller';	// Same as class name
 	var $scriptRelPath = 'controller/class.tx_syntaxhighlight_controller.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'syntaxhighlight';	// The extension key.
-
+	var $lang;	// array with lang labels
 
 	/**
 	 * Initialize
@@ -43,6 +43,9 @@ class tx_syntaxhighlight_controller {
 	function init($conf) {
 		$this->conf = $conf;
 		$this->languages = tx_syntaxhighlightAPI::getLanguages();
+			// read LL-file
+		$this->lang['default'] = t3lib_div::readLLfile(t3lib_extMgm::extPath($this->extKey) . 'language/controller.xml', 'default', $GLOBALS['TSFE']->renderCharset);
+		$this->lang[$GLOBALS['TSFE']->config['config']['language']] = t3lib_div::readLLfile(t3lib_extMgm::extPath($this->extKey) . 'language/controller.xml', $GLOBALS['TSFE']->config['config']['language'], $GLOBALS['TSFE']->renderCharset);
 	}
 
 
@@ -56,7 +59,7 @@ class tx_syntaxhighlight_controller {
 	function main($content, $conf)	{
 		
 		$this->init($conf);
-		$config = $this->getFlexformConf();debug($config);
+		$config = $this->getFlexformConf();
 		$content .= $this->doHighlight($config);
 		
 		return $content;
@@ -105,7 +108,7 @@ class tx_syntaxhighlight_controller {
 			}
 			');
 		} else {
- 			$content = 'Language "' . $config['language'] . '" not found';
+ 			$content = sprintf($this->getLL('language_not_found'), $config['language']);
 		}
 		
 		return $content;
@@ -162,7 +165,16 @@ class tx_syntaxhighlight_controller {
 		}
 		return array_merge($this->conf, $config);
 	}
-
+	
+	/**
+	 * Get LL-label
+	 *
+	 * @param   string  $label:  name of label
+	 * @return	string		label
+	 */
+	function getLL($label) {
+		return $this->lang[$GLOBALS['TSFE']->config['config']['language']][$label] ? $this->lang[$GLOBALS['TSFE']->config['config']['language']][$label] : $this->lang['default'][$label];
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php'])	{

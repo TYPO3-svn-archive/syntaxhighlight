@@ -21,6 +21,7 @@
             <label index="width">Width:</label>
             <label index="height">Height:</label>
             <label index="no_content">No code for syntax highlight</label>
+            <label index="language_not_found">Language "%s" not found.</label>
         </languageKey>
         <languageKey index="de" type="array">
             <label index="extlabel">Syntax Highlight - Optionen</label>
