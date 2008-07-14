@@ -84,7 +84,7 @@ class tx_syntaxhighlight_controller {
 				var oUl = document.getElementById(\'text_\'+listId);
 				for (var i in oUl.childNodes){
 					var x = oUl.childNodes[i];
-					if (x.innerText != undefined){
+					if (x.innerText !== undefined){
 						t = t + "\n" + x.innerText;
 					}
 				}
@@ -96,10 +96,10 @@ class tx_syntaxhighlight_controller {
 					document.getElementById(\'clippyTextArea_\'+listId).select();
 				}
 				else{
-					document.getElementById(\'clippyText_\'+listId).style.display=\'none\'
+					document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
 				}
 			}
-			if((typeof HTMLElement != undefined) && (HTMLElement.prototype.__defineGetter__ != undefined)) {
+			if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
 				HTMLElement.prototype.__defineGetter__("innerText", function() {
 					var r = this.ownerDocument.createRange();
 					r.selectNodeContents(this);
