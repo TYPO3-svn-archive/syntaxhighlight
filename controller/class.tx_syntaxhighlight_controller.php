@@ -78,38 +78,43 @@ class tx_syntaxhighlight_controller {
 		if (in_array($config['language'], $this->languages)) {
 			$config['template']  = str_replace('###ID###', 'cb' . $this->cObj->data['uid'], $config['template']);
 			$content = tx_syntaxhighlightAPI::highlight($config['code'], $config['language'], $config);
-			$GLOBALS['TSFE']->setJS($this->extKey, '
-			function tx_syntaxhighlightSelectText(listId) {
-				var t = \'\';
-				var oUl = document.getElementById(\'text_\'+listId);
-				for (var i in oUl.childNodes){
-					var x = oUl.childNodes[i];
-					if (x.innerText !== undefined){
-						t = t + "\n" + x.innerText;
+				// TODO . . . this is for the RTE from which we cannot call setJS. It 
+				// complains: Fatal error: Call to a member function setJS() on a 
+				// non-object
+			if (TYPO3_MODE == 'FE') {
+				$GLOBALS['TSFE']->setJS($this->extKey, '
+				function tx_syntaxhighlightSelectText(listId) {
+					var t = \'\';
+					var oUl = document.getElementById(\'text_\'+listId);
+					for (var i in oUl.childNodes){
+						var x = oUl.childNodes[i];
+						if (x.innerText !== undefined){
+							t = t + "\n" + x.innerText;
+						}
+					}
+						
+					if (document.getElementById(\'clippyText_\'+listId).style.display == \'none\') {
+						document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
+						document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
+						document.getElementById(\'clippyTextArea_\'+listId).focus();
+						document.getElementById(\'clippyTextArea_\'+listId).select();
+					}
+					else{
+						document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
 					}
 				}
-					
-				if (document.getElementById(\'clippyText_\'+listId).style.display == \'none\') {
-					document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
-					document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
-					document.getElementById(\'clippyTextArea_\'+listId).focus();
-					document.getElementById(\'clippyTextArea_\'+listId).select();
+				if(!document.all) {
+					if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
+						HTMLElement.prototype.__defineGetter__("innerText", function() {
+							var r = this.ownerDocument.createRange();
+							r.selectNodeContents(this);
+							return r.toString();
+							}
+						);
+					}
 				}
-				else{
-					document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
-				}
+				');
 			}
-			if(!document.all) {
-				if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
-					HTMLElement.prototype.__defineGetter__("innerText", function() {
-						var r = this.ownerDocument.createRange();
-						r.selectNodeContents(this);
-						return r.toString();
-						}
-					);
-				}
-			}
-			');
 		} else {
  			$content = sprintf($this->getLL('language_not_found'), $config['language']);
 		}
