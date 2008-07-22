@@ -37,7 +37,7 @@ class tx_rtehtmlarea_syntaxhighlight extends tx_rtehtmlareaapi {
 	protected $extensionKey = 'syntaxhighlight';				// The key of the extension that is extending htmlArea RTE
 	protected $pluginName = 'syntaxHighlight';				// The name of the plugin registered by the extension
 	protected $relativePathToLocallangFile = 'plugin/rtehtmlarea/syntaxHighlight/locallang.xml';			// Path to this main locallang file of the extension relative to the extension dir.
-	protected $relativePathToSkin = 'syntaxHighlight/skin/htmlarea.css';	// Path to the skin (css) file relative to the extension dir.
+	protected $relativePathToSkin = 'plugin/rtehtmlarea/syntaxHighlight/skin/htmlarea.css';	// Path to the skin (css) file relative to the extension dir.
 	protected $relativePathToPluginDirectory = 'plugin/rtehtmlarea/syntaxHighlight/';	// Path to the directory containing the directory containing the plugin, relative to the extension dir
 	protected $htmlAreaRTE;						// Reference to the invoking object
 	protected $thisConfig;						// Reference to RTE PageTSConfig

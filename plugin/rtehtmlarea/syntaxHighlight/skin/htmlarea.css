@@ -1,2 +1,2 @@
-/* Selectors for the Codebox extension of htmlArea RTE */
-.htmlarea .toolbar .Codebox, .htmlarea-context-menu .Codebox {background-image:url("images/Codebox.gif");}
+/* Selectors for the syntaxHighlight extension of htmlArea RTE */
+.htmlarea .toolbar .syntaxHighlight, .htmlarea-context-menu .syntaxHighlight {background-image:url("images/syntaxHighlight.gif");}
