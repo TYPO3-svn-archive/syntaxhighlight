@@ -44,7 +44,7 @@ $language_data = array (
     'LANG_NAME' => 'TypoScript',
     'COMMENT_SINGLE' => array(1  => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    'COMMENT_REGEXP' => array(1 => '/[^#"](#[^#\n]+)/'),
+    'COMMENT_REGEXP' => array(1 => '/(?<!(#|\'|"))(#(?!([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|#{2}[^\n#]+|#{7,999}[^\n]+)/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
@@ -196,7 +196,8 @@ $language_data = array (
             3 => 'color: #000066; font-weight: bold;',
             4 => 'color: #ed7d14;',
             5 => 'color: #000066; font-weight: bold;',
-            6 => 'color: #009900;'
+            6 => 'color: #009900;',
+            7 => 'color: #3366CC;'
             ),
         'ESCAPE_CHAR' => array(
             ),
@@ -270,7 +271,7 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => ''
-        ),
+            ),
 
             // markers
         6 => array(
@@ -279,7 +280,16 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-				)
+				    ),
+
+            // hex color codes
+        7 => array(
+            GESHI_SEARCH => '(#[a-fA-F0-9]{6}\b|#[a-fA-F0-9]{3}\b)',
+            GESHI_REPLACE => '\\1',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+				    )
     ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
 );
