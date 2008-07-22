@@ -1,4 +1,4 @@
-/* GESHI CLASSES */
+/* GeSHi classes */
 pre .br0 {color: #6c6;}
 pre .co1, pre .co2, pre .coMULTI {color: #808080;}
 pre .de1, pre .de2 {font-weight: normal; background: transparent; color: #000; padding-left: 5px;}
@@ -11,7 +11,7 @@ pre .me0 {color: #060;}
 pre .nu0 {color: #f3f;}
 pre .st0 {color: #f00;}
 
-/* CODEBOX CLASSES */
+/* syntaxHiglight classes */
 .tx-syntaxhighlight {
 	margin: 20px;
 	
