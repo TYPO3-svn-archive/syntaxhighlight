@@ -25,11 +25,11 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /*
- * Codebox Plugin for TYPO3 htmlArea RTE
+ * syntaxHighlight Plugin for TYPO3 htmlArea RTE
  *
- * TYPO3 SVN ID: $Id: codebox.js $
+ * TYPO3 SVN ID: $Id: syntaxhighlight.js $
  */
-Codebox = HTMLArea.Plugin.extend({
+syntaxHighlight = HTMLArea.Plugin.extend({
 		
 	constructor : function(editor, pluginName) {
 		this.base(editor, pluginName);
@@ -83,7 +83,7 @@ Codebox = HTMLArea.Plugin.extend({
 	 * The list of buttons added by this plugin
 	 */
 	buttonList : {
-		Codebox		: [null, null, "codebox"]
+		syntaxHighlight		: [null, null, "syntaxhighlight"]
 	},
 	
 	/*
@@ -102,7 +102,7 @@ Codebox = HTMLArea.Plugin.extend({
 		this.popupWidth = 800;
 		this.popupHeight = 600;
 
-		this.dialog = this.openDialog("Codebox", this.makeUrlFromPopupName("codebox"), "applyRequest", null, {width:this.popupWidth, height:this.popupHeight});
+		this.dialog = this.openDialog("syntaxHighlight", this.makeUrlFromPopupName("syntaxhighlight"), "applyRequest", null, {width:this.popupWidth, height:this.popupHeight});
 		return false;
 	},
 	

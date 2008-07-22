@@ -7,7 +7,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="Codebox-Tooltip">Insert Codebox</label>
+			<label index="syntaxHighlight-Tooltip">Insert syntaxHighlighted text</label>
 		</languageKey>
 	</data>
 </T3locallang>

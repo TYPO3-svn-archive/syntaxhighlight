@@ -32,22 +32,22 @@
 
 require_once(t3lib_extMgm::extPath('rtehtmlarea').'class.tx_rtehtmlareaapi.php');
 
-class tx_rtehtmlarea_codebox extends tx_rtehtmlareaapi {
+class tx_rtehtmlarea_syntaxhighlight extends tx_rtehtmlareaapi {
 
 	protected $extensionKey = 'syntaxhighlight';				// The key of the extension that is extending htmlArea RTE
-	protected $pluginName = 'Codebox';				// The name of the plugin registered by the extension
-	protected $relativePathToLocallangFile = '';			// Path to this main locallang file of the extension relative to the extension dir.
-	protected $relativePathToSkin = 'Codebox/skin/htmlarea.css';	// Path to the skin (css) file relative to the extension dir.
-	protected $relativePathToPluginDirectory = 'htmlarea/plugins/Codebox/';	// Path to the directory containing the directory containing the plugin, relative to the extension dir
+	protected $pluginName = 'syntaxHighlight';				// The name of the plugin registered by the extension
+	protected $relativePathToLocallangFile = 'plugin/rtehtmlarea/syntaxHighlight/locallang.xml';			// Path to this main locallang file of the extension relative to the extension dir.
+	protected $relativePathToSkin = 'syntaxHighlight/skin/htmlarea.css';	// Path to the skin (css) file relative to the extension dir.
+	protected $relativePathToPluginDirectory = 'plugin/rtehtmlarea/syntaxHighlight/';	// Path to the directory containing the directory containing the plugin, relative to the extension dir
 	protected $htmlAreaRTE;						// Reference to the invoking object
 	protected $thisConfig;						// Reference to RTE PageTSConfig
 	protected $toolbar;						// Reference to RTE toolbar array
 	protected $LOCAL_LANG; 						// Frontend language array
 	
-	protected $pluginButtons = 'codebox';
+	protected $pluginButtons = 'syntaxhighlight';
 		
 	protected $convertToolbarForHtmlAreaArray = array (
-		'codebox'	=> 'Codebox',
+		'syntaxhighlight'	=> 'syntaxHighlight',
 		);
 	
 	
@@ -68,13 +68,13 @@ class tx_rtehtmlarea_codebox extends tx_rtehtmlareaapi {
 		$registerRTEinJavascriptString = '';
 		
 		/*
-		$button = 'codebox';
+		$button = 'syntaxhighlight';
 		if (in_array($button, $this->toolbar)) {
 			if (!is_array( $this->thisConfig['buttons.']) || !is_array( $this->thisConfig['buttons.'][$button.'.'])) {
 					$registerRTEinJavascriptString .= '
 			RTEarea['.$RTEcounter.'].buttons.'. $button .' = new Object();';
 			}
-			#$registerRTEinJavascriptString .= 'RTEarea['.$RTEcounter.'].buttons.'. $button .'.pathUserModule = "res/rte_codebox.php";';
+			#$registerRTEinJavascriptString .= 'RTEarea['.$RTEcounter.'].buttons.'. $button .'.pathUserModule = "res/rte_syntaxhighlight.php";';
 			
 		}
 		*/
@@ -84,8 +84,8 @@ class tx_rtehtmlarea_codebox extends tx_rtehtmlareaapi {
 	
 } // end of class
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/Codebox/class.tx_rtehtmlarea_codebox.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/Codebox/class.tx_rtehtmlarea_codebox.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/plugin/htmlarea/syntaxHighlight/class.tx_rtehtmlarea_syntaxhighlight.php']) {
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/plugin/htmlarea/syntaxHighlight/class.tx_rtehtmlarea_syntaxhighlight.php']);
 }
 
 ?>
