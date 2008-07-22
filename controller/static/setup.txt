@@ -10,8 +10,8 @@ plugin.tx_syntaxhighlight_controller {
 	alternateLines = {$plugin.tx_syntaxhighlight_controller.alternateLines}
 	lineNumbers    = {$plugin.tx_syntaxhighlight_controller.lineNumbers}
 	startLine      = {$plugin.tx_syntaxhighlight_controller.startLine}
-	
-	
+
+
 	template (
 			<div class="tx-syntaxhighlight" id="###ID###">
 				<div class="title"###TITLESTYLE###>###TITLE###</div>
@@ -22,7 +22,7 @@ plugin.tx_syntaxhighlight_controller {
 				</div>
 			</div>
 	)
-	
+
 
 		// keyword link settings
 
@@ -34,7 +34,7 @@ plugin.tx_syntaxhighlight_controller {
 			hover   = text-decoration: none;
 			active  = 
 			visited =
-		}	
+		}
 	}
 
 
@@ -206,7 +206,7 @@ tt_content.list.20.syntaxhighlight_controller =< plugin.tx_syntaxhighlight_contr
 
 lib.parseFunc.allowTags     := addToList(code)
 lib.parseFunc.denyTags      := removeFromList(code)
-lib.parseFunc_RTE.allowTags := addToList(code)	
+lib.parseFunc_RTE.allowTags := addToList(code)
 lib.parseFunc_RTE.denyTags  := removeFromList(code)
 lib.parseFunc_RTE.tags.code = TEXT
 lib.parseFunc_RTE.tags.code.current = 1
