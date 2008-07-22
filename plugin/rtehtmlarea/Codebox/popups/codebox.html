@@ -1,0 +1,147 @@
+<html class="popupwin">
+<!--
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2005-2008 Stanislas Rolland <stanislas.rolland(arobas)fructifor.ca>
+*  All rights reserved
+*
+*  This script is part of the TYPO3 project. The TYPO3 project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*  A copy is found in the textfile GPL.txt and important notices to the license
+*  from the author is found in LICENSE.txt distributed with these scripts.
+*
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
+/*
+ * Remove Format Plugin for TYPO3 htmlArea RTE
+ *
+ * TYPO3 SVN ID: $Id: removeformat.html 3437 2008-03-16 16:22:11Z ingorenner $
+ */
+-->
+<head>
+	<title>Insert Codebox</title>
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<script type="text/javascript">
+		/*<![CDATA[*/
+		<!--
+		var dialog = window.opener.HTMLArea.Dialog.Codebox;
+
+		function Init() {
+			dialog.initialize();
+			var editor = dialog.plugin.editor;
+			if (!editor._selectionEmpty(editor._getSelection())) document.getElementById('line_numbers').checked = true;
+			document.getElementById('code').value = editor.getSelectedHTMLContents();
+		}
+
+		function onOK() {
+			var editor = dialog.plugin.editor;
+			var param = {};
+			var wrap1, wrap2;
+			
+			wrap2 = "</div>";
+			
+			if (document.getElementById('line_numbers').checked) {
+				param["line_numbers"] = 1;
+			} else {
+				param["line_numbers"] = 0;
+			}
+			
+			param["language"] = document.getElementById('sel_language').options[document.getElementById('sel_language').selectedIndex].value;
+			
+			
+			if (document.getElementById('code').value) {
+				var content = {
+					language : param["language"],
+					lineNumbers : param["line_numbers"],
+          title: document.getElementById('header_title').value,
+					start: document.getElementById('start_with').value,
+					content : document.getElementById('code').value
+				};
+				dialog.plugin.postData(	'../../../ajax.php?ajaxID=tx_syntaxhighlight_controller::highlightRTE',
+					content,
+					function(response) {
+						editor.insertHTML(response);
+						//dialog.performAction(response);
+					}
+				);
+				
+				
+			} else {
+				alert('Please paste your code!');
+			}
+			
+			dialog.close();
+			return false;
+		};
+
+		function onCancel() {
+			dialog.close();
+			return false;
+		}
+		
+		function uniqueID() {
+			var t = String(new Date().getTime()).substr(4);
+			var s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			for(var i = 0; i < 4; i++){
+				t += s.charAt(Math.floor(Math.random()*26));
+			}
+			return t;
+		}
+		
+		// -->
+		/*]]>*/
+	</script>
+</head>
+<body class="popupwin" onload="Init();">
+<div id="content">
+<div class="title">Insert a Codebox with Syntax Highlighting</div>
+<form action="" method="get">
+	<fieldset>
+		<legend><span>Line Numbers</span></legend>
+			<label for="line_numbers"><span>On</span></label> <input type="radio" name="line_numbers" id="line_numbers" value="1" />
+			<label><span>Off</span></label> <input type="radio" name="line_numbers" id="line_numbers" value="0" checked="checked" /><br />
+			<label for="start_with">Start with Line number</label><input type="text" id="start_with" name="start_with" size="6" value="1" />
+	</fieldset>
+	<fieldset>
+        <legend><span>Language</span></legend>
+            <div class="space"></div>
+            <div class="fl"><label for="formatting">Select Language:</label></div>
+            <select name="sel_language" class="select" id="sel_language"><option value="actionscript">Actionscript</option><option value="ada">ADA</option><option value="apache">Apache</option><option value="applescript">Applescript</option><option value="asm">ASM</option><option value="asp">ASP</option><option value="bash">Bash</option><option value="blitzbasic">Blitzbasic</option><option value="c">C</option><option value="c_mac">C mac</option><option value="caddcl">caddcl</option><option value="cadlisp">cadlisp</option><option value="cpp">cpp</option><option value="csharp">C#</option><option value="css">CSS</option><option value="d">D</option><option value="delphi">Delphi</option><option value="diff">diff</option><option value="div">div</option><option value="dos">DOS</option><option value="eiffel">Eiffel</option><option value="freebasic">Freebasic</option><option value="gml">GML</option><option value="html4strict">HTML</option><option value="ini">INI</option><option value="java">Java</option><option value="javascript">Javascript</option><option value="lisp">Lisp</option><option value="lua">lua</option><option value="matlab">Matlab</option><option value="mpasm">mpASM</option><option value="mysql">mySQL</option><option value="nsis">nsis</option><option value="objc">objc</option><option value="ocaml">ocaml</option><option value="ocaml-brief">ocaml (brief)</option><option value="oobas">oobas</option><option value="oracle8">Oracle8</option><option value="pascal">Pascal</option><option value="perl">Perl</option><option value="php">PHP</option><option value="php-brief">PHP (brief)</option><option value="python">Python</option><option value="qbasic">QBasic</option><option value="ruby">ruby</option><option value="scheme">Scheme</option><option value="sqlbasic">SYLbasic</option><option value="smarty">Smarty</option><option value="sql">SQL</option><option value="typoscript">TypoScript</option><option value="vb">VB</option><option value="vbnet">vb.net</option><option value="vhdl">Vhdl</option><option value="visualfoxpro">Visual FoxPro</option><option value="xml">XML</option></select>
+            <div class="space"></div>
+    </fieldset>
+    <fieldset>
+        <legend><span>Header title (is language name if you leave empty)</span></legend>
+            <div class="space"></div>
+            <div class="fl"><label for="header_title">Header title:</label></div>
+            <input type="text" id="header_title" name="header_title" size="26" value="" />
+            <div class="space"></div>
+    </fieldset>
+    <fieldset>
+		<legend><span>Code</span></legend>
+			<div class="space"></div>
+			<div class="fl"><label for="formatting">Paste your Code here:</label></div>
+			<textarea name="code" id="code" rows="15" cols="60"></textarea>
+			<div class="space"></div>
+	</fieldset>
+	<div class="buttons">
+		<button type="button" name="ok" onclick="return onOK();">Insert Codebox</button>
+		<button type="button" name="cancel" onclick="return onCancel();">Cancel</button>
+	</div>
+</form>
+</div>
+</body>
+</html>
