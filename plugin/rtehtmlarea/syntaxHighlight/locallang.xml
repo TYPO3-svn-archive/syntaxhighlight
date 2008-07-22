@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<!-- TYPO3 SVN ID: $Id: locallang.xml 2975 2008-01-29 23:01:39Z stanrolland $ -->
+<T3locallang>
+	<meta type="array">
+		<description>Labels for Definition List plugin of htmlArea RTE</description>
+		<type>module</type>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="syntaxHighlight-Tooltip">Insert syntaxHighlighted text</label>
+		</languageKey>
+	</data>
+</T3locallang>
