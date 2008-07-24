@@ -44,7 +44,7 @@ $language_data = array (
     'LANG_NAME' => 'TypoScript',
     'COMMENT_SINGLE' => array(1  => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    'COMMENT_REGEXP' => array(1 => '/(?<!(#|\'|"))(#(?!([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|#{2}[^\n#]+|#{7,999}[^\n]+)/'),
+    'COMMENT_REGEXP' => array(1 => '/(?<!(#|\'|"))(?:#(?!(?:[a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|#{2}[^\n#]+|#{7,999}[^\n]+)/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
@@ -248,7 +248,7 @@ $language_data = array (
 
             // extension keys / tables: (static|user|ttx|tx|tt|fe)_something[_something]
         3 => array(
-            GESHI_SEARCH => '(plugin\.|[^\.]\b)((static|user|ttx|tx|tt|fe)(_[0-9A-Za-z_]+?)\b)',
+            GESHI_SEARCH => '(plugin\.|[^\.]\b)((?:static|user|ttx|tx|tt|fe)(?:_[0-9A-Za-z_]+?)\b)',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
