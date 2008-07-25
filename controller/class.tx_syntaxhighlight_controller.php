@@ -100,17 +100,22 @@ class tx_syntaxhighlight_controller {
 							range.execCommand(\'copy\');
 						}
 					} else {
-						var flashCopier = \'flashCopier\';
-						if(!document.getElementById(flashCopier)) {
-							var divHolder = document.createElement(\'div\');
-							divHolder.id  = flashCopier;
-							document.body.appendChild(divHolder);
+						if (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) {
+							var flashCopier = \'flashCopier\';
+							if(!document.getElementById(flashCopier)) {
+								var divHolder = document.createElement(\'div\');
+								divHolder.id  = flashCopier;
+								document.body.appendChild(divHolder);
+							}
+							document.getElementById(flashCopier).innerHTML = \'\';
+							var divInfo = \'<object type="application/x-shockwave-flash" width="0" height="0" data="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"> <param name="movie" value="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"/> <param name="FlashVars" value="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'"/> </object>\';
+							document.getElementById(flashCopier).innerHTML = divInfo;
+							document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
+						} else {
+							document.getElementById(\'clippyTextArea_\'+listId).focus();
+							document.getElementById(\'clippyTextArea_\'+listId).select();
 						}
-						document.getElementById(flashCopier).innerHTML = \'\';
-						var divInfo = \'<object type="application/x-shockwave-flash" width="0" height="0" data="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"> <param name="movie" value="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"/> <param name="FlashVars" value="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'"/> </object>\';
-						document.getElementById(flashCopier).innerHTML = divInfo;
 					}
-					document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
 				}
 				if(!document.all) {
 					if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
