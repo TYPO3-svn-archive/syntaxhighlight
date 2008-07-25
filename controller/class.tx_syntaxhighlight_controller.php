@@ -94,10 +94,10 @@ class tx_syntaxhighlight_controller {
 					}
 						
 					if (document.getElementById(\'clippyText_\'+listId).style.display == \'none\') {
-						//document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
+						document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
 						document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
 						document.getElementById(\'clippyTextArea_\'+listId).focus();
-						//document.getElementById(\'clippyTextArea_\'+listId).select();
+						document.getElementById(\'clippyTextArea_\'+listId).select();
 						if (document.getElementById(\'clippyTextArea_\'+listId).createTextRange) {
 							var range = document.getElementById(\'clippyTextArea_\'+listId).createTextRange();
 							if (range && bodyloaded==1)
