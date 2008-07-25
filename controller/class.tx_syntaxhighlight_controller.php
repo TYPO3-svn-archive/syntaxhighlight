@@ -92,32 +92,25 @@ class tx_syntaxhighlight_controller {
 							t = t + "\n" + x.innerText;
 						}
 					}
-						
-					if (document.getElementById(\'clippyText_\'+listId).style.display == \'none\') {
-						document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
-						document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
-						document.getElementById(\'clippyTextArea_\'+listId).focus();
-						document.getElementById(\'clippyTextArea_\'+listId).select();
-						if (document.getElementById(\'clippyTextArea_\'+listId).createTextRange) {
-							var range = document.getElementById(\'clippyTextArea_\'+listId).createTextRange();
-							if (range && bodyloaded==1)
-								range.execcommand(\'copy\');
-						document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
-						} else {
-							var flashcopier = \'flashcopier\';
-							if(!document.getElementById(flashcopier)) {
-								var divholder = document.createElement(\'div\');
-								divholder.id = flashcopier;
-								document.body.appendChild(divholder);
-							}
-							document.getElementById(flashcopier).innerHTML = \'\';
-							var divinfo = \'<embed src="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf" FlashVars="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'" width="0" height="0" type="application/x-shockwave-flash"></embed>\';
-							document.getElementById(flashcopier).innerHTML = divinfo;
+					document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
+					document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
+					if (document.getElementById(\'clippyTextArea_\'+listId).clipboardData) {
+						var range = document.getElementById(\'clippyTextArea_\'+listId).clipboardData();
+						if (range && BodyLoaded == 1) {
+							range.execCommand(\'copy\');
 						}
+					} else {
+						var flashCopier = \'flashCopier\';
+						if(!document.getElementById(flashCopier)) {
+							var divHolder = document.createElement(\'div\');
+							divHolder.id  = flashCopier;
+							document.body.appendChild(divHolder);
+						}
+						document.getElementById(flashCopier).innerHTML = \'\';
+						var divInfo = \'<embed src="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf" FlashVars="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'" width="0" height="0" type="application/x-shockwave-flash"></embed>\';
+						document.getElementById(flashCopier).innerHTML = divInfo;
 					}
-					else{
-						document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
-					}
+					document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
 				}
 				if(!document.all) {
 					if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
