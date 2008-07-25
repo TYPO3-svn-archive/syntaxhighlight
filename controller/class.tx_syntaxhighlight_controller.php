@@ -107,7 +107,7 @@ class tx_syntaxhighlight_controller {
 							document.body.appendChild(divHolder);
 						}
 						document.getElementById(flashCopier).innerHTML = \'\';
-						var divInfo = \'<embed src="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf" FlashVars="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'" width="0" height="0" type="application/x-shockwave-flash"></embed>\';
+						var divInfo = \'<object type="application/x-shockwave-flash" width="0" height="0" data="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"> <param name="movie" value="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"/> <param name="FlashVars" value="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'"/> </object>\';
 						document.getElementById(flashCopier).innerHTML = divInfo;
 					}
 					document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
