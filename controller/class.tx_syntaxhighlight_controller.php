@@ -94,10 +94,26 @@ class tx_syntaxhighlight_controller {
 					}
 						
 					if (document.getElementById(\'clippyText_\'+listId).style.display == \'none\') {
-						document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
+						//document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
 						document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
 						document.getElementById(\'clippyTextArea_\'+listId).focus();
-						document.getElementById(\'clippyTextArea_\'+listId).select();
+						//document.getElementById(\'clippyTextArea_\'+listId).select();
+						if (document.getElementById(\'clippyTextArea_\'+listId).createTextRange) {
+							var range = document.getElementById(\'clippyTextArea_\'+listId).createTextRange();
+							if (range && bodyloaded==1)
+								range.execcommand(\'copy\');
+						document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
+						} else {
+							var flashcopier = \'flashcopier\';
+							if(!document.getElementById(flashcopier)) {
+								var divholder = document.createElement(\'div\');
+								divholder.id = flashcopier;
+								document.body.appendChild(divholder);
+							}
+							document.getElementById(flashcopier).innerHTML = \'\';
+							var divinfo = \'<embed src="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf" FlashVars="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'" width="0" height="0" type="application/x-shockwave-flash"></embed>\';
+							document.getElementById(flashcopier).innerHTML = divinfo;
+						}
 					}
 					else{
 						document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
@@ -129,7 +145,7 @@ class tx_syntaxhighlight_controller {
 	 * @return	string $content: highlighted code
 	 */
 	function highlightRTE() {
-		$config['template']	   = '<div class="tx-syntaxhighlight" id="' . uniqid('cb') . '"><div class="title">###TITLE###</div><div class="text">###TEXT###</div></div>';
+		$config['template']    = '<div class="tx-syntaxhighlight" id="' . uniqid('cb') . '"><div class="title">###TITLE###</div><div class="text">###TEXT###</div></div>';
 		$config['code']        = strtr(t3lib_div::_GP('content'), array('&quot;' => '"'));
 		$config['label']       = t3lib_div::_GP('title') ? t3lib_div::_GP('title') : $config['language'];
 		$config['language']    = t3lib_div::_GP('language');
