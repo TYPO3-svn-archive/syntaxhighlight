@@ -96,8 +96,10 @@ class tx_syntaxhighlight_controller {
 					document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
 					if (document.getElementById(\'clippyTextArea_\'+listId).clipboardData) {
 						var range = document.getElementById(\'clippyTextArea_\'+listId).clipboardData();
-						if (range && BodyLoaded == 1) {
+						if (range) {
 							range.execCommand(\'copy\');
+							document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
+							document.getElementById(\'clippyCopyLink_\'+listId).innerHTML = \''.$this->getLL('text_copied_to_clipboard').'\';
 						}
 					} else {
 						if (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) {
@@ -111,6 +113,7 @@ class tx_syntaxhighlight_controller {
 							var divInfo = \'<object type="application/x-shockwave-flash" width="0" height="0" data="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"> <param name="movie" value="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"/> <param name="FlashVars" value="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'"/> </object>\';
 							document.getElementById(flashCopier).innerHTML = divInfo;
 							document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
+							document.getElementById(\'clippyCopyLink_\'+listId).innerHTML = \''.$this->getLL('text_copied_to_clipboard').'\';
 						} else {
 							document.getElementById(\'clippyTextArea_\'+listId).focus();
 							document.getElementById(\'clippyTextArea_\'+listId).select();
