@@ -260,13 +260,15 @@ class tx_syntaxhighlightAPI {
 			}
 		}
 		
-		$copyCode = $lang[$langKey]['copyCode'] ?  $lang[$langKey]['copyCode'] :  $lang['default']['copyCode'];
+		$copyCode     = $lang[$langKey]['copyCode'] ?  $lang[$langKey]['copyCode'] :  $lang['default']['copyCode'];
+		$noScriptNote = $lang[$langKey]['noScriptNote'] ?  $lang[$langKey]['noScriptNote'] :  $lang['default']['noScriptNote'];
 
 		$result = strtr($conf['template'], array(
-			'###COPY_CODE###'  => $copyCode,
-			'###TITLESTYLE###' => $style,
-			'###TITLE###'      => $title,
-			'###TEXT###'       => $content
+			'###COPY_CODE###'     => $copyCode,
+			'###NOSCRIPT_NOTE###' => $noScriptNote,
+			'###TEXT###'          => $content,
+			'###TITLESTYLE###'    => $style,
+			'###TITLE###'         => $title
 		));
 		return $result;
 	}
