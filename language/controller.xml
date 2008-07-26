@@ -20,20 +20,23 @@
             <label index="startLine">Start at line:</label>
             <label index="width">Width:</label>
             <label index="height">Height:</label>
-            <label index="copyCode">copy to clipboard</label>
+            <label index="copyCode">copy this code</label>
             <label index="no_content">No code for syntax highlight</label>
             <label index="language_not_found">Language "%s" not found.</label>
-            <label index="text_copied_to_clipboard">The text has been copied to your clipboard.</label>
+            <label index="text_copied_to_clipboard">The code has been copied to your clipboard.</label>
         </languageKey>
         <languageKey index="de" type="array">
             <label index="extlabel">Syntax Highlight - Optionen</label>
             <label index="label">Beschriftung:</label>
+            <label index="labelMode">Sprache als Beschriftung anzeigen:</label>
             <label index="language">Sprache:</label>
             <label index="code">Code:</label>
             <label index="lineNumbers">Zeilennummern:</label>
             <label index="width">Breite:</label>
-            <label index="height">Höhe:</label>
-            <label index="no_content">Kein Code für Syntaxhervorhebung</label>
+            <label index="height">H&#246;he:</label>
+            <label index="copyCode">Code kopieren</label>
+            <label index="no_content">Kein Code f&#252;r Syntaxhervorhebung</label>
+            <label index="text_copied_to_clipboard">Der Code wurde in Ihre Zwischenablage kopiert.</label>
         </languageKey>
     </data>
 </T3locallang>
