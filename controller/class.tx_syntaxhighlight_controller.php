@@ -83,45 +83,100 @@ class tx_syntaxhighlight_controller {
 				// non-object
 			if (TYPO3_MODE == 'FE') {
 				$GLOBALS['TSFE']->setJS($this->extKey, '
-				function tx_syntaxhighlightSelectText(listId) {
+				function tx_syntaxhighlightGetText(listId) {
+					/*global document*/
 					var t = \'\';
 					var oUl = document.getElementById(\'text_\'+listId);
 					for (var i in oUl.childNodes){
 						var x = oUl.childNodes[i];
-						if (x.innerText !== undefined){
+						if (x.innerText !== \'undefined\'){
 							t = t + "\n" + x.innerText;
 						}
 					}
-					document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
-					document.getElementById(\'clippyTextArea_\'+listId).value = t.toString();
-					if (document.getElementById(\'clippyTextArea_\'+listId).clipboardData) {
-						var range = document.getElementById(\'clippyTextArea_\'+listId).clipboardData();
-						if (range) {
-							range.execCommand(\'copy\');
-							document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
-							document.getElementById(\'clippyCopyLink_\'+listId).innerHTML = \''.$this->getLL('text_copied_to_clipboard').'\';
+					return t.toString();
+				}
+				function tx_syntaxhighlightCopyTextFlash(listId) {
+					/*global document, tx_syntaxhighlightGetText*/
+					var flashCopier = \'flashCopier_\'+listId;
+					if(!document.getElementById(flashCopier)) {
+						var divHolder = document.createElement(\'div\');
+						divHolder.id  = flashCopier;
+						document.body.appendChild(divHolder);
+					}
+					document.getElementById(flashCopier).innerHTML = \'\';
+					var divInfo = \'<object type="application/x-shockwave-flash" width="0" height="0" data="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"> <param name="movie" value="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"/> <param name="FlashVars" value="clipboard=\'+encodeURIComponent(tx_syntaxhighlightGetText(listId))+\'"/> </object>\';
+					document.getElementById(flashCopier).innerHTML = divInfo;
+					document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
+					document.getElementById(\'clippyCopyLink_\'+listId).innerHTML = \''.$this->getLL('text_copied_to_clipboard').'\';
+				}
+				function tx_syntaxhighlightHasFlash() {
+					/*global navigator, window, ActiveXObject*/
+					var plugin = (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ? navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0;
+					if (plugin) {
+						var words = navigator.plugins["Shockwave Flash"].description.split(" ");
+						for (var i = 0; i < words.length; ++i) {
+							if (isNaN(parseInt(words[i], 10))) {
+								continue;
+							}
+							var pluginVersion = words[i]; 
+						}
+						if (pluginVersion) {
+							return true;
 						}
 					} else {
-						if (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) {
-							var flashCopier = \'flashCopier\';
-							if(!document.getElementById(flashCopier)) {
-								var divHolder = document.createElement(\'div\');
-								divHolder.id  = flashCopier;
-								document.body.appendChild(divHolder);
+						if (window.ActiveXObject) {
+							var control = null;
+							try {
+								control = new ActiveXObject(\'ShockwaveFlash.ShockwaveFlash\');
+							} catch (e) {
+								return false;
 							}
-							document.getElementById(flashCopier).innerHTML = \'\';
-							var divInfo = \'<object type="application/x-shockwave-flash" width="0" height="0" data="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"> <param name="movie" value="/typo3conf/ext/syntaxhighlight/res/_clipboard.swf"/> <param name="FlashVars" value="clipboard=\'+encodeURIComponent(document.getElementById(\'clippyTextArea_\'+listId).value)+\'"/> </object>\';
-							document.getElementById(flashCopier).innerHTML = divInfo;
-							document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
-							document.getElementById(\'clippyCopyLink_\'+listId).innerHTML = \''.$this->getLL('text_copied_to_clipboard').'\';
-						} else {
-							document.getElementById(\'clippyTextArea_\'+listId).focus();
-							document.getElementById(\'clippyTextArea_\'+listId).select();
+							if (control) {
+								return true;
+							}
 						}
 					}
 				}
+				function tx_syntaxhighlightCopyTextClipboardData(listId) {
+					/*global document, tx_syntaxhighlightGetText*/
+					document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
+					document.getElementById(\'clippyTextArea_\'+listId).value = tx_syntaxhighlightGetText(listId);
+					if (document.getElementById(\'clippyTextArea_\'+listId).createTextRange) {
+						var range = document.getElementById(\'clippyTextArea_\'+listId).createTextRange();
+					} else if (document.getElementById(\'clippyTextArea_\'+listId).clipboardData) {
+						var range = document.getElementById(\'clippyTextArea_\'+listId).clipboardData();
+					}
+					if (range) {
+						range.execCommand(\'copy\');
+						document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
+						document.getElementById(\'clippyCopyLink_\'+listId).innerHTML = \''.$this->getLL('text_copied_to_clipboard').'\';
+						return true;
+					}
+					return false;
+				}
+				function tx_syntaxhighlightSelectText(listId) {
+					/*global document, tx_syntaxhighlightCopyTextClipboardData, tx_syntaxhighlightCopyTextFlash, tx_syntaxhighlightGetText, tx_syntaxhighlightHasFlash */
+
+						// Try the flash copy to clipboard first
+					if (tx_syntaxhighlightHasFlash()) {
+						tx_syntaxhighlightCopyTextFlash(listId);
+
+						// Exploder and Opera can also do direct copy, but Exploder wants 
+						// an affirmation, that is why we tried flash first
+					} else if (tx_syntaxhighlightCopyTextClipboardData(listId)) {
+						return;
+
+						// Fallback to showing the textarea with the selected text
+					} else {
+						// Fallback to showing the textarea with the selected text
+						document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
+						document.getElementById(\'clippyTextArea_\'+listId).value = tx_syntaxhighlightGetText(listId);
+						document.getElementById(\'clippyTextArea_\'+listId).focus();
+						document.getElementById(\'clippyTextArea_\'+listId).select();
+					}
+				}
 				if(!document.all) {
-					if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
+					if((typeof HTMLElement !== \'undefined\') && (HTMLElement.prototype.__defineGetter__ !== \'undefined\')) {
 						HTMLElement.prototype.__defineGetter__("innerText", function() {
 							var r = this.ownerDocument.createRange();
 							r.selectNodeContents(this);
