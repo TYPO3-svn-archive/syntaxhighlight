@@ -24,7 +24,7 @@ plugin.tx_syntaxhighlight_controller {
 				// -->
 					/*]]>*/
 				</script>
-				<noscript><p>###TEXT_SOURCE_LINK###</p></noscript>
+				<noscript><p id="src_###ID###" >###TEXT_SOURCE_LINK###</p></noscript>
 				<div id="clippyText_###ID###" style="display: none;">
 					<textarea id="clippyTextArea_###ID###" name="clippyTextArea" rows="5" cols="40"></textarea>
 				</div>
