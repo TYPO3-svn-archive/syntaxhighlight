@@ -54,6 +54,7 @@ class tx_syntaxhighlightAPI {
 						// use geshi for the language name			
 					$geshi->set_language($language);
 
+						// TODO clean up code below when new version of GeSHi is released
 						// Workaround for Geshi bug
 						// http://sourceforge.net/tracker/index.php?func=detail&aid=2014123&group_id=114997&atid=670231
 					if (preg_match('/.*-brief/', $language)) {
@@ -260,15 +261,15 @@ class tx_syntaxhighlightAPI {
 			}
 		}
 		
-		$copyCode     = $lang[$langKey]['copyCode'] ?  $lang[$langKey]['copyCode'] :  $lang['default']['copyCode'];
-		$noScriptNote = $lang[$langKey]['noScriptNote'] ?  $lang[$langKey]['noScriptNote'] :  $lang['default']['noScriptNote'];
+		$copyCode       = $lang[$langKey]['copyCode'] ?  $lang[$langKey]['copyCode'] :  $lang['default']['copyCode'];
+		$noScriptNote   = $lang[$langKey]['noScriptNote'] ?  $lang[$langKey]['noScriptNote'] :  $lang['default']['noScriptNote'];
 
 		$result = strtr($conf['template'], array(
-			'###COPY_CODE###'     => $copyCode,
-			'###NOSCRIPT_NOTE###' => $noScriptNote,
-			'###TEXT###'          => $content,
-			'###TITLESTYLE###'    => $style,
-			'###TITLE###'         => $title
+			'###COPY_CODE###'        => $copyCode,
+			'###NOSCRIPT_NOTE###'    => $noScriptNote,
+			'###TEXT###'             => $content,
+			'###TITLESTYLE###'       => $style,
+			'###TITLE###'            => $title
 		));
 		return $result;
 	}

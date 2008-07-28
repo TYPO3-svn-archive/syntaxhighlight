@@ -77,6 +77,22 @@ class tx_syntaxhighlight_controller {
 
 		if (in_array($config['language'], $this->languages)) {
 			$config['template']  = str_replace('###ID###', 'cb' . $this->cObj->data['uid'], $config['template']);
+
+			$get = t3lib_div::_GET('tx_syntaxhighlight_controller');
+			if ($get['showTextSource']) {
+				$sourceId = intval($get['showTextSource']);
+			}
+
+			$configuration = array();
+			$configuration['parameter'] = $GLOBALS['TSFE']->id;
+			if ($sourceId == $this->cObj->data['uid']) {
+				$textArea = '<p><textarea name="clippyTextArea" rows="5" cols="40">'.$config['code'].'</textarea></p>';
+				$config['template']  = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('hideTextSource'), $configuration).$textArea, $config['template']);
+			} else {
+				$configuration['additionalParams'] = '&'.$this->prefixId.'[showTextSource]='.$this->cObj->data['uid'];
+				$config['template']  = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('showTextSource'), $configuration), $config['template']);
+			}
+
 			$content = tx_syntaxhighlightAPI::highlight($config['code'], $config['language'], $config);
 				// TODO . . . this is for the RTE from which we cannot call setJS. It 
 				// complains: Fatal error: Call to a member function setJS() on a 
@@ -87,10 +103,19 @@ class tx_syntaxhighlight_controller {
 					/*global document*/
 					var t = \'\';
 					var oUl = document.getElementById(\'text_\'+listId);
-					for (var i in oUl.childNodes){
-						var x = oUl.childNodes[i];
-						if (x.innerText !== \'undefined\'){
-							t = t + "\n" + x.innerText;
+					try {
+						for (var i in oUl.childNodes) {
+							var x = oUl.childNodes[i];
+							if (x.innerText !== undefined) {
+								t = t + "\n" + x.innerText;
+							}
+						}
+					} catch (e) {
+						for (var i in oUl.childNodes) {
+							var x = oUl.childNodes[i];
+							if (x.innerText !== \'undefined\') {
+								t = t + "\n" + x.innerText;
+							}
 						}
 					}
 					return t.toString();
@@ -112,7 +137,7 @@ class tx_syntaxhighlight_controller {
 				function tx_syntaxhighlightHasFlash() {
 					/*global navigator, window, ActiveXObject*/
 					var plugin = (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ? navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0;
-					if (plugin) {
+					if (plugin !== 0) {
 						var words = navigator.plugins["Shockwave Flash"].description.split(" ");
 						for (var i = 0; i < words.length; ++i) {
 							if (isNaN(parseInt(words[i], 10))) {
@@ -120,7 +145,7 @@ class tx_syntaxhighlight_controller {
 							}
 							var pluginVersion = words[i]; 
 						}
-						if (pluginVersion) {
+						if (pluginVersion !== 0) {
 							return true;
 						}
 					} else {
@@ -131,7 +156,7 @@ class tx_syntaxhighlight_controller {
 							} catch (e) {
 								return false;
 							}
-							if (control) {
+							if (control !== null) {
 								return true;
 							}
 						}
@@ -141,12 +166,13 @@ class tx_syntaxhighlight_controller {
 					/*global document, tx_syntaxhighlightGetText*/
 					document.getElementById(\'clippyText_\'+listId).style.display = \'block\';
 					document.getElementById(\'clippyTextArea_\'+listId).value = tx_syntaxhighlightGetText(listId);
+					var range = null;
 					if (document.getElementById(\'clippyTextArea_\'+listId).createTextRange) {
-						var range = document.getElementById(\'clippyTextArea_\'+listId).createTextRange();
+						range = document.getElementById(\'clippyTextArea_\'+listId).createTextRange();
 					} else if (document.getElementById(\'clippyTextArea_\'+listId).clipboardData) {
-						var range = document.getElementById(\'clippyTextArea_\'+listId).clipboardData();
+						range = document.getElementById(\'clippyTextArea_\'+listId).clipboardData();
 					}
-					if (range) {
+					if (range !== null) {
 						range.execCommand(\'copy\');
 						document.getElementById(\'clippyText_\'+listId).style.display=\'none\';
 						document.getElementById(\'clippyCopyLink_\'+listId).innerHTML = \''.$this->getLL('text_copied_to_clipboard').'\';
@@ -176,13 +202,18 @@ class tx_syntaxhighlight_controller {
 					}
 				}
 				if(!document.all) {
-					if((typeof HTMLElement !== \'undefined\') && (HTMLElement.prototype.__defineGetter__ !== \'undefined\')) {
-						HTMLElement.prototype.__defineGetter__("innerText", function() {
-							var r = this.ownerDocument.createRange();
-							r.selectNodeContents(this);
-							return r.toString();
-							}
-						);
+					try {
+						if((typeof HTMLElement !== undefined) && (HTMLElement.prototype.__defineGetter__ !== undefined)) {
+							HTMLElement.prototype.__defineGetter__("innerText", function() {
+								var r = this.ownerDocument.createRange();
+								r.selectNodeContents(this);
+								return r.toString();
+								}
+							);
+						}
+					}
+					catch (e) {
+						// exploder 5 does not get the undefined undefined ;-)
 					}
 				}
 				');
@@ -239,7 +270,7 @@ class tx_syntaxhighlight_controller {
 		$config['startLine']      = $data['data']['sDEF']['lDEF']['startLine']['vDEF'];
 		$config['width']          = $data['data']['sDEF']['lDEF']['width']['vDEF'];
 
-			// We need nicer config merging . . . 
+			// TODO We need nicer config merging . . . 
 		if ($config['labelMode'] == 0) {
 			unset($config['labelMode']);
 		}
