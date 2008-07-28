@@ -33,6 +33,7 @@ class tx_syntaxhighlight_controller {
 	var $prefixId = 'tx_syntaxhighlight_controller';	// Same as class name
 	var $scriptRelPath = 'controller/class.tx_syntaxhighlight_controller.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'syntaxhighlight';	// The extension key.
+	var $pi_checkCHash = true;					// Enable cHash check.
 	var $lang;	// array with lang labels
 	var $langKey;	// holds the language key or 'default'
 	
@@ -47,6 +48,10 @@ class tx_syntaxhighlight_controller {
 			// read LL-file
 		$this->langKey = $GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'default';
 		$this->lang = t3lib_div::readLLfile(t3lib_extMgm::extPath($this->extKey) . 'language/controller.xml', $this->langKey, $GLOBALS['TSFE']->renderCharset);
+		$this->piVars = t3lib_div::GParrayMerged($this->prefixId);
+		if ($this->pi_checkCHash && count($this->piVars))	{
+			$GLOBALS['TSFE']->reqCHash();
+		}
 	}
 
 
