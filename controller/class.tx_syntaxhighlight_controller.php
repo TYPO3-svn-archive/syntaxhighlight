@@ -95,6 +95,7 @@ class tx_syntaxhighlight_controller {
 				$config['template']  = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('hideTextSource'), $configuration).$textArea, $config['template']);
 			} else {
 				$configuration['additionalParams'] = '&'.$this->prefixId.'[showTextSource]='.$this->cObj->data['uid'];
+				$configuration['useCacheHash'] = true;
 				$configuration['section'] = 'src_cb' . $this->cObj->data['uid'];
 				$config['template']  = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('showTextSource'), $configuration), $config['template']);
 			}
