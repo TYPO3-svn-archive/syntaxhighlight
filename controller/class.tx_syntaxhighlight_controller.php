@@ -80,12 +80,12 @@ class tx_syntaxhighlight_controller {
 
 			$get = t3lib_div::_GET('tx_syntaxhighlight_controller');
 			if ($get['showTextSource']) {
-				$sourceId = intval($get['showTextSource']);
+				$sourceId = (int)$get['showTextSource'];
 			}
 
 			$configuration = array();
 			$configuration['parameter'] = $GLOBALS['TSFE']->id;
-			if ($sourceId == $this->cObj->data['uid']) {
+			if ($sourceId === (int)$this->cObj->data['uid']) {
 				$textArea = '<p><textarea name="clippyTextArea" rows="5" cols="40">'.$config['code'].'</textarea></p>';
 				$config['template']  = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('hideTextSource'), $configuration).$textArea, $config['template']);
 			} else {
