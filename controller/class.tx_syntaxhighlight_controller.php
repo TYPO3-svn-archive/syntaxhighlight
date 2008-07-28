@@ -107,14 +107,14 @@ class tx_syntaxhighlight_controller {
 						for (var i in oUl.childNodes) {
 							var x = oUl.childNodes[i];
 							if (x.innerText !== undefined) {
-								t = t + x.innerText;
+								t += x.innerText;
 							}
 						}
 					} catch (e) {
 						for (var i in oUl.childNodes) {
 							var x = oUl.childNodes[i];
 							if (x.innerText !== \'undefined\') {
-								t = t + x.innerText;
+								t += x.innerText;
 							}
 						}
 					}
@@ -219,7 +219,7 @@ class tx_syntaxhighlight_controller {
 				');
 			}
 		} else {
- 			$content = sprintf($this->getLL('language_not_found'), $config['language']);
+			$content = sprintf($this->getLL('language_not_found'), $config['language']);
 		}
 		
 		return $content;
