@@ -107,14 +107,14 @@ class tx_syntaxhighlight_controller {
 						for (var i in oUl.childNodes) {
 							var x = oUl.childNodes[i];
 							if (x.innerText !== undefined) {
-								t = t + "\n" + x.innerText;
+								t = t + x.innerText;
 							}
 						}
 					} catch (e) {
 						for (var i in oUl.childNodes) {
 							var x = oUl.childNodes[i];
 							if (x.innerText !== \'undefined\') {
-								t = t + "\n" + x.innerText;
+								t = t + x.innerText;
 							}
 						}
 					}
