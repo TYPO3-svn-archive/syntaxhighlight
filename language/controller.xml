@@ -21,9 +21,9 @@
             <label index="width">Width:</label>
             <label index="height">Height:</label>
             <label index="copyCode">copy this code</label>
-            <label index="noScriptNote">Note! You need Javascript to be able to 'copy to clipboard'.</label>
-						<label index="showTextSource">Show me the source</label>
-						<label index="hideTextSource">Hide the source</label>
+            <label index="noScriptNote">Note: You need Javascript to be able to 'copy to clipboard'.</label>
+						<label index="showTextSource">Show source</label>
+						<label index="hideTextSource">Hide source</label>
             <label index="no_content">No code for syntax highlight</label>
             <label index="language_not_found">Language "%s" not found.</label>
             <label index="text_copied_to_clipboard">The code has been copied to your clipboard.</label>
@@ -38,6 +38,9 @@
             <label index="width">Breite:</label>
             <label index="height">H&#246;he:</label>
             <label index="copyCode">Code kopieren</label>
+            <label index="noScriptNote">Mitteilung: Sie ben&#246;tigen Javascript um den Code in die Zwischenablage zu kopieren.</label>
+						<label index="showTextSource">Quelltext anzeigen</label>
+						<label index="hideTextSource">Quelltext verbergen</label>
             <label index="no_content">Kein Code f&#252;r Syntaxhervorhebung</label>
             <label index="text_copied_to_clipboard">Der Code wurde in Ihre Zwischenablage kopiert.</label>
         </languageKey>
