@@ -94,10 +94,12 @@ class tx_syntaxhighlight_controller {
 				$textArea = '<p><textarea name="clippyTextArea" rows="5" cols="40">'.$config['code'].'</textarea></p>';
 				$config['template']  = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('hideTextSource'), $configuration).$textArea, $config['template']);
 			} else {
-				$configuration['additionalParams'] = '&'.$this->prefixId.'[showTextSource]='.$this->cObj->data['uid'];
-				$configuration['useCacheHash'] = true;
-				$configuration['section'] = 'src_cb' . $this->cObj->data['uid'];
-				$config['template']  = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('showTextSource'), $configuration), $config['template']);
+				if (TYPO3_MODE == 'FE') {
+					$configuration['additionalParams'] = '&'.$this->prefixId.'[showTextSource]='.$this->cObj->data['uid'];
+					$configuration['useCacheHash'] = true;
+					$configuration['section'] = 'src_cb' . $this->cObj->data['uid'];
+					$config['template'] = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('showTextSource'), $configuration), $config['template']);
+				}
 			}
 
 			$content = tx_syntaxhighlightAPI::highlight($config['code'], $config['language'], $config);
