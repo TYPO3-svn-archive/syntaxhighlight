@@ -234,7 +234,7 @@ class tx_syntaxhighlightAPI {
 
 				// add css to the page
 			if ($conf['useGeshiCSS']) {
-				$GLOBALS['TSFE']->additionalCSS[] = $geshi->get_stylesheet();
+				$GLOBALS['TSFE']->additionalCSS['tx_syntaxhighlight_'.$language] = $geshi->get_stylesheet();
 			}
 		}
 		
