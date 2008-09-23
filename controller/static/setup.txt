@@ -72,47 +72,47 @@ plugin.tx_syntaxhighlight_controller {
 				// setup keyword styles. Either merge them or replace the styles
 				// completely
 			keyword {
-					// Conditions: http://support.typo3.org/documentation/tsref/conditions/
+					// Conditions: http://documentation.typo3.org/documentation/tsref/conditions/
 				set1 {
 					value = 
 					merge = 1
 				}
-					// Functions: http://support.typo3.org/documentation/tsref/functions/
+					// Functions: http://documentation.typo3.org/documentation/tsref/functions/
 				set2 {
 					value =
 					merge = 1
 				}
-					// Toplevel objects: http://support.typo3.org/documentation/tsref/tlo-objects/
+					// Toplevel objects: http://documentation.typo3.org/documentation/tsref/tlo-objects/
 				set3 {
 					value =
 					merge = 1
 				}
-					// Content Objects (cObject) : http://support.typo3.org/documentation/tsref/cobjects/
+					// Content Objects (cObject) : http://documentation.typo3.org/documentation/tsref/cobjects/
 				set4 {
 					value =
 					merge = 1
 				}
-					// GIFBUILDER toplevel link: http://support.typo3.org/documentation/tsref/gifbuilder/
+					// GIFBUILDER toplevel link: http://documentation.typo3.org/documentation/tsref/gifbuilder/
 				set5 {
 					value =
 					merge = 1
 				}
-					// GIFBUILDER: http://support.typo3.org/documentation/tsref/gifbuilder/
+					// GIFBUILDER: http://documentation.typo3.org/documentation/tsref/gifbuilder/
 				set6 {
 					value =
 					merge = 1
 				}
-					// MENU Objects: http://support.typo3.org/documentation/tsref/menu/
+					// MENU Objects: http://documentation.typo3.org/documentation/tsref/menu/
 				set7 {
 					value =
 					merge = 1
 				}
-					// MENU common properties: http://support.typo3.org/documentation/tsref/menu/common-properties/
+					// MENU common properties: http://documentation.typo3.org/documentation/tsref/menu/common-properties/
 				set8 {
 					value =
 					merge = 1
 				}
-					// MENU item states: http://support.typo3.org/documentation/tsref/menu/item-states/
+					// MENU item states: http://documentation.typo3.org/documentation/tsref/menu/item-states/
 				set9 {
 					value =
 					merge = 1
@@ -208,34 +208,3 @@ plugin.tx_syntaxhighlight_controller {
 }
 
 tt_content.list.20.syntaxhighlight_controller =< plugin.tx_syntaxhighlight_controller
-
-#page.headerData.9876 = TEXT
-#page.headerData.9876.value = <link rel="stylesheet" type="text/css" href="typo3conf/ext/syntaxhighlight/res/highlight.css" />
-
-lib.parseFunc.allowTags     := addToList(code)
-lib.parseFunc.denyTags      := removeFromList(code)
-lib.parseFunc_RTE.allowTags := addToList(code)
-lib.parseFunc_RTE.denyTags  := removeFromList(code)
-lib.parseFunc_RTE.tags.code = TEXT
-lib.parseFunc_RTE.tags.code.current = 1
-
-lib.parseFunc_RTE.tags.code.postUserFunc {
-	codeStyle =
-	enableClasses = 1
-	headerType = div
-	lineStyle1 = background: #eeeeee;
-	lineStyle2 = background: #fffff;
-	lineStyleDefaults =
-	linesExtraStyle = background: #ffcccc;
-	overallClass =
-	overallId =
-	overallStyle = 
-	overallStyleDefaults = 
-	tabWidth = 2
-}
-
-	// avoid remapping div tag
-lib.parseFunc_RTE.nonTypoTagStdWrap.encapsLines.remapTag.DIV >
-
-	// set the user function 
-lib.parseFunc_RTE.tags.code.postUserFunc = user_highlightRTE->highlightRTE
