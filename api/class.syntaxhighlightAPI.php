@@ -27,9 +27,9 @@ require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 /**
  * API Class for the 'syntaxhighlight' extension.
  *
- * @author	Steffen Kamper <info@sk-typo3.de>
- * @package	TYPO3
- * @subpackage	syntaxhighlight
+ * @author      Steffen Kamper <info@sk-typo3.de>
+ * @package     TYPO3
+ * @subpackage  syntaxhighlight
  */
 class tx_syntaxhighlightAPI {
 
@@ -51,12 +51,12 @@ class tx_syntaxhighlightAPI {
 					$params['items'][$language][0] = $p[1];
 					$params['items'][$language][1] = $p[0];
 				} else {
-						// use geshi for the language name			
+					  // use geshi for the language name
 					$geshi->set_language($language);
 
-						// TODO clean up code below when new version of GeSHi is released
-						// Workaround for Geshi bug
-						// http://sourceforge.net/tracker/index.php?func=detail&aid=2014123&group_id=114997&atid=670231
+					  // TODO clean up code below when new version of GeSHi is released
+					  // Workaround for Geshi bug
+					  // http://sourceforge.net/tracker/index.php?func=detail&aid=2014123&group_id=114997&atid=670231
 					if (preg_match('/.*-brief/', $language)) {
 						$params['items'][$language][0] = $geshi->get_language_name() . ' brief';
 					} else {
@@ -76,7 +76,7 @@ class tx_syntaxhighlightAPI {
 	 */
 	public function getLanguages() {
 		
-			// read syntax files
+		  // read syntax files
 		$tempFile = PATH_site.'typo3temp/geshi_language_file_0000000000.tmp';
 		if (file_exists($tempFile)) {
 			$array = unserialize(file_get_contents($tempFile));
@@ -103,6 +103,7 @@ class tx_syntaxhighlightAPI {
 		return array_merge($usedLanguages, $languages);
 	}
 
+
 	/**
 	 * Call this function from your extension: 
 	 * $result = tx_syntaxhighlightAPI::highlight($text, $language);
@@ -116,7 +117,7 @@ class tx_syntaxhighlightAPI {
 	 *
 	 * @param  string  $text:     the text you want to highlight
 	 * @param  sring   $language: the language
-	 * @param  array   $conf: 	  configuration array
+	 * @param  array   $conf:     configuration array
 	 * @return string  $result:   the highlighted text
 	 */
 	public function highlight($text, $language, $conf=NULL) {
@@ -124,11 +125,11 @@ class tx_syntaxhighlightAPI {
 		require_once(t3lib_extMgm::extPath('geshilib') . 'res/geshi.php');
 
 		$geshi = new GeSHi($text, $language, '');
-			// no conf given, use plugin conf
+		  // no conf given, use plugin conf
 		if (is_null($conf)) {
 			$conf = tx_syntaxhighlightAPI::getDefaultConfig();
 		}
-			// proceed conf
+		  // proceed conf
 		if (intval($conf['lineNumbers']) > 0) {
 			if (intval($conf['alternateLines']) > 0) {
 				$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, $conf['alternateLines']);
@@ -153,11 +154,11 @@ class tx_syntaxhighlightAPI {
 				$geshi->set_header_type(GESHI_HEADER_PRE);
 			}
 
-				// keyword linking
+			  // keyword linking
 			$geshi->enable_keyword_links((bool)$conf['link.']['enable']);
 			if((bool)$conf['link.']['enable']) {
 
-					// only set link target if present
+				  // only set link target if present
 				if ($conf['link.']['target'] != '') {
 					$geshi->set_link_target($conf['link.']['target']);
 				}
@@ -168,17 +169,17 @@ class tx_syntaxhighlightAPI {
 				$geshi->set_link_styles(GESHI_VISITED, $conf['link.']['style.']['link']); 
 			}
 
-				// overall style
+			  // overall style
 			$geshi->enable_classes(true);
 
 			if ($conf[$language.'.']['style.']['overall']) {
 				$geshi->set_overall_style($conf[$language.'.']['style.']['overall'], (bool) $conf[$language.'.']['style.']['overallMerge']);
 			}
-				// line number style
+			  // line number style
 			if ($conf[$language.'.']['style.']['lineNumbers.']['normal'] && $conf[$language.'.']['style.']['lineNumbers.']['fancy']) {
 				$geshi->set_line_style($conf[$language.'.']['style.']['lineNumbers.']['normal'], $conf[$language.'.']['style.']['lineNumbers.']['fancy']);
 			}
-				// keyword group style
+			  // keyword group style
 			if ($conf[$language.'.']['style.']['keyword.']) {
 				for ($i = 0; $i < 10; $i++) {
 					if ($conf[$language.'.']['style.']['keyword.']['set'.$i.'.']['value']) {
@@ -187,7 +188,7 @@ class tx_syntaxhighlightAPI {
 				}
 			}
 
-				// comment style
+			  // comment style
 			if ($conf[$language.'.']['style.']['comment.']) {
 				for ($i = 0; $i < 4; $i++) {
 					if ($conf[$language.'.']['style.']['comment.']['set'.$i.'.']['value']) {
@@ -199,7 +200,7 @@ class tx_syntaxhighlightAPI {
 				}
 			}
 
-				// other styles
+			  // other styles
 			if ($conf[$language.'.']['style.']['escape.']) {
 				$geshi->set_escape_characters_style($conf[$language.'.']['style.']['escape.']['value'], (bool) $conf[$language.'.']['style.']['escape.']['merge']);
 			}
@@ -232,7 +233,7 @@ class tx_syntaxhighlightAPI {
 				}
 			}
 
-				// add css to the page
+			  // add css to the page
 			if ($conf['useGeshiCSS']) {
 				$GLOBALS['TSFE']->additionalCSS['tx_syntaxhighlight_'.$language] = $geshi->get_stylesheet();
 			}
@@ -241,7 +242,7 @@ class tx_syntaxhighlightAPI {
 		$content = $geshi->parse_code();
 
 		if (!$conf['template']) {
-				// use standard template for BE preview
+			  // use standard template for BE preview
 			$conf['template'] = '<div style="max-width:300px;height:120px;background-color:#fefefe;overflow:auto;">
 				<p style="background-color:#eee;margin-bottom:4px;">Language: ###TITLE###</p>
 				###TEXT### </div>';
@@ -274,7 +275,7 @@ class tx_syntaxhighlightAPI {
 		return $result;
 	}
 
-	
+
 	/**
 	 * Fetch the default plugin configuration
 	 *
@@ -286,7 +287,7 @@ class tx_syntaxhighlightAPI {
 	
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/api/class.syntaxhighlightAPI.php'])	{
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/api/class.syntaxhighlightAPI.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/api/class.syntaxhighlightAPI.php']);
 }
 ?>
