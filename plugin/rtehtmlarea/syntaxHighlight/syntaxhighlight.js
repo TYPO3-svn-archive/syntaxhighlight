@@ -49,13 +49,13 @@ syntaxHighlight = HTMLArea.Plugin.extend({
 		 * Registering plugin "About" information
 		 */
 		var pluginInformation = {
-			version		: "0.1",
-			developer	: "Steffen Kamper",
-			developerUrl	: "http://www.sk-typo3.de/",
-			copyrightOwner	: "Steffen Kamper",
-			sponsor		: "",
-			sponsorUrl	: "",
-			license		: "GPL"
+			version        : "0.1",
+			developer      : "Steffen Kamper",
+			developerUrl   : "http://www.sk-typo3.de/",
+			copyrightOwner : "Steffen Kamper",
+			sponsor        : "Michiel Roos",
+			sponsorUrl     : "http://typofree.org",
+			license        : "GPL"
 		};
 		this.registerPluginInformation(pluginInformation);
 		
@@ -66,11 +66,11 @@ syntaxHighlight = HTMLArea.Plugin.extend({
 			if (this.buttonList.hasOwnProperty(buttonId)) {
 				var button = this.buttonList[buttonId];
 				var buttonConfiguration = {
-					id		: buttonId,
-					tooltip		: this.localize(buttonId + "-Tooltip"),
-					action		: "onButtonPress",
-					context		: button[0],
-					hotKey		: (this.buttonsConfiguration[button[2]] ? this.buttonsConfiguration[button[2]].hotKey : (button[1] ? button[1] : null))
+					id      : buttonId,
+					tooltip : this.localize(buttonId + "-Tooltip"),
+					action  : "onButtonPress",
+					context : button[0],
+					hotKey  : (this.buttonsConfiguration[button[2]] ? this.buttonsConfiguration[button[2]].hotKey : (button[1] ? button[1] : null))
 				};
 				this.registerButton(buttonConfiguration);
 			}
@@ -83,20 +83,20 @@ syntaxHighlight = HTMLArea.Plugin.extend({
 	 * The list of buttons added by this plugin
 	 */
 	buttonList : {
-		syntaxHighlight		: [null, null, "syntaxhighlight"]
+		syntaxHighlight : [null, null, "syntaxhighlight"]
 	},
 	
 	/*
 	 * This function gets called when a button was pressed.
 	 *
-	 * @param	object		editor: the editor instance
-	 * @param	string		id: the button id or the key
-	 * @param	object		target: the target element of the contextmenu event, when invoked from the context menu
+	 * @param  object  editor: the editor instance
+	 * @param  string  id: the button id or the key
+	 * @param  object  target: the target element of the contextmenu event, when invoked from the context menu
 	 *
-	 * @return	boolean		false if action is completed
+	 * @return boolean false if action is completed
 	 */
 	onButtonPress : function (editor, id, target) {
-			// Could be a button or its hotkey
+		  // Could be a button or its hotkey
 		var buttonId = this.translateHotKey(id);
 		buttonId = buttonId ? buttonId : id;
 		this.popupWidth = 800;
@@ -107,15 +107,10 @@ syntaxHighlight = HTMLArea.Plugin.extend({
 	},
 	
 	applyRequest : function(param) {
-
 		var editor = this.editor;
 		editor.focusEditor();
-
 		if (param) {
-		
 		}
-		
 	}
 
 });
-
