@@ -24,23 +24,23 @@
 /**
  * Plugin 'Controller' for the 'syntaxhighlight' extension.
  *
- * @author	Steffen Kamper <steffen@dislabs.de>
+ * @author  Steffen Kamper <steffen@dislabs.de>
  */
 
 require_once(t3lib_extMgm::extPath('syntaxhighlight') . 'api/class.syntaxhighlightAPI.php');
 
 class tx_syntaxhighlight_controller {
-	var $prefixId = 'tx_syntaxhighlight_controller';	// Same as class name
-	var $scriptRelPath = 'controller/class.tx_syntaxhighlight_controller.php';	// Path to this script relative to the extension dir.
-	var $extKey = 'syntaxhighlight';	// The extension key.
-	var $pi_checkCHash = true;					// Enable cHash check.
-	var $lang;	// array with lang labels
-	var $langKey;	// holds the language key or 'default'
+	var $prefixId = 'tx_syntaxhighlight_controller'; // Same as class name
+	var $scriptRelPath = 'controller/class.tx_syntaxhighlight_controller.php'; // Path to this script relative to the extension dir.
+	var $extKey = 'syntaxhighlight';  // The extension key.
+	var $pi_checkCHash = true;        // Enable cHash check.
+	var $lang;    // array with lang labels
+	var $langKey; // holds the language key or 'default'
 	
 	/**
 	 * Initialize
 	 *
-	 * @return	void
+	 * @return  void
 	 */
 	function init($conf) {
 		$this->conf = $conf;
@@ -49,7 +49,7 @@ class tx_syntaxhighlight_controller {
 		$this->langKey = $GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'default';
 		$this->lang = t3lib_div::readLLfile(t3lib_extMgm::extPath($this->extKey) . 'language/controller.xml', $this->langKey, $GLOBALS['TSFE']->renderCharset);
 		$this->piVars = t3lib_div::GParrayMerged($this->prefixId);
-		if ($this->pi_checkCHash && count($this->piVars))	{
+		if ($this->pi_checkCHash && count($this->piVars)) {
 			$GLOBALS['TSFE']->reqCHash();
 		}
 	}
@@ -62,7 +62,7 @@ class tx_syntaxhighlight_controller {
 	 * @param  array   $conf:    TS configuration array
 	 * @return string  $content: The previous content plus the highlighted text
 	 */
-	function main($content, $conf)	{
+	function main($content, $conf) {
 		
 		$this->init($conf);
 		$config = $this->getFlexformConf();
@@ -76,7 +76,7 @@ class tx_syntaxhighlight_controller {
 	 * Highlight code
 	 *
 	 * @param   array  $config:  configuration and code
-	 * @return	string $content: highlighted code
+	 * @return  string $content: highlighted code
 	 */
 	function doHighlight($config) {
 
@@ -238,7 +238,7 @@ class tx_syntaxhighlight_controller {
 	/**
 	 * AJAX call from the RTE
 	 *
-	 * @return	string $content: highlighted code
+	 * @return  string $content: highlighted code
 	 */
 	function highlightRTE() {
 		$config['template']    = '<div class="tx-syntaxhighlight" id="' . uniqid('cb') . '"><div class="title">###TITLE###</div><div class="text">###TEXT###</div></div>';
@@ -263,7 +263,7 @@ class tx_syntaxhighlight_controller {
 	/**
 	 * Get configuration from the pi_flexform of the tt_content record
 	 *
-	 * @return	array		Configuration array
+	 * @return  array  Configuration array
 	 */
 	function getFlexformConf() {
 			// parse XML data into php array
@@ -290,14 +290,14 @@ class tx_syntaxhighlight_controller {
 	 * Get LL-label
 	 *
 	 * @param   string  $label:  name of label
-	 * @return	string		label
+	 * @return  string  label
 	 */
 	function getLL($label) {
 		return $this->lang[$this->langKey][$label] ?  $this->lang[$this->langKey][$label] :  $this->lang['default'][$label];
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php'])	{
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/syntaxhighlight/controller/class.tx_syntaxhighlight_controller.php']);
 }
 ?>
