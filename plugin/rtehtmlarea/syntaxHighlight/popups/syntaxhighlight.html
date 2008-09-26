@@ -50,9 +50,6 @@
 			function onOK() {
 				var editor = dialog.plugin.editor;
 				var param = {};
-				var wrap1, wrap2;
-				
-				wrap2 = "</div>";
 				
 				if (document.getElementById('line_numbers').checked) {
 					param["line_numbers"] = 1;
@@ -64,11 +61,12 @@
 				
 				if (document.getElementById('code').value) {
 					var content = {
-						language : param["language"],
-						lineNumbers : param["line_numbers"],
-						title : document.getElementById('header_title').value,
-						start : document.getElementById('start_with').value,
-						content : document.getElementById('code').value
+						language       : param["language"],
+						lineNumbers    : param["line_numbers"],
+						alternateLines : document.getElementById('alternate_lines').value,
+						title          : document.getElementById('header_title').value,
+						start          : document.getElementById('start_with').value,
+						content        : document.getElementById('code').value
 					};
 					dialog.plugin.postData(	'../../../ajax.php?ajaxID=tx_syntaxhighlight_controller::highlightRTE',
 						content,
@@ -111,7 +109,8 @@
 				<legend><span>Line Numbers</span></legend>
 				<label for="line_numbers"><span>On</span></label> <input type="radio" name="line_numbers" id="line_numbers" value="1" checked="checked" />
 				<label><span>Off</span></label> <input type="radio" name="line_numbers" id="line_numbers" value="0" /><br />
-				<label for="start_with">Start with Line number</label><input type="text" id="start_with" name="start_with" size="6" value="1" />
+				<label for="start_with">Start with line number</label><input type="text" id="start_with" name="start_with" size="3" value="1" /><br />
+				<label for="alternate_lines">Alternate lines every</label><input type="text" id="alternate_lines" name="alternate_lines" size="3" /> lines
 			</fieldset>
 			<fieldset>
 				<legend><span>Language</span></legend>

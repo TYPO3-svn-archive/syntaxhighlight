@@ -241,21 +241,31 @@ class tx_syntaxhighlight_controller {
 	 * @return  string $content: highlighted code
 	 */
 	function highlightRTE() {
-		$config['template']    = '<div class="tx-syntaxhighlight" id="' . uniqid('cb') . '"><div class="title">###TITLE###</div><div class="text">###TEXT###</div></div>';
-		$config['code']        = strtr(t3lib_div::_GP('content'), array('&quot;' => '"'));
-		$config['label']       = t3lib_div::_GP('title') ? t3lib_div::_GP('title') : $config['language'];
-		$config['language']    = t3lib_div::_GP('language');
-		$config['lineNumbers'] = t3lib_div::_GP('lineNumbers');
-		$config['startLine']   = t3lib_div::_GP('start');
+		  // Initialize configuration
+		$configuration['template']       = '<div class="tx-syntaxhighlight" id="' . uniqid('cb') . '"><div class="title">###TITLE###</div><div class="text">###TEXT###</div></div>';
+		$configuration['code']           = t3lib_div::_GP('content');
+		$configuration['label']          = t3lib_div::_GP('title');
+		$configuration['language']       = t3lib_div::_GP('language');
+		$configuration['lineNumbers']    = t3lib_div::_GP('lineNumbers');
+		$configuration['alternateLines'] = t3lib_div::_GP('alternateLines');
+		$configuration['startLine']      = t3lib_div::_GP('start');
 		
-		if ($config['language']) {
-			$beUserSession = array_unique(array_merge(array($config['language']), $GLOBALS['BE_USER']->uc['syntaxhighlighter_languages']));
+		  // Sanitize input
+		$configuration['code']           = strtr($configuration['code'], array('&quot;' => '"'));
+		$configuration['language']       = preg_replace('/[^0-9a-z-]/', '', $configuration['language']);
+		$configuration['label']          = $configuration['label'] ? $configuration['label'] : ucfirst($configuration['language']);
+		$configuration['alternateLines'] = (int)$configuration['alternateLines'];
+		$configuration['lineNumbers']    = (int)$configuration['lineNumbers'];
+		$configuration['startLine']      = (int)$configuration['startLine'];
+
+		if ($configuration['language']) {
+			$beUserSession = array_unique(array_merge(array($configuration['language']), $GLOBALS['BE_USER']->uc['syntaxhighlighter_languages']));
 			$GLOBALS['BE_USER']->uc['syntaxhighlighter_languages'] = $beUserSession;
 			$GLOBALS['BE_USER']->writeUC();
 		}
 		
 		$this->languages = tx_syntaxhighlightAPI::getLanguages();
-		$content = $this->doHighlight($config);
+		$content = $this->doHighlight($configuration);
 		echo $content;
 		exit;
 	}
