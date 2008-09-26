@@ -115,10 +115,10 @@ class tx_syntaxhighlightAPI {
 	 * 
 	 * $result = tx_syntaxhighlightAPI::highlight($text, $language, $conf);
 	 *
-	 * @param  string  $text:     the text you want to highlight
-	 * @param  sring   $language: the language
-	 * @param  array   $conf:     configuration array
-	 * @return string  $result:   the highlighted text
+	 * @param   string  $text:     the text you want to highlight
+	 * @param   sring   $language: the language
+	 * @param   array   $conf:     configuration array
+	 * @return  string  $result:   the highlighted text
 	 */
 	public function highlight($text, $language, $conf=NULL) {
 
@@ -163,6 +163,7 @@ class tx_syntaxhighlightAPI {
 					$geshi->set_link_target($conf['link.']['target']);
 				}
 
+				  // Aesthetic code . . .
 				$geshi->set_link_styles(GESHI_LINK, $conf['link.']['style.']['link']); 
 				$geshi->set_link_styles(GESHI_HOVER, $conf['link.']['style.']['link']); 
 				$geshi->set_link_styles(GESHI_ACTIVE, $conf['link.']['style.']['link']); 
