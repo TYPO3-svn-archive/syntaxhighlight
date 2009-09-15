@@ -48,10 +48,11 @@ class tx_syntaxhighlight_controller {
 			// read LL-file
 		$this->langKey = $GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'default';
 		$this->lang = t3lib_div::readLLfile(t3lib_extMgm::extPath($this->extKey) . 'language/controller.xml', $this->langKey, $GLOBALS['TSFE']->renderCharset);
-		$this->piVars = t3lib_div::GParrayMerged($this->prefixId);
+		
+		/*$this->piVars = t3lib_div::GParrayMerged($this->prefixId);
 		if ($this->pi_checkCHash && count($this->piVars)) {
 			$GLOBALS['TSFE']->reqCHash();
-		}
+		}*/
 	}
 
 
@@ -91,7 +92,7 @@ class tx_syntaxhighlight_controller {
 			$configuration = array();
 			$configuration['parameter'] = $GLOBALS['TSFE']->id;
 			if ($sourceId === (int)$this->cObj->data['uid']) {
-				$textArea = '<p><textarea name="clippyTextArea" rows="5" cols="40">'.$config['code'].'</textarea></p>';
+				$textArea = '<textarea name="clippyTextArea" rows="5" cols="40">'.$config['code'].'</textarea>';
 				$config['template']  = str_replace('###TEXT_SOURCE_LINK###', $this->cObj->typolink($this->getLL('hideTextSource'), $configuration).$textArea, $config['template']);
 			} else {
 				if (TYPO3_MODE == 'FE') {
