@@ -64,12 +64,9 @@ class tx_syntaxhighlight_controller {
 	 * @return string  $content: The previous content plus the highlighted text
 	 */
 	function main($content, $conf) {
-t3lib_div::debug("DRIN");
 		$this->init($conf);
 		$config = $this->getFlexformConf();
-
 		$content .= $this->doHighlight($config);
-
 		return $content;
 	}
 
@@ -306,8 +303,8 @@ t3lib_div::debug("DRIN");
 			$config['alternateLines'] = $this->cObj->stdWrap($this->conf['alternateLines'], $this->conf['alternateLines.']);
 			$config['startLine'] = $this->cObj->stdWrap($this->conf['startLine'], $this->conf['startLine.']);
 		}
-		
-		return array_merge($this->conf, $config);
+		$config = array_merge($this->conf, $config);
+		return $config;
 	}
 	
 	/**
