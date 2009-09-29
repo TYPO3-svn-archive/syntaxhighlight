@@ -10,7 +10,8 @@ plugin.tx_syntaxhighlight_controller {
 	alternateLines = {$plugin.tx_syntaxhighlight_controller.alternateLines}
 	lineNumbers    = {$plugin.tx_syntaxhighlight_controller.lineNumbers}
 	startLine      = {$plugin.tx_syntaxhighlight_controller.startLine}
-
+	code = 
+	lang = 
 
 	template (
 			<div class="tx-syntaxhighlight" id="###ID###">
