@@ -11,14 +11,8 @@ plugin.tx_syntaxhighlight_controller {
 	lineNumbers    = {$plugin.tx_syntaxhighlight_controller.lineNumbers}
 	startLine      = {$plugin.tx_syntaxhighlight_controller.startLine}
 	code = 
-	lang = 
-
-<<<<<<< .mine
-	code = 
 	language = 
 
-=======
->>>>>>> .r24879
 	width = 
 	height = 
 

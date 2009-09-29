@@ -64,7 +64,7 @@ class tx_syntaxhighlight_controller {
 	 * @return string  $content: The previous content plus the highlighted text
 	 */
 	function main($content, $conf) {
-
+t3lib_div::debug("DRIN");
 		$this->init($conf);
 		$config = $this->getFlexformConf();
 
@@ -280,6 +280,9 @@ class tx_syntaxhighlight_controller {
 	function getFlexformConf() {
 			// parse XML data into php array
 		$config = array();
+		$config['template'] = $this->cObj->stdWrap($this->conf['template'], $this->conf['template.']);
+		$config['useGeshiCSS'] = $this->cObj->stdWrap($this->conf['useGeshiCSS'], $this->conf['useGeshiCSS.']);
+
 		if ($this->cObj->data['pi_flexform']) {
 			$data = t3lib_div::xml2array($this->cObj->data['pi_flexform']);
 	
@@ -292,6 +295,16 @@ class tx_syntaxhighlight_controller {
 			$config['lineNumbers']    = $data['data']['sDEF']['lDEF']['lineNumbers']['vDEF'];
 			$config['startLine']      = $data['data']['sDEF']['lDEF']['startLine']['vDEF'];
 			$config['width']          = $data['data']['sDEF']['lDEF']['width']['vDEF'];
+		} else {
+			$config['code'] = $this->cObj->stdWrap($this->conf['code'], $this->conf['code.']);
+			$config['language'] = $this->cObj->stdWrap($this->conf['language'], $this->conf['language.']);
+			$config['label'] = $this->cObj->stdWrap($this->conf['label'], $this->conf['label.']);
+			$config['labelMode'] = $this->cObj->stdWrap($this->conf['labelMode'], $this->conf['labelMode.']);
+			$config['width'] = $this->cObj->stdWrap($this->conf['width'], $this->conf['width.']);
+			$config['height'] = $this->cObj->stdWrap($this->conf['height'], $this->conf['height.']);
+			$config['lineNumbers'] = $this->cObj->stdWrap($this->conf['lineNumbers'], $this->conf['lineNumbers.']);
+			$config['alternateLines'] = $this->cObj->stdWrap($this->conf['alternateLines'], $this->conf['alternateLines.']);
+			$config['startLine'] = $this->cObj->stdWrap($this->conf['startLine'], $this->conf['startLine.']);
 		}
 		
 		return array_merge($this->conf, $config);
