@@ -67,11 +67,7 @@ class tx_syntaxhighlight_controller {
 
 		$this->init($conf);
 		$config = $this->getFlexformConf();
-<<<<<<< .mine
 
-=======
-		t3lib_div::debug($config);
->>>>>>> .r24879
 		$content .= $this->doHighlight($config);
 
 		return $content;
