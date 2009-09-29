@@ -252,8 +252,7 @@ class tx_syntaxhighlightAPI {
 		$style = '';
 		if ($conf['labelMode'] == 'language' || $conf['labelMode'] == 1) {
 			$title = $language;
-		}
-		else {
+		} else {
 			if ($conf['label']) {
 				$title = $conf['label'];
 			}
