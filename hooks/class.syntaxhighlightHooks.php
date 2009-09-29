@@ -51,7 +51,7 @@ class tx_syntaxhighlightHooks {
 			if (!$text) {
 				$content = $GLOBALS['LANG']->sL('LLL:EXT:syntaxhighlight/language/controller.xml:no_content');
 			} else {
-				$content = tx_syntaxhighlightAPI::highlight($text, $language);
+				$content = tx_syntaxhighlightAPI::highlight($text, $language, array('labelMode' => 1));
 				$alreadyRendered = true;
 			}
 			return $reference->link_edit($content, $table, $row['uid']);
@@ -77,7 +77,7 @@ class tx_syntaxhighlightHooks {
 			if (!$text) {
 				$result = $GLOBALS['LANG']->sL('LLL:EXT:syntaxhighlight/language/controller.xml:no_content');
 			} else {
-				$result = tx_syntaxhighlightAPI::highlight($text, $language);
+				$result = tx_syntaxhighlightAPI::highlight($text, $language, array('labelMode' => 1));
 			}
 		}
 		return $result;

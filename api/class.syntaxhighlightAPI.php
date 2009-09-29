@@ -244,7 +244,7 @@ class tx_syntaxhighlightAPI {
 
 		if (!$conf['template']) {
 			  // use standard template for BE preview
-			$conf['template'] = '<div style="max-width:300px;height:120px;background-color:#fefefe;overflow:auto;">
+			$conf['template'] = '<div style="height:120px;background-color:#fefefe;overflow:auto;">
 				<p style="background-color:#eee;margin-bottom:4px;">Language: ###TITLE###</p>
 				###TEXT### </div>';
 		}
